@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:title="Perfil"
+        android:icon="@drawable/ic_person" />
+
+    <item
+        android:id="@+id/nav_avance"
+        android:title="Avance"
+        android:icon="@drawable/ic_progress" />
+
+    <item
+        android:id="@+id/nav_ajustes"
+        android:title="Ajustes"
+        android:icon="@drawable/ic_settings" />
+
+    <item
+        android:id="@+id/nav_cerrar_sesion"
+        android:title="Cerrar sesión"
+        android:icon="@drawable/ic_logout" />
+
+</menu>
