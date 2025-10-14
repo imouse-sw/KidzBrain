@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText editTextUsuario, editTextPassword;
     Button btnIniciar, btnRegistro;
@@ -22,25 +22,35 @@ public class MainActivity extends AppCompatActivity {
 
         editTextUsuario = findViewById(R.id.editTextUsuario);
         editTextPassword = findViewById(R.id.editTextPassword);
+        
         btnIniciar = findViewById(R.id.btnIniciar);
+        btnIniciar.setOnClickListener(this);
+
         btnRegistro = findViewById(R.id.btnRegistro);
+        btnRegistro.setOnClickListener(this);
+
 
         // eto es pa que los botoncitos salgan retasaditos
         mostrarConAnimacion(editTextUsuario, 500);
         mostrarConAnimacion(editTextPassword, 1000);
         mostrarConAnimacion(btnIniciar, 1500);
         mostrarConAnimacion(btnRegistro, 2000);
+    }
 
-        btnRegistro.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, CrearCuenta.class);
-            startActivity(intent);
-        });
-        
-        btnIniciar.setOnClickListener(view -> {
+
+    //Para picarle a los botones jiji
+    @Override
+    public void onClick(View view) {
+        int idsito = ((Button)view).getId();
+        if (idsito == R.id.btnIniciar) {
             Intent intent = new Intent(MainActivity.this, Inicio.class);
             startActivity(intent);
-        });
+        } else if (idsito == R.id.btnRegistro) {
+            Intent intent = new Intent(MainActivity.this, CrearCuenta.class);
+            startActivity(intent);
+        }
     }
+
 
     private void mostrarConAnimacion(final View view, int delayMillis) {
         new Handler().postDelayed(() -> {

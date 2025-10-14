@@ -2,6 +2,7 @@ package com.example.login;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
@@ -10,12 +11,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.login.utilidades.Animaciones;
 import com.google.android.material.navigation.NavigationView;
 
-public class Inicio extends AppCompatActivity {
+public class Inicio extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout btnMatematicas, btnEspanol, btnCiencias;
     private DrawerLayout drawerLayout;
@@ -28,44 +31,27 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
         navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         btnMenu = findViewById(R.id.btnMenu);
+        btnMenu.setOnClickListener(this);
 
         btnMatematicas = findViewById(R.id.btnMatematicas);
+        btnMatematicas.setOnClickListener(this);
+
         btnEspanol = findViewById(R.id.btnEspanol);
+        btnEspanol.setOnClickListener(this);
+
         btnCiencias = findViewById(R.id.btnCiencias);
+        btnCiencias.setOnClickListener(this);
 
         // eto es pa que los botoncitos salgan retasaditos
-        mostrarConAnimacion(btnMatematicas, 300);
-        mostrarConAnimacion(btnEspanol, 600);
-        mostrarConAnimacion(btnCiencias, 900);
+        Animaciones.mostrarConAnimacion(btnMatematicas, 300);
+        Animaciones.mostrarConAnimacion(btnEspanol, 600);
+        Animaciones.mostrarConAnimacion(btnCiencias, 900);
 
-        btnMatematicas.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Matemáticas", Toast.LENGTH_SHORT).show());
-
-        btnEspanol.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Español", Toast.LENGTH_SHORT).show());
-
-        btnCiencias.setOnClickListener(v ->
-                Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show());
-
-        btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(navigationView));
-
-        navigationView.setNavigationItemSelectedListener(item -> {
-            int id = item.getItemId();
-
-            if (id == R.id.nav_perfil) {
-                Toast.makeText(this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_avance) {
-                Toast.makeText(this, "Avance seleccionado", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_ajustes) {
-                Toast.makeText(this, "Ajustes seleccionado", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_cerrar_sesion) {
-                Toast.makeText(this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
-            }
-            drawerLayout.closeDrawer(navigationView);
-            return true;
-        });
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -80,18 +66,39 @@ public class Inicio extends AppCompatActivity {
         });
     }
 
-    private void mostrarConAnimacion(View view, int delayMillis) {
-        new Handler().postDelayed(() -> {
-            view.setVisibility(View.VISIBLE);
 
-            TranslateAnimation slideUp = new TranslateAnimation(0, 0, 100, 0);
-            slideUp.setDuration(500);
+    // Para que darle click a los botones hagan su funcion.
+    @Override
+    public void onClick(View view) {
+        int idsito = view.getId();
+        if (idsito == R.id.btnMenu) {
+            drawerLayout.openDrawer(navigationView);
+        } else if (idsito == R.id.btnMatematicas) {
+            Toast.makeText(this, "Abrir Matemáticas", Toast.LENGTH_SHORT).show();
+        } else if (idsito == R.id.btnCiencias) {
+            Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show();
+        } else if (idsito == R.id.btnEspanol) {
+            Toast.makeText(this, "Abrir Español", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-            AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
-            fadeIn.setDuration(500);
 
-            view.startAnimation(slideUp);
-            view.startAnimation(fadeIn);
-        }, delayMillis);
+    //Lo mismo que en los botones, pero en este caso para el menu lateral.
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        if (id == R.id.nav_perfil) {
+            Toast.makeText(this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_avance) {
+            Toast.makeText(this, "Avance seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_ajustes) {
+            Toast.makeText(this, "Ajustes seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_cerrar_sesion) {
+            Toast.makeText(this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
+        }
+        // Cierra el menú después de seleccionar una opción
+        drawerLayout.closeDrawer(navigationView);
+        return true; // Indica que el evento fue manejado
     }
 }
