@@ -1,7 +1,7 @@
 package com.example.login;
 
-import  com.example.login.utilidades.Animaciones;
-import com.example.login.utilidades.Calendario;
+import  com.example.utilidades.Animaciones;
+import com.example.utilidades.Calendario;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
