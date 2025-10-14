@@ -12,13 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".menuLateral.AjustesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menuLateral.AvanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menuLateral.PerfilActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Inicio"
             android:exported="false" />
         <activity
             android:name=".CrearCuenta"
-            android:exported="false" />
-        <activity
-            android:name=".crearcuenta"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

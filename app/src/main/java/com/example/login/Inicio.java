@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.login.menuLateral.AjustesActivity;
+import com.example.login.menuLateral.AvanceActivity;
+import com.example.login.menuLateral.PerfilActivity;
 import com.example.utilidades.Animaciones;
 import com.google.android.material.navigation.NavigationView;
 
@@ -86,11 +90,14 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_perfil) {
-            Toast.makeText(this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, PerfilActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_avance) {
-            Toast.makeText(this, "Avance seleccionado", Toast.LENGTH_SHORT).show();
+           Intent intent = new Intent(this, AvanceActivity.class);
+           startActivity(intent);
         } else if (id == R.id.nav_ajustes) {
-            Toast.makeText(this, "Ajustes seleccionado", Toast.LENGTH_SHORT).show();
+           Intent intent = new Intent(this, AjustesActivity.class);
+           startActivity(intent);
         } else if (id == R.id.nav_cerrar_sesion) {
             Toast.makeText(this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
         }
