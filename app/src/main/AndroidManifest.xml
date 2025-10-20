@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name="com.kidzbrain.utilidades.leccionutil.ActividadLeccion"
+            android:exported="false" />
+        <activity
             android:name=".menuLateral.AjustesActivity"
             android:exported="false" />
         <activity
@@ -20,7 +23,6 @@
         <activity
             android:name=".menuLateral.PerfilActivity"
             android:exported="false" />
-
         <activity
             android:name=".Inicio"
             android:exported="false" />
