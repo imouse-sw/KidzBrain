@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "login"
 include(":app")
- 
+include(":juego_cambio")

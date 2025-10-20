@@ -71,11 +71,19 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
     // Para que darle click a los botones hagan su funcion.
     @Override
     public void onClick(View view) {
+        String nombreClaseJuego = "com.example.juego_cambio.MenuEleccion";
         int idsito = view.getId();
         if (idsito == R.id.btnMenu) {
             drawerLayout.openDrawer(navigationView);
-        } else if (idsito == R.id.btnMatematicas) {
-            Toast.makeText(this, "Abrir Matemáticas", Toast.LENGTH_SHORT).show();
+        }
+        else if (idsito == R.id.btnMatematicas) {
+            Intent intent = null;
+            try {
+                intent = new Intent(this, Class.forName(nombreClaseJuego));
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            startActivity(intent);
         } else if (idsito == R.id.btnCiencias) {
             Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show();
         } else if (idsito == R.id.btnEspanol) {
