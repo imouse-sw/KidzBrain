@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kidzbrain.login"
+    namespace = "com.example.login"
     compileSdk = 36
 
     defaultConfig {

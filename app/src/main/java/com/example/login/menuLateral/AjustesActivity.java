@@ -1,16 +1,17 @@
-package com.kidzbrain.login.menuLateral;
+package com.example.login.menuLateral;
 
 import android.os.Bundle;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import com.kidzbrain.login.R;
+import com.example.login.R;
 
-public class PerfilActivity extends AppCompatActivity {
+public class AjustesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_ajustes);
     }
 }

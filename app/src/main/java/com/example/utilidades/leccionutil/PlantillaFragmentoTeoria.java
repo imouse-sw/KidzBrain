@@ -1,4 +1,4 @@
-package com.kidzbrain.utilidades.leccionutil;
+package com.example.utilidades.leccionutil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

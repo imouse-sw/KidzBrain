@@ -1,4 +1,4 @@
-package com.kidzbrain.utilidades.leccionutil;
+package com.example.utilidades.leccionutil;
 
 import androidx.fragment.app.Fragment;
 

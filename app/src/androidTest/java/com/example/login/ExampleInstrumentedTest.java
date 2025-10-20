@@ -1,4 +1,4 @@
-package com.kidzbrain.login;
+package com.example.login;
 
 import android.content.Context;
 
