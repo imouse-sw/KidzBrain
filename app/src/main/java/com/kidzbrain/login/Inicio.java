@@ -1,4 +1,4 @@
-package com.example.login;
+package com.kidzbrain.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.login.menuLateral.AjustesActivity;
-import com.example.login.menuLateral.AvanceActivity;
-import com.example.login.menuLateral.PerfilActivity;
-import com.example.utilidades.Animaciones;
+import com.kidzbrain.login.menuLateral.AjustesActivity;
+import com.kidzbrain.login.menuLateral.AvanceActivity;
+import com.kidzbrain.login.menuLateral.PerfilActivity;
+import com.kidzbrain.utilidades.Animaciones;
 import com.google.android.material.navigation.NavigationView;
 
 public class Inicio extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {

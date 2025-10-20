@@ -1,4 +1,4 @@
-package com.example.login;
+package com.kidzbrain.login;
 
 import org.junit.Test;
 
