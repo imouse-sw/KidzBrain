@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="40dp"
+    tools:context=".Menu">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="Pizzángulos"
+        android:textSize="30dp"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:fontFamily="casual"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="En este juego podrás practicar el reconocimiento de ángulos dentro de un círculo."/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:text="¿Con qué dificultad deseas jugar?"
+        android:layout_marginBottom="40dp"/>
+
+    <!-- Layout fácil -->
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_marginLeft="40dp"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bb_px_feliz"/>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Práctica"
+                android:layout_gravity="center"
+                android:id="@+id/bPractica"/>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="El ángulo se muestra según mueves la barra. Ideado para practicar tu habilidad."
+                android:fontFamily="casual"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Layout normal -->
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginLeft="40dp"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bb_px_normal"/>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal"
+                android:layout_gravity="center"
+                android:id="@+id/bNormal"/>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="El ángulo no se muestra, ¡requiere pura destreza!"
+                android:fontFamily="casual"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

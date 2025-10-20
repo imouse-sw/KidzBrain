@@ -72,21 +72,31 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
     @Override
     public void onClick(View view) {
         String nombreClaseJuego = "com.example.juego_cambio.MenuEleccion";
+        String nombreClaseJuego2 = "com.example.juego_angulos.Menu";
         int idsito = view.getId();
         if (idsito == R.id.btnMenu) {
             drawerLayout.openDrawer(navigationView);
         }
         else if (idsito == R.id.btnMatematicas) {
             Intent intent = null;
+            //Para manejar el error en caso de no encontrar la clase.
             try {
                 intent = new Intent(this, Class.forName(nombreClaseJuego));
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             startActivity(intent);
-        } else if (idsito == R.id.btnCiencias) {
-            Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show();
-        } else if (idsito == R.id.btnEspanol) {
+        }
+        else if (idsito == R.id.btnCiencias) {
+            Intent intent = null;
+            try {
+                intent = new Intent(this, Class.forName(nombreClaseJuego2));
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            startActivity(intent);
+        }
+        else if (idsito == R.id.btnEspanol) {
             Toast.makeText(this, "Abrir Español", Toast.LENGTH_SHORT).show();
         }
     }

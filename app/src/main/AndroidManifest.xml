@@ -38,6 +38,9 @@
         </activity>
         <activity android:name="com.example.juego_cambio.MenuEleccion" />
         <activity android:name="com.example.juego_cambio.MainActivity" />
+        <activity android:name="com.example.juego_angulos.MainActivity" />
+        <activity android:name="com.example.juego_angulos.Menu" />
+
     </application>
 
 </manifest>

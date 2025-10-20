@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":juego_angulos"))
     implementation (project(":juego_cambio"))
     implementation(libs.appcompat)
     implementation(libs.material)
