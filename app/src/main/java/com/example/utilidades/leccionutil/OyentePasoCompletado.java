@@ -1,4 +1,4 @@
-package com.kidzbrain.utilidades.leccionutil;
+package com.example.utilidades.leccionutil;
 
 public interface OyentePasoCompletado {
     void onPasoCompletado();

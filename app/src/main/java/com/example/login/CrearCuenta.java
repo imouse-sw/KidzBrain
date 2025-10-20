@@ -1,7 +1,7 @@
-package com.kidzbrain.login;
+package com.example.login;
 
-import  com.kidzbrain.utilidades.Animaciones;
-import com.kidzbrain.utilidades.Calendario;
+import  com.example.utilidades.Animaciones;
+import com.example.utilidades.Calendario;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

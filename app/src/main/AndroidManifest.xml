@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name="com.kidzbrain.utilidades.leccionutil.ActividadLeccion"
+            android:name="com.example.utilidades.leccionutil.ActividadLeccion"
             android:exported="false" />
         <activity
             android:name=".menuLateral.AjustesActivity"
