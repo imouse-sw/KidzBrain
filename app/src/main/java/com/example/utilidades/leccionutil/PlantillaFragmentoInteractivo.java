@@ -21,5 +21,5 @@ public abstract class PlantillaFragmentoInteractivo extends Fragment implements 
         }
     }
 
-    public abstract void comprobarRespuesta();
+    protected abstract void comprobarRespuesta();
 }

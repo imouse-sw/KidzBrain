@@ -1,21 +1,26 @@
-package com.example.utilidades.leccionutil;
+package com.example.lecciones.matematicas.primerosegundo;
 
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.view.View;
-import android.widget.*;
-
+import com.example.fraginteractivos.EjercicioContarCamiones;
 import com.example.login.R;
+import com.example.utilidades.leccionutil.IPasoLeccion;
+import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion1 extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -50,14 +55,8 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
     }
 
     private void cargarSonidos() {
-        /*
-        aqui haces el load de todos los sonidos
-
-        idSonidoCorrecto = soundPool.load(this, R.raw.sonido_correcto, 1);
-        idSonidoIncorrecto = soundPool.load(this, R.raw.sonido_incorrecto, 1);
-
-        etc etc etc
-        */
+        idSonidoCorrecto = soundPool.load(this, R.raw.aud_correcto, 1);
+        idSonidoIncorrecto = soundPool.load(this, R.raw.aud_incorrecto, 1);
     }
 
     // métodopúblico para que los fragmentos puedan reproducir sonidos
@@ -105,6 +104,25 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
 
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1_teoria1,
+                R.raw.teoria1voz));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1_teoria2,
+                R.raw.teoria2voz));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1_teoria3,
+                R.raw.teoria3voz));
+
+        listaDePasos.add(new EjercicioContarCamiones());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1_teoria4_fin,
+                R.raw.teoria4voz));
+
 
         /* asi va a estar este pedo
 
@@ -190,6 +208,4 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
             finish(); // cierra la actividad de la lección
         }
     }
-
-
 }

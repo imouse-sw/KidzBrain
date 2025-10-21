@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1;
 import com.example.login.menuLateral.AjustesActivity;
 import com.example.login.menuLateral.AvanceActivity;
 import com.example.login.menuLateral.PerfilActivity;
@@ -75,7 +76,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         if (idsito == R.id.btnMenu) {
             drawerLayout.openDrawer(navigationView);
         } else if (idsito == R.id.btnMatematicas) {
-            Toast.makeText(this, "Abrir Matemáticas", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ActividadLeccion1.class);
+            startActivity(intent);
         } else if (idsito == R.id.btnCiencias) {
             Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show();
         } else if (idsito == R.id.btnEspanol) {
