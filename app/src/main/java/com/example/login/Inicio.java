@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.login.menuLateral.AjustesActivity;
 import com.example.login.menuLateral.AvanceActivity;
 import com.example.login.menuLateral.PerfilActivity;
@@ -78,13 +78,13 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         if (idsito == R.id.btnMenu) {
             drawerLayout.openDrawer(navigationView);
         } else if (idsito == R.id.btnMatematicas) {
-            Intent intent = new Intent(this, ActividadLeccion1.class);
+            Intent intent = new Intent(this, ActividadLeccion1M.class);
             startActivity(intent);
         } else if (idsito == R.id.btnCiencias) {
             Intent intent = new Intent(this, ActividadLeccion1C.class);
             startActivity(intent);
         } else if (idsito == R.id.btnEspanol) {
-            Intent intent = new Intent(this, ActividadLeccion2.class);
+            Intent intent = new Intent(this, ActividadLeccion2M.class);
             startActivity(intent);
         }
     }

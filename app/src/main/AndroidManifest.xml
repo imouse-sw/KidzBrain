@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1"
+            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M"
             android:exported="false" />
         <activity
             android:name="com.example.utilidades.leccionutil.ActividadLeccion"

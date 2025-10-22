@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -47,9 +47,9 @@ public class EjercicioContarCamiones extends PlantillaFragmentoInteractivo imple
 
     @Override
     protected void comprobarRespuesta() {
-        ActividadLeccion1 actividad = null;
-        if(getActivity() instanceof ActividadLeccion1) {
-            actividad = (ActividadLeccion1) getActivity();
+        ActividadLeccion1M actividad = null;
+        if(getActivity() instanceof ActividadLeccion1M) {
+            actividad = (ActividadLeccion1M) getActivity();
         }
 
         if(seleccionada == respuestaCorrecta) {

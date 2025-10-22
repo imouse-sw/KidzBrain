@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -98,7 +98,7 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
     @Override
     protected void comprobarRespuesta() {
         ActividadLeccion1C actividad = null;
-        if(getActivity() instanceof ActividadLeccion1) {
+        if(getActivity() instanceof ActividadLeccion1M) {
             actividad = (ActividadLeccion1C) getActivity();
         }
 
