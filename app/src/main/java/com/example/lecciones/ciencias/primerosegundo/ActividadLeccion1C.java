@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -59,8 +60,23 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
             avanzarAlSiguientePaso();
         }
         else if(id == R.id.boton_salir) {
-            finish();
+            mensajeSalir();
         }
+    }
+
+    private void mensajeSalir() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Saliendo...");
+        builder.setIcon(R.drawable.ic_exit);
+        builder.setMessage("¿Seguro que quieres salir?");
+        builder.setPositiveButton("Si", (dialogInterface, i) -> {
+            finish();
+        });
+        builder.setNegativeButton("No", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        });
+        builder.show();
     }
 
     private void construirLeccion() {
