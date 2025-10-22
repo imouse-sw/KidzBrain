@@ -1,5 +1,7 @@
 package com.example.fraginteractivos;
 
+import android.content.Context;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +35,6 @@ public class EjercicioContarCamiones extends PlantillaFragmentoInteractivo imple
         boton3.setOnClickListener(this);
         boton4.setOnClickListener(this);
 
-
         return vistita;
     }
 
@@ -53,15 +54,22 @@ public class EjercicioContarCamiones extends PlantillaFragmentoInteractivo imple
 
         if(seleccionada == respuestaCorrecta) {
             if(actividad!=null) {
-                actividad.reproducirSonido(R.raw.aud_correcto);
+                reproducirSonido("sonido_correcto");
             }
+            Toast.makeText(getContext(), "¡Muy bien!", Toast.LENGTH_SHORT).show();
             notificarPasoCompletado();
         }
         else if(seleccionada!=-1) {
             if (actividad != null) {
-                actividad.reproducirSonido(R.raw.aud_incorrecto);
+                reproducirSonido("sonido_incorrecto");
             }
             Toast.makeText(getContext(), "¡Ups! Intenta de nuevo.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void cargarSonidosEspecificos(Context context, SoundPool soundPool) {
+        mapaSonidos.put("sonido_correcto", soundPool.load(context, R.raw.aud_correcto, 1));
+        mapaSonidos.put("sonido_incorrecto", soundPool.load(context, R.raw.aud_incorrecto, 1));
     }
 }

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2;
 import com.example.login.menuLateral.AjustesActivity;
 import com.example.login.menuLateral.AvanceActivity;
 import com.example.login.menuLateral.PerfilActivity;
@@ -81,7 +82,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         } else if (idsito == R.id.btnCiencias) {
             Toast.makeText(this, "Abrir Ciencias Naturales", Toast.LENGTH_SHORT).show();
         } else if (idsito == R.id.btnEspanol) {
-            Toast.makeText(this, "Abrir Español", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ActividadLeccion2.class);
+            startActivity(intent);
         }
     }
 
