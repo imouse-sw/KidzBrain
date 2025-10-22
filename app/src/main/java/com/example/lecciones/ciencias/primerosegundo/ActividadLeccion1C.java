@@ -1,21 +1,28 @@
-package com.example.utilidades.leccionutil;
+package com.example.lecciones.ciencias.primerosegundo;
 
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.view.View;
-import android.widget.*;
-
+import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.lec1ciencias_ejerpartes;
 import com.example.login.R;
+import com.example.utilidades.leccionutil.IPasoLeccion;
+import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion1C extends AppCompatActivity implements View.OnClickListener
+{
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -26,7 +33,6 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
     private int pasoActual = 0;
 
     // para sonidos
-
     // etc etc etc
 
     @Override
@@ -46,7 +52,6 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
         botonSalir.setOnClickListener(this);
     }
 
-    // lógica del botoncito de salir
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -60,6 +65,28 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
 
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria1,
+                R.raw.teoriaciencias1));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria2,
+                R.raw.teoriaciencias2));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria3,
+                R.raw.teoriaciencias3));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria4,
+                R.raw.teoriaciencias4));
+
+        listaDePasos.add(new lec1ciencias_ejerpartes());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria5_fin,
+                R.raw.teoriaciencias5));
+
 
         /* asi va a estar este pedo
 
@@ -145,6 +172,4 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
             finish(); // cierra la actividad de la lección
         }
     }
-
-
 }
