@@ -25,11 +25,6 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
 
-    // para sonidos
-    private SoundPool soundPool;
-    private int idSonidoCorrecto, idSonidoIncorrecto, idSonidoClick;
-    // etc etc etc
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,54 +37,8 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
         construirLeccion();
         mostrarPaso(pasoActual);
 
-        configurarSoundPool();
-        cargarSonidos();
-
         botonSiguiente.setOnClickListener(this);
         botonSalir.setOnClickListener(this);
-    }
-
-    private void cargarSonidos() {
-        /*
-        aqui haces el load de todos los sonidos
-
-        idSonidoCorrecto = soundPool.load(this, R.raw.sonido_correcto, 1);
-        idSonidoIncorrecto = soundPool.load(this, R.raw.sonido_incorrecto, 1);
-
-        etc etc etc
-        */
-    }
-
-    // métodopúblico para que los fragmentos puedan reproducir sonidos
-    /**
-     * reproduce un sonido que haya sido cargado en la pool
-     * @param idSonido es el id del sonido a reproducir
-     */
-    public void reproducirSonido(int idSonido) {
-        if(soundPool!=null && idSonido != 0) {
-            soundPool.play(idSonido, 1.0f, 1.0f, 1, 0, 1.0f);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (soundPool != null) {
-            soundPool.release();
-            soundPool = null;
-        }
-    }
-
-    private void configurarSoundPool() {
-        AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
-
-        soundPool = new SoundPool.Builder()
-                .setMaxStreams(5)
-                .setAudioAttributes(audioAttributes)
-                .build();
     }
 
     @Override
