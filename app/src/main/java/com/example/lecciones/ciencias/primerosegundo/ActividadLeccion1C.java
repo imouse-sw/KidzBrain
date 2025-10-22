@@ -1,21 +1,28 @@
-package com.example.utilidades.leccionutil;
+package com.example.lecciones.ciencias.primerosegundo;
 
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.view.View;
-import android.widget.*;
-
+import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.lec1ciencias_ejerpartes;
 import com.example.login.R;
+import com.example.utilidades.leccionutil.IPasoLeccion;
+import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion1C extends AppCompatActivity implements View.OnClickListener
+{
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -26,8 +33,6 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
     private int pasoActual = 0;
 
     // para sonidos
-    private SoundPool soundPool;
-    private int idSonidoCorrecto, idSonidoIncorrecto, idSonidoClick;
     // etc etc etc
 
     @Override
@@ -42,54 +47,9 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
         construirLeccion();
         mostrarPaso(pasoActual);
 
-        configurarSoundPool();
-        cargarSonidos();
 
         botonSiguiente.setOnClickListener(this);
         botonSalir.setOnClickListener(this);
-    }
-
-    private void cargarSonidos() {
-        /*
-        aqui haces el load de todos los sonidos
-
-        idSonidoCorrecto = soundPool.load(this, R.raw.sonido_correcto, 1);
-        idSonidoIncorrecto = soundPool.load(this, R.raw.sonido_incorrecto, 1);
-
-        etc etc etc
-        */
-    }
-
-    // métodopúblico para que los fragmentos puedan reproducir sonidos
-    /**
-     * reproduce un sonido que haya sido cargado en la pool
-     * @param idSonido es el id del sonido a reproducir
-     */
-    public void reproducirSonido(int idSonido) {
-        if(soundPool!=null && idSonido != 0) {
-            soundPool.play(idSonido, 1.0f, 1.0f, 1, 0, 1.0f);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (soundPool != null) {
-            soundPool.release();
-            soundPool = null;
-        }
-    }
-
-    private void configurarSoundPool() {
-        AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
-
-        soundPool = new SoundPool.Builder()
-                .setMaxStreams(5)
-                .setAudioAttributes(audioAttributes)
-                .build();
     }
 
     @Override
@@ -105,6 +65,28 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
 
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria1,
+                R.raw.teoriaciencias1));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria2,
+                R.raw.teoriaciencias2));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria3,
+                R.raw.teoriaciencias3));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria4,
+                R.raw.teoriaciencias4));
+
+        listaDePasos.add(new lec1ciencias_ejerpartes());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec1ciencias_teoria5_fin,
+                R.raw.teoriaciencias5));
+
 
         /* asi va a estar este pedo
 
@@ -190,6 +172,4 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
             finish(); // cierra la actividad de la lección
         }
     }
-
-
 }

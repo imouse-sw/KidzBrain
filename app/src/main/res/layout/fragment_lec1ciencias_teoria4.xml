@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoparke" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:background="#94000000" />
+
+    <ImageView
+        android:layout_width="142dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/frutonas" />
+
+    <ImageView
+        android:layout_width="131dp"
+        android:layout_height="134dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="180dp"
+        android:src="@drawable/cepillito" />
+
+    <ImageView
+        android:layout_width="190dp"
+        android:layout_height="186dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="350dp"
+        android:src="@drawable/dormiito" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="80dp"
+        android:src="@drawable/banaito" />
+
+    <ImageView
+        android:layout_width="133dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="450dp"
+        android:src="@drawable/awita" />
+
+    <ImageView
+        android:layout_width="162dp"
+        android:layout_height="145dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="560dp"
+        android:layout_marginEnd="150dp"
+        android:src="@drawable/ejerc" />
+
+</FrameLayout>
