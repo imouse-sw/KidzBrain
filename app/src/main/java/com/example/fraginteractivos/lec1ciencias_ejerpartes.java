@@ -44,7 +44,7 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
 
     private ImageView imagenPregunta;
     private TextView textoPregunta;
-    private Button btnOpcion1, btnOpcion2, btnOpcion3, btnOpcion4;
+    private Button btnOpcion1, btnOpcion2, btnOpcion3;
     private Button btnSiguiente;
 
     @Nullable
@@ -59,12 +59,10 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
         btnOpcion1 = vistita.findViewById(R.id.boton_opcion_cuerpo1);
         btnOpcion2 = vistita.findViewById(R.id.boton_opcion_cuerpo2);
         btnOpcion3 = vistita.findViewById(R.id.boton_opcion_cuerpo3);
-        btnOpcion4 = vistita.findViewById(R.id.boton_opcion_cuerpo4);
 
         btnOpcion1.setOnClickListener(this);
         btnOpcion2.setOnClickListener(this);
         btnOpcion3.setOnClickListener(this);
-        btnOpcion4.setOnClickListener(this);
 
         btnSiguiente.setOnClickListener(v -> avanzarSiguientePregunta());
 
@@ -87,8 +85,6 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
             seleccionada = 1;
         } else if (id == R.id.boton_opcion_cuerpo3) {
             seleccionada = 2;
-        } else if (id == R.id.boton_opcion_cuerpo4) {
-            seleccionada = 3;
         }
 
         comprobarRespuesta();
@@ -157,7 +153,6 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
         btnOpcion1.setText(pregunta.opciones[0]);
         btnOpcion2.setText(pregunta.opciones[1]);
         btnOpcion3.setText(pregunta.opciones[2]);
-        btnOpcion4.setText(pregunta.opciones[3]);
 
         btnSiguiente.setVisibility(View.GONE);
         habilitarOpciones(true);
@@ -173,7 +168,6 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
         btnOpcion1.setEnabled(habilitar);
         btnOpcion2.setEnabled(habilitar);
         btnOpcion3.setEnabled(habilitar);
-        btnOpcion4.setEnabled(habilitar);
     }
 
     private void terminarCuestionario() {
@@ -184,7 +178,6 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
         btnOpcion1.setVisibility(View.GONE);
         btnOpcion2.setVisibility(View.GONE);
         btnOpcion3.setVisibility(View.GONE);
-        btnOpcion4.setVisibility(View.GONE);
 
         btnSiguiente.setText("Volver a empezar");
         btnSiguiente.setOnClickListener(v -> {
@@ -195,7 +188,6 @@ public class lec1ciencias_ejerpartes extends PlantillaFragmentoInteractivo imple
             btnOpcion1.setVisibility(View.VISIBLE);
             btnOpcion2.setVisibility(View.VISIBLE);
             btnOpcion3.setVisibility(View.VISIBLE);
-            btnOpcion4.setVisibility(View.VISIBLE);
 
             btnSiguiente.setText("Siguiente Pregunta");
             btnSiguiente.setOnClickListener(v2 -> avanzarSiguientePregunta());

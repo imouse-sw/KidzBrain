@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
+import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
@@ -111,10 +112,10 @@ public class mapa_niveles extends AppCompatActivity {
                 case 1:
                     intent = new Intent(this, ActividadLeccion1C.class);
                     break;
-                /**case 2:
-                 intent = new Intent(this, ActividadLeccion2C.class);
+                case 2:
+                 intent = new Intent(this, ActividadLeccion1_2C.class);
                  break;
-                 case 3:
+                /* case 3:
                  intent = new Intent(this, ActividadLeccion3C.class);
                  break;*/
                 default:
