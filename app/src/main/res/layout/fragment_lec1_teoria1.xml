@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="¡Bienvenid@ a tu primera lección de matemáticas!"
+            android:text="Lección 1: Aprendiendo a contar."
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textAlignment="center"/>

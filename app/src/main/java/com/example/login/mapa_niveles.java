@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
+import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
 
 public class mapa_niveles extends AppCompatActivity {
 
@@ -99,9 +100,9 @@ public class mapa_niveles extends AppCompatActivity {
                 case 2:
                     intent = new Intent(this, ActividadLeccion2M.class);
                     break;
-                /**case 3:
-                 intent = new Intent(this, ActividadLeccion3M.class);
-                 break;*/
+                case 3:
+                    intent = new Intent(this, ActividadLeccion3M.class);
+                    break;
                 default:
                     return;
             }

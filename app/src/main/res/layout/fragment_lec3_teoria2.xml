@@ -17,17 +17,14 @@
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:background="#94000000"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Lección 2: ¡Contando más allá del diez!"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textAlignment="center"/>
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:src="@drawable/vcinco_perritos" />
 
         <ImageView
             android:layout_marginTop="20dp"
@@ -38,4 +35,3 @@
     </LinearLayout>
 
 </FrameLayout>
-

@@ -3,7 +3,7 @@
     android:id="@+id/layoutMapa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapaNivelesActivity">
+    tools:context=".mapa_niveles">
 
     <!-- Imagen de fondo recortada y centrada -->
     <ImageView
