@@ -24,6 +24,9 @@
             android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C"
             android:exported="false" />
         <activity
+            android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C"
+            android:exported="false" />
+        <activity
             android:name="com.example.utilidades.leccionutil.ActividadLeccion"
             android:exported="false" />
         <activity
