@@ -24,13 +24,13 @@
             android:layout_width="337dp"
             android:layout_height="291dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="0dp"
             android:src="@drawable/eskema1" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="0dp"
             android:src="@drawable/ninasaltando" />
 
     </LinearLayout>
