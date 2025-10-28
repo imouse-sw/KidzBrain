@@ -69,27 +69,6 @@
                         android:fontFamily="sans-serif-medium" />
                 </FrameLayout>
 
-                <FrameLayout
-                    android:id="@+id/btnEspanol"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="24dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/btn_espanol"
-                        android:scaleType="centerCrop" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Español"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp"
-                        android:gravity="center"
-                        android:fontFamily="sans-serif-medium" />
-                </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/btnCiencias"

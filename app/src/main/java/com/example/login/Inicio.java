@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.login.menuLateral.AjustesActivity;
 import com.example.login.menuLateral.AvanceActivity;
 import com.example.login.menuLateral.PerfilActivity;
@@ -24,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Inicio extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
-    private FrameLayout btnMatematicas, btnEspanol, btnCiencias;
+    private FrameLayout btnMatematicas, btnCiencias;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageView btnMenu;
@@ -34,8 +31,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        // Referencias a los elementos del layout
         drawerLayout = findViewById(R.id.drawer_layout);
-
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -45,52 +42,50 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         btnMatematicas = findViewById(R.id.btnMatematicas);
         btnMatematicas.setOnClickListener(this);
 
-        btnEspanol = findViewById(R.id.btnEspanol);
-        btnEspanol.setOnClickListener(this);
-
         btnCiencias = findViewById(R.id.btnCiencias);
         btnCiencias.setOnClickListener(this);
 
-        // eto es pa que los botoncitos salgan retasaditos
+        // Animaciones para que aparezcan los botones
         Animaciones.mostrarConAnimacion(btnMatematicas, 300);
-        Animaciones.mostrarConAnimacion(btnEspanol, 600);
         Animaciones.mostrarConAnimacion(btnCiencias, 900);
 
-
+        // Control del botón "atrás" con el menú lateral
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (drawerLayout.isDrawerOpen(navigationView)) {
                     drawerLayout.closeDrawer(navigationView);
                 } else {
-                    setEnabled(false); // Deshabilita este callback para que el sistema maneje el botón atrás
+                    setEnabled(false);
                     onBackPressed();
                 }
             }
         });
     }
 
-
-    // Para que darle click a los botones hagan su funcion.
+    // --- ACCIONES DE LOS BOTONES DE LA PANTALLA PRINCIPAL ---
     @Override
     public void onClick(View view) {
         int idsito = view.getId();
+
         if (idsito == R.id.btnMenu) {
             drawerLayout.openDrawer(navigationView);
-        } else if (idsito == R.id.btnMatematicas) {
-            Intent intent = new Intent(this, ActividadLeccion1M.class);
+        }
+        // 👉 Botón de Matemáticas: abre el mapa de niveles
+        else if (idsito == R.id.btnMatematicas) {
+            Intent intent = new Intent(this, mapa_niveles.class);
+            intent.putExtra("materia", "matematicas");
             startActivity(intent);
-        } else if (idsito == R.id.btnCiencias) {
-            Intent intent = new Intent(this, ActividadLeccion1C.class);
-            startActivity(intent);
-        } else if (idsito == R.id.btnEspanol) {
-            Intent intent = new Intent(this, ActividadLeccion2M.class);
+        }
+        // 👉 Botón de Ciencias: abre el mapa de niveles
+        else if (idsito == R.id.btnCiencias) {
+            Intent intent = new Intent(this, mapa_niveles.class);
+            intent.putExtra("materia", "ciencias");
             startActivity(intent);
         }
     }
 
-
-    //Lo mismo que en los botones, pero en este caso para el menu lateral.
+    // --- OPCIONES DEL MENÚ LATERAL ---
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -99,16 +94,17 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
             Intent intent = new Intent(this, PerfilActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_avance) {
-           Intent intent = new Intent(this, AvanceActivity.class);
-           startActivity(intent);
+            Intent intent = new Intent(this, AvanceActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_ajustes) {
-           Intent intent = new Intent(this, AjustesActivity.class);
-           startActivity(intent);
+            Intent intent = new Intent(this, AjustesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_cerrar_sesion) {
             Toast.makeText(this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
         }
+
         // Cierra el menú después de seleccionar una opción
         drawerLayout.closeDrawer(navigationView);
-        return true; // Indica que el evento fue manejado
+        return true;
     }
 }
