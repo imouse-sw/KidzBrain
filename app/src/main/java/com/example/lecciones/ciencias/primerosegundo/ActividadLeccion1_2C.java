@@ -1,5 +1,6 @@
 package com.example.lecciones.ciencias.primerosegundo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -167,6 +168,8 @@ public class ActividadLeccion1_2C extends AppCompatActivity implements View.OnCl
             si neta me dan ganas de chambear, aquí le pongo que se desbloquee el juego relacionado a la lección o
             grupo de lecciones y ese tipo de cosas xdddd spoiler muy probablemente no
              */
+            SharedPreferences prefs = getSharedPreferences("Progreso_ciencias", MODE_PRIVATE);
+            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
             finish(); // cierra la actividad de la lección
         }
     }
