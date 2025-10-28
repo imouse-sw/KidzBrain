@@ -1,6 +1,5 @@
 package com.example.lecciones.matematicas.primerosegundo;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fraginteractivos.EjercicioContarCanicas;
 import com.example.fraginteractivos.EjercicioContarRanitas;
+import com.example.fraginteractivos.EjercicioDecenas1;
+import com.example.fraginteractivos.EjercicioDecenas2;
+import com.example.fraginteractivos.EjercicioDecenas3;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -21,7 +23,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion2M extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion3M extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -76,37 +78,18 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria1,
-                R.raw.lec2_teoria1));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria2,
-                R.raw.lec2_teoria2));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria3,
-                R.raw.lec2_teoria3));
-
-        listaDePasos.add(new EjercicioContarRanitas());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria4,
-                R.raw.lec2_teoria4));
-
-        listaDePasos.add(new EjercicioContarCanicas());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria5,
-                R.raw.lec2_teoria5));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria6,
-                R.raw.lec2_teoria6));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria7,
-                R.raw.lec2_teoria7));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria1, R.raw.lec3_teoria1));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria2, R.raw.lec3_teoria2));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria3, R.raw.lec3_teoria3));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria4, R.raw.lec3_teoria4));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria5, R.raw.lec3_teoria5));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria6, R.raw.lec3_teoria6));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria7, R.raw.lec3_teoria7));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria8, R.raw.lec3_teoria8));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec3_teoria9, R.raw.lec3_teoria9));
+        listaDePasos.add(new EjercicioDecenas1());
+        listaDePasos.add(new EjercicioDecenas2());
+        listaDePasos.add(new EjercicioDecenas3());
     }
 
     /**
@@ -149,10 +132,6 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
             mostrarPaso(pasoActual);
         } else {
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            // Guardar progreso para desbloquear nivel 3
-            SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
-
             finish();
         }
     }

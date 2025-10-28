@@ -10,24 +10,21 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:alpha="0.5"
-        android:src="@drawable/matematicasfondo5"/>
+        android:src="@drawable/matematicasfondo7"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
-        android:background="#94000000"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:background="#94FFFFFF"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Lección 2: ¡Contando más allá del diez!"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textAlignment="center"/>
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="330dp"
+            android:layout_gravity="center"
+            android:src="@drawable/unidades_decenas" />
 
         <ImageView
             android:layout_marginTop="20dp"
@@ -38,4 +35,3 @@
     </LinearLayout>
 
 </FrameLayout>
-
