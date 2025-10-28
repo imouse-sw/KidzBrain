@@ -1,5 +1,6 @@
 package com.example.lecciones.matematicas.primerosegundo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -132,8 +133,18 @@ public class ActividadLeccion1M extends AppCompatActivity implements View.OnClic
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
+            // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            finish();
+
+            // Guardar progreso para desbloquear nivel 2
+            SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
+            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+
+            finish(); // vuelve al mapa
         }
     }
+
 }
+
+
+
