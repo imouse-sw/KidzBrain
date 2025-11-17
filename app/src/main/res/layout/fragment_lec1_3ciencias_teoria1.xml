@@ -21,10 +21,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¡Bienvenid@ a tu tercera lección de ciencias!"
+            android:text="¡Bienvenido a tu tercera lección de ciencias!"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textColor="#A9FA00"
+            android:textSize="40sp"
+            android:fontFamily="@font/font"
             android:textStyle="bold" />
 
         <ImageView

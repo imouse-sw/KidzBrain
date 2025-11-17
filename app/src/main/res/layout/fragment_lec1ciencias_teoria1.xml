@@ -22,9 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="¡Bienvenid@ a tu primera lección de ciencias!"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:text="¡Bienvenido a tu primera lección de ciencias!"
+            android:textColor="#FD77E8"
+            android:textSize="40sp"
+            android:fontFamily="@font/font"
             android:textAlignment="center"/>
 
         <ImageView

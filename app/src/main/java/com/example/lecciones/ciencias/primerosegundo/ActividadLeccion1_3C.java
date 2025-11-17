@@ -66,26 +66,22 @@ public class ActividadLeccion1_3C extends AppCompatActivity implements View.OnCl
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
                 R.layout.fragment_lec1_3ciencias_teoria1,
-                R.raw.teoriaciencias2_1));
+                R.raw.teoriaciencias3_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_2ciencias_teoria2,
-                R.raw.teoriaciencias2_2));
+                R.layout.fragment_lec1_3ciencias_teoria2,
+                R.raw.teoriaciencias3_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_2ciencias_teoria3,
-                R.raw.audiesote));
+                R.layout.fragment_lec1_3ciencias_teoria3,
+                R.raw.audiesote2));
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_2ciencias_teoria4,
-                R.raw.teoriaciencias2_3));
+                R.layout.fragment_lec1_3ciencias_teoria4,
+                R.raw.audiesote3));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_2ciencias_teoria5,
-                R.raw.teoriaciencias2_4));
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_2ciencias_teoria6_fin,
-                R.raw.teoriaciencias2_5));
-
+                R.layout.fragment_lec1_3ciencias_teoria5_fin,
+                R.raw.teoriaciencias3_3));
     }
 
     /**
@@ -136,12 +132,6 @@ public class ActividadLeccion1_3C extends AppCompatActivity implements View.OnCl
         } else {
             // si sí es el último paso, la lección terminó y ya yupi bien hecho niño te ganaste una verguiada
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            /*
-            si neta me dan ganas de chambear, aquí le pongo que se desbloquee el juego relacionado a la lección o
-            grupo de lecciones y ese tipo de cosas xdddd spoiler muy probablemente no
-             */
-            SharedPreferences prefs = getSharedPreferences("Progreso_ciencias", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
             finish(); // cierra la actividad de la lección
         }
     }

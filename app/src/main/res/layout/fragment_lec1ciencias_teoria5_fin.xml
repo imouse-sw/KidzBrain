@@ -22,9 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="!Felicidades¡"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:text="!Felicidades, terminaste tu primera lección de ciencias!."
+            android:textColor="#FD77E8"
+            android:textSize="40sp"
+            android:fontFamily="@font/font"
             android:textAlignment="center"/>
 
         <ImageView

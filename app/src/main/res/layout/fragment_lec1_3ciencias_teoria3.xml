@@ -21,24 +21,27 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="🗑️"
-            android:textSize="100dp" />
+            android:gravity="center"
+            android:text="¿Qué son las 3R?"
+            android:textColor="#39FF14"
+            android:fontFamily="@font/font"
+            android:textSize="70sp" />
 
         <ImageView
-            android:layout_width="221dp"
+            android:layout_width="wrap_content"
             android:layout_height="204dp"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:src="@drawable/basurita" />
+            android:layout_marginRight="0dp"
+            android:src="@drawable/las3r" />
 
         <ImageView
             android:layout_width="300dp"
             android:layout_height="280dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/reciclaje" />
+            android:layout_marginLeft="0dp"
+            android:src="@drawable/planetita" />
 
     </LinearLayout>
 

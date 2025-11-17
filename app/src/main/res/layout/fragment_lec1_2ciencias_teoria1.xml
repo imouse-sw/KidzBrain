@@ -23,8 +23,9 @@
             android:layout_height="wrap_content"
             android:text="¡Bienvenid@ a tu segunda lección de ciencias!"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textColor="#329BF8"
+            android:fontFamily="@font/font"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <ImageView
