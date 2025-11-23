@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="734dp"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondosis" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:background="#94000000"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="328dp"
+            android:layout_height="231dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="0dp"
+            android:src="@drawable/estaciones" />
+
+        <ImageView
+            android:layout_width="331dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="0dp"
+            android:src="@drawable/otn" />
+
+        <ImageView
+            android:layout_width="326dp"
+            android:layout_height="280dp"
+            android:layout_marginLeft="0dp"
+            android:src="@drawable/invierno" />
+
+    </LinearLayout>
+
+</FrameLayout>
