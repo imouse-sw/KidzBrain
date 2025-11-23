@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C;
+import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
@@ -111,7 +112,7 @@ public class mapa_niveles extends AppCompatActivity {
         } else if ("ciencias".equalsIgnoreCase(materia)) {
             switch (nivel) {
                 case 1:
-                    intent = new Intent(this, ActividadLeccion1C.class);
+                    intent = new Intent(this, ActividadLeccion2_1C.class);
                     break;
                 case 2:
                  intent = new Intent(this, ActividadLeccion1_2C.class);

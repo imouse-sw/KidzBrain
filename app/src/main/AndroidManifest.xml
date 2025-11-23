@@ -33,6 +33,9 @@
             android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C"
             android:exported="false" />
         <activity
+            android:name="com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C"
+            android:exported="false" />
+        <activity
             android:name="com.example.utilidades.leccionutil.ActividadLeccion"
             android:exported="false" />
         <activity
