@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondoeco" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="#94000000"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Baja para ver las partes del ciclo del agua!"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:fontFamily="@font/font"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="384dp"
+                android:layout_height="231dp"
+                android:src="@drawable/cicloc" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ciclo completo"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/font"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="500dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/evapo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="1. Evaporación"
+                android:fontFamily="@font/font"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/conde" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/font"
+                android:text="2. Condensación"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/preci" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="3. Precipitación"
+                android:fontFamily="@font/font"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/infil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="4. Infiltracion"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/font"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/escor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="5. Escorrentía"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/font"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

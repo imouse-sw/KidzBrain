@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioMateria;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -20,7 +19,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion2_2C  extends AppCompatActivity implements View.OnClickListener
+public class ActividadLeccion2_3C extends AppCompatActivity implements View.OnClickListener
 {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
@@ -81,27 +80,24 @@ public class ActividadLeccion2_2C  extends AppCompatActivity implements View.OnC
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria1,
-                R.raw.lec_ciencias5_1));
+                R.layout.fragment_lec2_3ciencias_teoria1,
+                R.raw.lec_ciencias6_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria2,
-                R.raw.lec_ciencias5_2));
+                R.layout.fragment_lec2_3ciencias_teoria2,
+                R.raw.lec_ciencias6_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria3,
-                R.raw.lec_ciencias5_3));
+                R.layout.fragment_lec2_3ciencias_teoria3,
+                R.raw.lec_ciencias6_3));
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria4,
-                R.raw.lec_ciencias5_4));
+                R.layout.fragment_lec2_3ciencias_teoria4,
+                R.raw.lec_ciencias6_4));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria5,
-                R.raw.lec_ciencias5_5));
+                R.layout.fragment_lec2_3ciencias_teoria5_fin,
+                R.raw.lec_ciencias6_5));
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_2ciencias_teoria6_fin,
-                R.raw.lec_ciencias5_6));
 
 
 
@@ -187,9 +183,9 @@ public class ActividadLeccion2_2C  extends AppCompatActivity implements View.OnC
             grupo de lecciones y ese tipo de cosas xdddd spoiler muy probablemente no
              */
             SharedPreferences prefs = getSharedPreferences("Progreso_ciencias", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
+            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
             finish(); // cierra la actividad de la lección
-             }
         }
     }
+}
 
