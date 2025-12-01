@@ -1,0 +1,39 @@
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="450dp"
+        android:layout_height="800dp"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/materia2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="629dp"
+        android:layout_margin="30dp"
+        android:background="#94000000"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Felicidades! Has terminado tu primera lección de ciencias avanzadas!."
+            android:textAlignment="center"
+            android:fontFamily="@font/font"
+            android:textColor="#C8C5C5"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/bb_feliz" />
+
+    </LinearLayout>
+
+</FrameLayout>
