@@ -1,71 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     tools:context=".MainActivity">
 
+    <!-- === DECORACIÓN DE FONDO (Círculos Flotantes) === -->
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/deco_circle_pink"
+        android:alpha="0.6"
+        android:layout_marginTop="-50dp"
+        android:layout_marginStart="-50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.8"
+        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- === IMAGEN DEL PANITA FELIZ === -->
     <ImageView
-        android:id="@+id/imageBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/fondo_login"
-        android:scaleType="centerCrop" />
+        android:id="@+id/ivHappyBaby"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bb_feliz"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:contentDescription="Bebé feliz saludando" />
 
+    <!-- === TÍTULO APP === -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KidzBrain"
+        android:fontFamily="@font/nabla"
+        android:shadowColor="#000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:textSize="68sp"
+        app:layout_constraintTop_toBottomOf="@id/ivHappyBaby"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-75dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu mundo de juegos"
+        android:fontFamily="@font/syne"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- === TARJETA DE LOGIN === -->
     <LinearLayout
-        android:id="@+id/contenedor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/card_background"
         android:padding="32dp"
-        android:layout_marginTop="-90dp">>
+        android:elevation="16dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <EditText
-            android:id="@+id/editTextUsuario"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:autofillHints="username"
-            android:backgroundTint="#FFFFFF"
-            android:hint="Usuario"
+            android:text="¡A Jugar!"
+            android:fontFamily="@font/syne"
+            android:textSize="26sp"
+            android:textColor="#2D3E50"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- CAMPO USUARIO -->
+        <EditText
+            android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/input_background"
+            android:hint="Nombre de Usuario"
+            android:paddingHorizontal="20dp"
+            android:fontFamily="@font/syne"
+            android:textColor="#333"
+            android:textColorHint="#90A4AE"
             android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:visibility="invisible" />
+            android:layout_marginBottom="16dp"/>
 
+        <!-- CAMPO PASSWORD -->
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/etPass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:autofillHints="password"
-            android:backgroundTint="#FFFFFF"
+            android:layout_height="56dp"
+            android:background="@drawable/input_background"
             android:hint="Contraseña"
+            android:paddingHorizontal="20dp"
+            android:fontFamily="@font/syne"
+            android:textColor="#333"
+            android:textColorHint="#90A4AE"
             android:inputType="textPassword"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- BOTÓN ENTRAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="ENTRAR"
+            android:fontFamily="@font/syne"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:visibility="invisible" />
+            android:background="@drawable/button_background"
+            android:stateListAnimator="@null"/>
 
-        <Button
-            android:id="@+id/btnIniciar"
-            android:layout_width="match_parent"
+        <!-- TEXTO REGISTRO -->
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="#3F51B5"
-            android:text="Iniciar sesión"
-            android:textColor="@android:color/white"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/btnRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#009688"
-            android:text="Registrarse"
-            android:textColor="@android:color/white"
-            android:visibility="invisible" />
+            android:text="¿Nuevo aquí? Crea una cuenta"
+            android:fontFamily="@font/syne"
+            android:textColor="#D372A3"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"/>
 
     </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
