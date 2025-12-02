@@ -82,29 +82,24 @@ public class ActividadLeccion3_3C extends AppCompatActivity implements View.OnCl
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria1,
-                R.raw.lec_ciencias4));
+                R.layout.fragment_lec3_3ciencias_teoria1,
+                R.raw.bio5_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria2,
-                R.raw.lec_ciencias4_2));
+                R.layout.fragment_lec3_3ciencias_teoria2,
+                R.raw.bio5_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria3,
-                R.raw.lec_ciencias4_3));
+                R.layout.fragment_lec3_3ciencias_teoria3,
+                R.raw.bio5_3));
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria4,
-                R.raw.lec_ciencias4_4));
+                R.layout.fragment_lec3_3ciencias_teoria4,
+                R.raw.bio5_4));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria5,
-                R.raw.lec_ciencias4_5));
+                R.layout.fragment_lec3_3ciencias_teoria5_fin,
+                R.raw.bio5_5));
 
-        listaDePasos.add(new EjercicioMateria());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria6_fin,
-                R.raw.lec_ciencias4_6));
 
 
 

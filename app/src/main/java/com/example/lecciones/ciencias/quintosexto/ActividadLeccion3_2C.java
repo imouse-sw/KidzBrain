@@ -81,29 +81,27 @@ public class ActividadLeccion3_2C extends AppCompatActivity implements View.OnCl
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria1,
-                R.raw.lec_ciencias4));
+                R.layout.fragment_lec3_2ciencias_teoria1,
+                R.raw.bio4_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria2,
-                R.raw.lec_ciencias4_2));
+                R.layout.fragment_lec3_2ciencias_teoria2,
+                R.raw.bio4_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria3,
-                R.raw.lec_ciencias4_3));
+                R.layout.fragment_lec3_2ciencias_teoria3,
+                R.raw.bio4_3));
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria4,
-                R.raw.lec_ciencias4_4));
+                R.layout.fragment_lec3_2ciencias_teoria4,
+                R.raw.bio4_4));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria5,
-                R.raw.lec_ciencias4_5));
-
-        listaDePasos.add(new EjercicioMateria());
+                R.layout.fragment_lec3_2ciencias_teoria5,
+                R.raw.bio4_5));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_1ciencias_teoria6_fin,
-                R.raw.lec_ciencias4_6));
+                R.layout.fragment_lec3_2ciencias_teoria6_fin,
+                R.raw.bio4_6));
 
 
 
@@ -189,7 +187,7 @@ public class ActividadLeccion3_2C extends AppCompatActivity implements View.OnCl
             grupo de lecciones y ese tipo de cosas xdddd spoiler muy probablemente no
              */
             SharedPreferences prefs = getSharedPreferences("Progreso_ciencias", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
             finish(); // cierra la actividad de la lección
         }
     }
