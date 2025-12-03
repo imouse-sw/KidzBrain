@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout; // Importante: Nuevo layout
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.login.menuLateral.AjustesActivity;
@@ -21,41 +23,62 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Inicio extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
-    private FrameLayout btnMatematicas, btnCiencias;
+    // Vistas principales
+    private ConstraintLayout btnMatematicas, btnCiencias; // Ahora son ConstraintLayout
+    private View btnMenuContainer; // Usamos 'View' genérico para el contenedor del menú
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private ImageView btnMenu;
+
+    // Elementos visuales para animar
+    private ImageView ivTituloSeccion;
+    private TextView tvSubtitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        // Referencias a los elementos del layout
+        // 1. Vincular Vistas (IDs actualizados según tu XML)
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
-        btnMenu = findViewById(R.id.btnMenu);
-        btnMenu.setOnClickListener(this);
+        // Botón Menú: Vinculamos el CONTENEDOR (FrameLayout en XML) para mejor tacto
+        btnMenuContainer = findViewById(R.id.btnMenuContainer);
 
+        // Botones de Materias
         btnMatematicas = findViewById(R.id.btnMatematicas);
-        btnMatematicas.setOnClickListener(this);
-
         btnCiencias = findViewById(R.id.btnCiencias);
+
+        // Títulos
+        ivTituloSeccion = findViewById(R.id.ivTituloSeccion);
+        tvSubtitulo = findViewById(R.id.tvSubtitulo);
+
+        // 2. Configurar Listeners
+        navigationView.setNavigationItemSelectedListener(this);
+        btnMenuContainer.setOnClickListener(this);
+        btnMatematicas.setOnClickListener(this);
         btnCiencias.setOnClickListener(this);
 
-        // Animaciones para que aparezcan los botones
-        Animaciones.mostrarConAnimacion(btnMatematicas, 300);
-        Animaciones.mostrarConAnimacion(btnCiencias, 900);
+        // 3. SECUENCIA DE ANIMACIONES (Cascada)
+        // Si tu clase 'Animaciones' usa alpha/translation, esto funcionará perfecto.
 
-        // Control del botón "atrás" con el menú lateral
+        // A) El botón de menú entra suavemente
+        btnMenuContainer.setAlpha(0f);
+        btnMenuContainer.animate()
+                .alpha(1f)
+                .setDuration(500)
+                .setStartDelay(200)
+                .start();
+
+
+        // 4. Manejo del botón "Atrás" del celular
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (drawerLayout.isDrawerOpen(navigationView)) {
                     drawerLayout.closeDrawer(navigationView);
                 } else {
+                    // Si estamos en Inicio y damos atrás, salimos de la app o minimizamos
                     setEnabled(false);
                     onBackPressed();
                 }
@@ -63,47 +86,49 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener, N
         });
     }
 
-    // --- ACCIONES DE LOS BOTONES DE LA PANTALLA PRINCIPAL ---
+    // --- CLICKS EN PANTALLA ---
     @Override
     public void onClick(View view) {
-        int idsito = view.getId();
+        int id = view.getId();
 
-        if (idsito == R.id.btnMenu) {
+        // Ahora comparamos con el ID del contenedor del menú
+        if (id == R.id.btnMenuContainer) {
             drawerLayout.openDrawer(navigationView);
         }
-        // 👉 Botón de Matemáticas: abre el mapa de niveles
-        else if (idsito == R.id.btnMatematicas) {
-            Intent intent = new Intent(this, mapa_niveles.class);
-            intent.putExtra("materia", "matematicas");
-            startActivity(intent);
+        else if (id == R.id.btnMatematicas) {
+            abrirMapa("matematicas");
         }
-        // 👉 Botón de Ciencias: abre el mapa de niveles
-        else if (idsito == R.id.btnCiencias) {
-            Intent intent = new Intent(this, mapa_niveles.class);
-            intent.putExtra("materia", "ciencias");
-            startActivity(intent);
+        else if (id == R.id.btnCiencias) {
+            abrirMapa("ciencias");
         }
     }
 
-    // --- OPCIONES DEL MENÚ LATERAL ---
+    // Método auxiliar para no repetir código al abrir actividades
+    private void abrirMapa(String materia) {
+        Intent intent = new Intent(this, mapa_niveles.class);
+        intent.putExtra("materia", materia);
+        startActivity(intent);
+        // Transición suave entre actividades
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    // --- MENÚ LATERAL (DRAWER) ---
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_perfil) {
-            Intent intent = new Intent(this, PerfilActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PerfilActivity.class));
         } else if (id == R.id.nav_avance) {
-            Intent intent = new Intent(this, AvanceActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AvanceActivity.class));
         } else if (id == R.id.nav_ajustes) {
-            Intent intent = new Intent(this, AjustesActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AjustesActivity.class));
         } else if (id == R.id.nav_cerrar_sesion) {
-            Toast.makeText(this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hasta pronto...", Toast.LENGTH_SHORT).show();
+            // Opcional: Volver al Login
+            // finish();
         }
 
-        // Cierra el menú después de seleccionar una opción
         drawerLayout.closeDrawer(navigationView);
         return true;
     }
