@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.example.model.Usuarios;
+import com.example.api.model.Usuarios;
 
 public class CrearCuenta extends AppCompatActivity implements View.OnClickListener {
 
