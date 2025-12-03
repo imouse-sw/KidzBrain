@@ -16,54 +16,58 @@ import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLec
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
-public class EjercicioContarCamiones extends PlantillaFragmentoInteractivo implements View.OnClickListener {
-    private final int respuestaCorrecta = 4;
+public class EjercicioMultiplicacion extends PlantillaFragmentoInteractivo implements View.OnClickListener {
+
+    private final int respuestaCorrecta = 20;
     private int seleccionada = -1;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vistita = inflater.inflate(R.layout.fragment_lec1_int1_camiones, container, false);
+        View vistita = inflater.inflate(R.layout.fragment_lec4_int1_op1, container, false);
 
-        Button boton1 = vistita.findViewById(R.id.boton_opcion_camiones1);
-        Button boton2 = vistita.findViewById(R.id.boton_opcion_camiones2);
-        Button boton3 = vistita.findViewById(R.id.boton_opcion_camiones3);
-        Button boton4 = vistita.findViewById(R.id.boton_opcion_camiones4);
+        Button boton1 = vistita.findViewById(R.id.btnOpcion1);
+        Button boton2 = vistita.findViewById(R.id.btnCorrecto);
+        Button boton3 = vistita.findViewById(R.id.btnOpcion2);
 
         boton1.setOnClickListener(this);
         boton2.setOnClickListener(this);
         boton3.setOnClickListener(this);
-        boton4.setOnClickListener(this);
 
         return vistita;
     }
 
     @Override
     public void onClick(View view) {
-        Button botonPresionado = (Button)view;
-        seleccionada = Integer.parseInt(botonPresionado.getText().toString());
-        comprobarRespuesta();
+        Button botonPresionado = (Button) view;
+        try {
+            seleccionada = Integer.parseInt(botonPresionado.getText().toString());
+            comprobarRespuesta();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void comprobarRespuesta() {
         ActividadLeccion1M actividad = null;
-        if(getActivity() instanceof ActividadLeccion1M) {
+        if (getActivity() instanceof ActividadLeccion1M) {
             actividad = (ActividadLeccion1M) getActivity();
         }
 
-        if(seleccionada == respuestaCorrecta) {
-            if(actividad!=null) {
+        if (seleccionada == respuestaCorrecta) {
+            if (actividad != null) {
                 reproducirSonido("sonido_correcto");
             }
-            Toast.makeText(getContext(), "¡Muy bien!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "¡Excelente! 5 filas x 4 galletas = 20", Toast.LENGTH_SHORT).show();
             notificarPasoCompletado();
         }
-        else if(seleccionada!=-1) {
+        else if (seleccionada != -1) {
+
             if (actividad != null) {
                 reproducirSonido("sonido_incorrecto");
             }
-            Toast.makeText(getContext(), "¡Ups! Intenta de nuevo.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "¡Casi! Cuenta las filas de nuevo.", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:scaleType="centerCrop"
+        android:src="@drawable/llanura" />
+
+    <LinearLayout
+        android:layout_width="381dp"
+        android:layout_height="467dp"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:background="#94000000"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Resumen"
+            android:textColor="#FFD700"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/img_jardin_completo"
+                android:layout_width="351dp"
+                android:layout_height="242dp"
+                android:contentDescription="Jardín mostrando cerca y pasto"
+                android:src="@drawable/cerca"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#E6FF9800"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="PERÍMETRO (Borde)"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
+                app:layout_constraintTop_toTopOf="@+id/img_jardin_completo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#E64CAF50"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="ÁREA (Relleno)"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_jardin_completo"
+                app:layout_constraintEnd_toEndOf="@+id/img_jardin_completo"
+                app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
+                app:layout_constraintTop_toTopOf="@+id/img_jardin_completo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Jardín = Figura Completa"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="La cerca mide distancia.\nEl pasto mide superficie."
+            android:textColor="#CCCCCC"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</FrameLayout>

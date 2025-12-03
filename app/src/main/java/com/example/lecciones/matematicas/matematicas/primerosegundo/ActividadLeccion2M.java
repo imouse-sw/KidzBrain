@@ -1,4 +1,4 @@
-package com.example.lecciones.matematicas.primerosegundo;
+package com.example.lecciones.matematicas.matematicas.primerosegundo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.EjercicioContarCanicas;
+import com.example.fraginteractivos.EjercicioContarRanitas;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -20,7 +21,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion1M extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion2M extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -76,22 +77,36 @@ public class ActividadLeccion1M extends AppCompatActivity implements View.OnClic
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria1,
-                R.raw.teoria1voz));
+                R.layout.fragment_lec2_teoria1,
+                R.raw.lec2_teoria1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria2,
-                R.raw.teoria2voz));
+                R.layout.fragment_lec2_teoria2,
+                R.raw.lec2_teoria2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria3,
-                R.raw.teoria3voz));
+                R.layout.fragment_lec2_teoria3,
+                R.raw.lec2_teoria3));
 
-        listaDePasos.add(new EjercicioContarCamiones());
+        listaDePasos.add(new EjercicioContarRanitas());
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria4_fin,
-                R.raw.teoria4voz));
+                R.layout.fragment_lec2_teoria4,
+                R.raw.lec2_teoria4));
+
+        listaDePasos.add(new EjercicioContarCanicas());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec2_teoria5,
+                R.raw.lec2_teoria5));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec2_teoria6,
+                R.raw.lec2_teoria6));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec2_teoria7,
+                R.raw.lec2_teoria7));
     }
 
     /**
@@ -133,18 +148,12 @@ public class ActividadLeccion1M extends AppCompatActivity implements View.OnClic
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
-            // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-
-            // Guardar progreso para desbloquear nivel 2
+            // Guardar progreso para desbloquear nivel 3
             SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
 
-            finish(); // vuelve al mapa
+            finish();
         }
     }
-
 }
-
-
-

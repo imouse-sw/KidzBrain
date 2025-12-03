@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_mate6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:background="#94000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="¿Qué es un Ángulo?"
+            android:textColor="#FFEB3B"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/img_abanico"
+                android:layout_width="293dp"
+                android:layout_height="250dp"
+                android:contentDescription="Abanico mostrando apertura"
+                android:src="@drawable/abanico"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="40dp"
+                android:background="#80000000"
+                android:padding="4dp"
+                android:text="Vértice (Punto de unión)"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_abanico"
+                app:layout_constraintEnd_toEndOf="@+id/img_abanico"
+                app:layout_constraintStart_toStartOf="@+id/img_abanico" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abertura"
+                android:textColor="#FFEB3B"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@+id/img_abanico"
+                app:layout_constraintBottom_toBottomOf="@+id/img_abanico"
+                app:layout_constraintStart_toStartOf="@+id/img_abanico"
+                app:layout_constraintEnd_toEndOf="@+id/img_abanico"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Como abrir un abanico:\nNo importa el largo, importa cuánto se abre."
+            android:textColor="#DDDDDD"
+            android:textSize="16sp"
+            android:paddingHorizontal="20dp"/>
+
+    </LinearLayout>
+</FrameLayout>

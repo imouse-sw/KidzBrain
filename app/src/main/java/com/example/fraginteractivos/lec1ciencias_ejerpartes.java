@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
+import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 

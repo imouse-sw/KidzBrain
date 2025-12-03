@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        android:src="@drawable/llanura" />
+
+    <LinearLayout
+        android:layout_width="440dp"
+        android:layout_height="474dp"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:background="#94000000"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="El Área"
+            android:textColor="#4CAF50"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/img_area_central"
+                android:layout_width="267dp"
+                android:layout_height="184dp"
+                android:contentDescription="Rectángulo relleno de pasto"
+                android:src="@drawable/cerca"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="5 m"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/img_area_central"
+                app:layout_constraintStart_toStartOf="@+id/img_area_central"
+                app:layout_constraintTop_toBottomOf="@+id/img_area_central" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="3m"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_area_central"
+                app:layout_constraintStart_toEndOf="@+id/img_area_central"
+                app:layout_constraintTop_toTopOf="@+id/img_area_central" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#80000000"
+                android:padding="8dp"
+                android:text="15 m²"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_area_central"
+                app:layout_constraintEnd_toEndOf="@+id/img_area_central"
+                app:layout_constraintStart_toStartOf="@+id/img_area_central"
+                app:layout_constraintTop_toTopOf="@+id/img_area_central" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="El espacio de adentro"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Largo x Ancho (5 x 3)"
+            android:textColor="#CCCCCC"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</FrameLayout>

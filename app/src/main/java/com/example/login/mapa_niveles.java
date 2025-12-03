@@ -8,18 +8,15 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
-import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C;
-import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_1C;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_2C;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_3C;
-import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C;
-import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_2C;
-import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_3C;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
-import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
+import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion1M;
+import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion2M;
+import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion3M;
+import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion5M;
+import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion6M;
 
 public class mapa_niveles extends AppCompatActivity {
 
@@ -103,13 +100,13 @@ public class mapa_niveles extends AppCompatActivity {
         if ("matematicas".equalsIgnoreCase(materia)) {
             switch (nivel) {
                 case 1:
-                    intent = new Intent(this, ActividadLeccion1M.class);
+                    intent = new Intent(this, ActividadLeccion4M.class);
                     break;
                 case 2:
-                    intent = new Intent(this, ActividadLeccion2M.class);
+                    intent = new Intent(this, ActividadLeccion5M.class);
                     break;
                 case 3:
-                    intent = new Intent(this, ActividadLeccion3M.class);
+                    intent = new Intent(this, ActividadLeccion6M.class);
                     break;
                 default:
                     return;
