@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="¿Cuántas canicas hay?"/>
@@ -37,12 +37,13 @@
 
         <EditText
             android:id="@+id/editadito_canicas"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textColorHint="#EFEFEF"
             android:gravity="center"
+            android:textSize="18sp"
             android:hint="Escribe aquí tu respuesta con número o con letra."/>
 
         <Button
