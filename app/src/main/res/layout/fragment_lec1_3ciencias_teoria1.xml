@@ -1,38 +1,97 @@
-<FrameLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_science">
 
-    <ImageView
-        android:layout_width="700dp"
-        android:layout_height="740dp"
-        android:alpha="0.8"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondo_ciencias3" />
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_green"
+        android:alpha="0.6"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="629dp"
-        android:layout_margin="30dp"
-        android:background="#94000000"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¡Bienvenid@ a tu tercera lección de ciencias!"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingTop="80dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/bb_feliz" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lección 3 - Ciencias"
+                android:fontFamily="@font/syne"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvSubtituloLeccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Los Animales"
+                android:fontFamily="@font/syne"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp"/>
 
-</FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/card_science_background">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="¡Bienvenido a tu tercera lección de ciencias! Hoy conoceremos el increíble mundo de los animales."
+                        android:fontFamily="@font/syne"
+                        android:textSize="20sp"
+                        android:textColor="#2D3E50"
+                        android:lineSpacingExtra="6dp"
+                        android:gravity="center"
+                        android:paddingVertical="40dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
