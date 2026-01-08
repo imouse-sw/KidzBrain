@@ -4,94 +4,192 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_inicio">
 
-    <ImageView
-        android:id="@+id/img_act1"
-        android:layout_width="0dp"
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_pastel_pink"
+        android:alpha="0.6"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/decenas_act1"
-        app:layout_constraintBottom_toTopOf="@id/img_act2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_act2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/decenas_act2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_act1" />
-
-    <EditText
-        android:id="@+id/edit_decenas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Decenas"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.42"
-        app:layout_constraintHorizontal_bias="0.25"/>
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
 
-    <EditText
-        android:id="@+id/edit_decenas2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Decenas"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.94"
-        app:layout_constraintHorizontal_bias="0.25" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/edit_unidades"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Unidades"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.42"
-        app:layout_constraintHorizontal_bias="0.78" />
 
-    <EditText
-        android:id="@+id/edit_unidades2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Unidades"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.94"
-        app:layout_constraintHorizontal_bias="0.78" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="24dp">
 
-    <Button
-        android:id="@+id/btn_comprobar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comprobar"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="356dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.52"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/card_lesson2_pastel_background">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="¡A practicar! Dinos cuántas decenas y unidades hay en cada grupo."
+                        android:fontFamily="@font/syne"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#2D3E50"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp"/>
+
+                    <!-- Exercise 1 -->
+                    <ImageView
+                        android:id="@+id/img_act1"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:src="@drawable/decenas_act1"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/edit_decenas"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:fontFamily="@font/syne"
+                            android:gravity="center"
+                            android:hint="Decenas"
+                            android:inputType="number"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#2D3E50"
+                            android:textColorHint="#90A4AE"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp"/>
+
+                        <EditText
+                            android:id="@+id/edit_unidades"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:fontFamily="@font/syne"
+                            android:gravity="center"
+                            android:hint="Unidades"
+                            android:inputType="number"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#2D3E50"
+                            android:textColorHint="#90A4AE"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+
+                     <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#B0BEC5"
+                        android:layout_marginVertical="16dp"/>
+
+                    <!-- Exercise 2 -->
+                    <ImageView
+                        android:id="@+id/img_act2"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:src="@drawable/decenas_act2"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="32dp"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/edit_decenas2"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:fontFamily="@font/syne"
+                            android:gravity="center"
+                            android:hint="Decenas"
+                            android:inputType="number"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#2D3E50"
+                            android:textColorHint="#90A4AE"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp"/>
+
+                        <EditText
+                            android:id="@+id/edit_unidades2"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:fontFamily="@font/syne"
+                            android:gravity="center"
+                            android:hint="Unidades"
+                            android:inputType="number"
+                            android:paddingHorizontal="16dp"
+                            android:textColor="#2D3E50"
+                            android:textColorHint="#90A4AE"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_comprobar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Comprobar"
+                        android:fontFamily="@font/syne"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#FFA726"
+                        android:paddingVertical="14dp"
+                        app:cornerRadius="16dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

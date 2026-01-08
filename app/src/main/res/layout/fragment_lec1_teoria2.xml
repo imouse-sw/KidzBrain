@@ -1,39 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_inicio">
 
-    <ImageView
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_pink"
+        android:alpha="0.5"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:alpha="0.8"
-        android:src="@drawable/matematicasfondo2"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:background="#94000000"
-        android:orientation="vertical"
-        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="80dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:src="@drawable/juguetes" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lección 1"
+                android:fontFamily="@font/syne"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginLeft="40dp"
-            android:src="@drawable/morrillo_pensando" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aprendiendo a contar"
+                android:fontFamily="@font/syne"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp"/>
 
-    </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="24dp">
 
-</FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:background="@drawable/card_materia_math">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="¡Mira todos estos juguetes! ¿Puedes adivinar cuántos hay?"
+                        android:fontFamily="@font/syne"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/juguetes"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="16dp"/>
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/morrillo_pensando"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitCenter"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
