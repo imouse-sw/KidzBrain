@@ -75,6 +75,7 @@ public class ActividadLeccion1_3C extends AppCompatActivity implements View.OnCl
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
                 R.layout.fragment_lec1_3ciencias_teoria3,
                 R.raw.audiesote2));
+
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
                 R.layout.fragment_lec1_3ciencias_teoria4,
                 R.raw.audiesote3));

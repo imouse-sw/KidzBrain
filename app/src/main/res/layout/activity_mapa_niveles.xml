@@ -1,69 +1,156 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutMapa"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E1F5FE"
     tools:context=".mapa_niveles">
 
-    <!-- Imagen de fondo recortada y centrada -->
-    <ImageView
-        android:id="@+id/fondoMapa"
+    <View
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/deco_circle_pink"
+        android:alpha="0.4"
+        android:layout_marginTop="-100dp"
+        android:layout_marginStart="-100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.5"
+        android:layout_marginBottom="-50dp"
+        android:layout_marginEnd="-50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/mapa_fondo"
-        android:scaleType="centerCrop"
-        android:contentDescription="Fondo del mapa" />
-
-    <!-- Contenido encima del fondo -->
-    <TextView
-        android:id="@+id/tituloMapa"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mapa de Niveles"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
+        android:padding="24dp"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btnNivel1"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="Nivel 1"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="365dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="33dp"
-        android:enabled="false"/>
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/abc_ic_ab_back_material"
+            android:background="@drawable/card_menu_icon"
+            android:padding="8dp"
+            android:elevation="4dp"
+            app:tint="#546E7A"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/tvTituloMateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aventura"
+            android:fontFamily="@font/syne"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#37474F"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <Button
-        android:id="@+id/btnNivel2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="Nivel 2"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="265dp"
-        android:layout_marginStart="50dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnNivel3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="Nivel 3"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="160dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
-        android:enabled="false"/>
+    <ScrollView
+        android:id="@+id/scrollNiveles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="20dp"
+        android:paddingBottom="40dp"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingBottom="100dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNivel1"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="1"
+                    android:textSize="32sp"
+                    android:fontFamily="@font/syne"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bg_nivel_activo"
+                    android:stateListAnimator="@null"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="60dp"
+                android:background="@drawable/camino_punteado"
+                android:layout_marginVertical="5dp"
+                android:rotation="25"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNivel2"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentStart="true"
+                    android:text="2"
+                    android:textSize="32sp"
+                    android:fontFamily="@font/syne"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bg_nivel_bloqueado"
+                    android:stateListAnimator="@null"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="60dp"
+                android:background="@drawable/camino_punteado"
+                android:layout_marginVertical="5dp"
+                android:rotation="-25"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNivel3"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="3"
+                    android:textSize="32sp"
+                    android:fontFamily="@font/syne"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bg_nivel_bloqueado"
+                    android:stateListAnimator="@null"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
