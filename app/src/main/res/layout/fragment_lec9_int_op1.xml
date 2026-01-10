@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#E8EAF6"> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡El Maestro Constructor!"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_progreso_vol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pregunta 1 de 5"
+        android:textColor="#303F9F"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_ejercicio_vol"
+        android:layout_width="318dp"
+        android:layout_height="324dp"
+        android:layout_marginBottom="30dp"
+        android:background="#FFFFFF"
+        android:padding="10dp"
+        android:scaleType="fitCenter" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/btn_v_op0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Op1" android:layout_margin="5dp" android:backgroundTint="#3F51B5"/>
+        <Button android:id="@+id/btn_v_op1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Op2" android:layout_margin="5dp" android:backgroundTint="#3F51B5"/>
+        <Button android:id="@+id/btn_v_op2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Op3" android:layout_margin="5dp" android:backgroundTint="#3F51B5"/>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

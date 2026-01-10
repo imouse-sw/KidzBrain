@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFDE7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txt_titulo_mult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Qué fracción ves?"
+            android:textColor="#FBC02D"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/txt_progreso_mult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pregunta 1 de 2"
+            android:textColor="#8C6D1F"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/img_ejercicio_mult"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="30dp"
+            android:scaleType="fitCenter"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_m_op0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/6"
+                android:layout_margin="5dp"
+                android:backgroundTint="#F9A825"/>
+
+            <Button
+                android:id="@+id/btn_m_op1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/8"
+                android:layout_margin="5dp"
+                android:backgroundTint="#F9A825"/>
+
+            <Button
+                android:id="@+id/btn_m_op2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/10"
+                android:layout_margin="5dp"
+                android:backgroundTint="#F9A825"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

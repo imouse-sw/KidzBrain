@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.fraginteractivos.EjercicioArea;
-import com.example.fraginteractivos.EjercicioContarCamiones;
 import com.example.fraginteractivos.EjercicioPerimetro;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;

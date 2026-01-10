@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.EjercicioPorcentajes;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -76,22 +77,26 @@ public class ActividadLeccion8M extends AppCompatActivity implements View.OnClic
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria1,
-                R.raw.teoria1voz));
+                R.layout.fragment_lec8_teoria1,
+                R.raw.mate8_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria2,
-                R.raw.teoria2voz));
+                R.layout.fragment_lec8_teoria2,
+                R.raw.mate8_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria3,
-                R.raw.teoria3voz));
-
-        listaDePasos.add(new EjercicioContarCamiones());
+                R.layout.fragment_lec8_teoria3,
+                R.raw.mate8_3));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria4_fin,
-                R.raw.teoria4voz));
+                R.layout.fragment_lec8_teoria4,
+                R.raw.mate8_4));
+
+        listaDePasos.add(new EjercicioPorcentajes());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec8_teoria5_fin,
+                R.raw.mate8_5));
     }
 
     /**
@@ -138,7 +143,7 @@ public class ActividadLeccion8M extends AppCompatActivity implements View.OnClic
 
             // Guardar progreso para desbloquear nivel 2
             SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
 
             finish(); // vuelve al mapa
         }

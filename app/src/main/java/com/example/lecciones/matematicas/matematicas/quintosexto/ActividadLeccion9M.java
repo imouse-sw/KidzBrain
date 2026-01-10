@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.EjercicioVolumen;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -76,22 +77,30 @@ public class ActividadLeccion9M extends AppCompatActivity implements View.OnClic
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria1,
-                R.raw.teoria1voz));
+                R.layout.fragment_lec9_teoria1,
+                R.raw.mate9_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria2,
-                R.raw.teoria2voz));
+                R.layout.fragment_lec9_teoria2,
+                R.raw.mate9_2));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria3,
-                R.raw.teoria3voz));
-
-        listaDePasos.add(new EjercicioContarCamiones());
+                R.layout.fragment_lec9_teoria3,
+                R.raw.mate9_3));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria4_fin,
-                R.raw.teoria4voz));
+                R.layout.fragment_lec9_teoria4,
+                R.raw.mate9_4));
+
+        listaDePasos.add(new EjercicioVolumen());
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec9_teoria5,
+                R.raw.mate9_5));
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec9_teoria6_fin,
+                R.raw.mate9_7));
     }
 
     /**

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_mate9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="#94000000"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="291dp"
+            android:layout_gravity="center"
+            android:src="@drawable/caja_azucar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Imagina llenar una caja con cubos de azúcar. ¡Ese es el volumen!"
+            android:textColor="#DDDDDD"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:gravity="center" />
+    </LinearLayout>
+</FrameLayout>

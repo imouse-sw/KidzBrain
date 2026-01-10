@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.fraginteractivos.EjercicioContarCamiones;
+import com.example.fraginteractivos.EjercicioDecimales;
+import com.example.fraginteractivos.EjercicioMultFracciones;
+import com.example.fraginteractivos.EjercicioSumaFracciones;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -76,22 +79,30 @@ public class ActividadLeccion7M extends AppCompatActivity implements View.OnClic
         listaDePasos = new ArrayList<>();
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria1,
-                R.raw.teoria1voz));
+                R.layout.fragment_lec7_teoria1,
+                R.raw.mate7_1));
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria2,
-                R.raw.teoria2voz));
+                R.layout.fragment_lec7_teoria2,
+                R.raw.mate7_2));
+        listaDePasos.add(new EjercicioSumaFracciones());
+
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria3,
-                R.raw.teoria3voz));
-
-        listaDePasos.add(new EjercicioContarCamiones());
+                R.layout.fragment_lec7_teoria3,
+                R.raw.mate7_3));
+        listaDePasos.add(new EjercicioMultFracciones());
 
         listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1_teoria4_fin,
-                R.raw.teoria4voz));
+                R.layout.fragment_lec7_teoria4,
+                R.raw.mate7_4));
+
+        listaDePasos.add(new EjercicioDecimales());
+
+
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
+                R.layout.fragment_lec7_teoria5_fin,
+                R.raw.mate7_5));
     }
 
     /**

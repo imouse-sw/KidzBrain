@@ -33,6 +33,15 @@
             android:name="com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion6M"
             android:exported="false" />
         <activity
+            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion7M"
+            android:exported="false" />
+        <activity
+            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion8M"
+            android:exported="false" />
+        <activity
+            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion9M"
+            android:exported="false" />
+        <activity
             android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C"
             android:exported="false" />
         <activity

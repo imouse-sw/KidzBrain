@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCamiones;
 import com.example.fraginteractivos.EjercicioDivision;
 import com.example.fraginteractivos.EjercicioFraccion;
 import com.example.fraginteractivos.EjercicioMultiplicacion;

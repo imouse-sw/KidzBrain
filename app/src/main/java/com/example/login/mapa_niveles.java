@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_1C;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_2C;
 import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_3C;
-import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion1M;
-import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion2M;
-import com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion3M;
+import com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion7M;
+import com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion8M;
+import com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion9M;
 import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion4M;
 import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion5M;
 import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion6M;
@@ -100,13 +100,13 @@ public class mapa_niveles extends AppCompatActivity {
         if ("matematicas".equalsIgnoreCase(materia)) {
             switch (nivel) {
                 case 1:
-                    intent = new Intent(this, ActividadLeccion4M.class);
+                    intent = new Intent(this, ActividadLeccion7M.class);
                     break;
                 case 2:
-                    intent = new Intent(this, ActividadLeccion5M.class);
+                    intent = new Intent(this, ActividadLeccion8M.class);
                     break;
                 case 3:
-                    intent = new Intent(this, ActividadLeccion6M.class);
+                    intent = new Intent(this, ActividadLeccion9M.class);
                     break;
                 default:
                     return;
