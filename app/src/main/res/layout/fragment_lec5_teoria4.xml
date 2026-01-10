@@ -1,99 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/llanura">
 
-    <ImageView
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_green"
+        android:alpha="0.6"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:scaleType="centerCrop"
-        android:src="@drawable/llanura" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
 
-    <LinearLayout
-        android:layout_width="381dp"
-        android:layout_height="467dp"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:background="#94000000"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Resumen"
-            android:textColor="#FFD700"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp">
-
-            <ImageView
-                android:id="@+id/img_jardin_completo"
-                android:layout_width="351dp"
-                android:layout_height="242dp"
-                android:contentDescription="Jardín mostrando cerca y pasto"
-                android:src="@drawable/cerca"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#E6FF9800"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="PERÍMETRO (Borde)"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
-                app:layout_constraintTop_toTopOf="@+id/img_jardin_completo" />
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#E64CAF50"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="ÁREA (Relleno)"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_jardin_completo"
-                app:layout_constraintEnd_toEndOf="@+id/img_jardin_completo"
-                app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
-                app:layout_constraintTop_toTopOf="@+id/img_jardin_completo" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/card_math_intermediate_background">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resumen"
+                        android:fontFamily="@font/syne"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#2D3E50"
+                        android:layout_marginBottom="24dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Jardín = Figura Completa"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:text="La cerca mide distancia.\nEl pasto mide superficie."
-            android:textColor="#CCCCCC"
-            android:textSize="16sp" />
+                        <ImageView
+                            android:id="@+id/img_jardin_completo"
+                            android:layout_width="300dp"
+                            android:layout_height="220dp"
+                            android:contentDescription="Jardín mostrando cerca y pasto"
+                            android:src="@drawable/cerca"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </LinearLayout>
-</FrameLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#E6FF9800"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="PERÍMETRO (Borde)"
+                            android:textColor="#000000"
+                            android:fontFamily="@font/syne"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
+                            app:layout_constraintTop_toTopOf="@+id/img_jardin_completo"
+                            android:layout_margin="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#E64CAF50"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="ÁREA (Relleno)"
+                            android:fontFamily="@font/syne"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_jardin_completo"
+                            app:layout_constraintEnd_toEndOf="@+id/img_jardin_completo"
+                            app:layout_constraintStart_toStartOf="@+id/img_jardin_completo"
+                            app:layout_constraintTop_toTopOf="@+id/img_jardin_completo" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="La cerca mide distancia.\nEl pasto mide superficie."
+                        android:fontFamily="@font/syne"
+                        android:textColor="#2D3E50"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="6dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

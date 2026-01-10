@@ -1,5 +1,6 @@
 package com.example.lecciones.matematicas.primerosegundo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCanicas;
-import com.example.fraginteractivos.EjercicioContarRanitas;
 import com.example.fraginteractivos.EjercicioDecenas1;
 import com.example.fraginteractivos.EjercicioDecenas2;
 import com.example.fraginteractivos.EjercicioDecenas3;
@@ -32,6 +31,8 @@ public class ActividadLeccion3M extends AppCompatActivity implements View.OnClic
     // para la lógica
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
+    private int nivelActual;
+    private String materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,10 @@ public class ActividadLeccion3M extends AppCompatActivity implements View.OnClic
         barraDeProgreso = findViewById(R.id.barra_progreso);
         botonSiguiente = findViewById(R.id.boton_siguiente);
         botonSalir = findViewById(R.id.boton_salir);
+
+        // Recibir el nivel y la materia
+        nivelActual = getIntent().getIntExtra("nivel", 1);
+        materia = getIntent().getStringExtra("materia");
 
         construirLeccion();
         mostrarPaso(pasoActual);
@@ -131,8 +136,18 @@ public class ActividadLeccion3M extends AppCompatActivity implements View.OnClic
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
+            // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            finish();
+
+            // Lógica de desbloqueo dinámico
+            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
+            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+
+            if (nivelActual >= nivelMaximo) {
+                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            }
+
+            finish(); // vuelve al mapa
         }
     }
 }

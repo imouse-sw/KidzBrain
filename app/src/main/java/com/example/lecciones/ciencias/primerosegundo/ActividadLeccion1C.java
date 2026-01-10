@@ -1,8 +1,6 @@
 package com.example.lecciones.ciencias.primerosegundo;
 
 import android.content.SharedPreferences;
-import android.media.AudioAttributes;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +12,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCamiones;
 import com.example.fraginteractivos.lec1ciencias_ejerpartes;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
@@ -23,8 +20,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion1C extends AppCompatActivity implements View.OnClickListener
-{
+public class ActividadLeccion1C extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -33,9 +29,8 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
     // para la lógica
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
-
-    // para sonidos
-    // etc etc etc
+    private int nivelActual;
+    private String materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +41,12 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
         botonSiguiente = findViewById(R.id.boton_siguiente);
         botonSalir = findViewById(R.id.boton_salir);
 
+        // Recibir el nivel y la materia
+        nivelActual = getIntent().getIntExtra("nivel", 1);
+        materia = getIntent().getStringExtra("materia");
+
         construirLeccion();
         mostrarPaso(pasoActual);
-
 
         botonSiguiente.setOnClickListener(this);
         botonSalir.setOnClickListener(this);
@@ -83,55 +81,12 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1ciencias_teoria1,
-                R.raw.teoriaciencias1));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1ciencias_teoria2,
-                R.raw.teoriaciencias2));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1ciencias_teoria3,
-                R.raw.teoriaciencias3));
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1ciencias_teoria4,
-                R.raw.teoriaciencias4));
-
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec1ciencias_teoria1, R.raw.teoriaciencias1));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec1ciencias_teoria2, R.raw.teoriaciencias2));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec1ciencias_teoria3, R.raw.teoriaciencias3));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec1ciencias_teoria4, R.raw.teoriaciencias4));
         listaDePasos.add(new lec1ciencias_ejerpartes());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec1ciencias_teoria5_fin,
-                R.raw.teoriaciencias5));
-
-
-        /* asi va a estar este pedo
-
-        practicamente en cada actividad de las lecciones va a haber el miiiismo código pero va a cambiar
-        este bloque de construirLeccion():
-
-        vamo' a meter toooodoos los fragmentos que vamos a utilizar para cada lección en la lista.
-
-        por ejemplo, metemos una instancia de teoría
-
-        AQUÍ INSTANCIO DIRECTAMENTE LA PLANTILLA PORQUE LO ÚNICO QUE CAMBIA ES EL LAYOUT, NO LA CLASE. LA CLASE
-        YA ESTÁ "TERMINADA", NO NECESITA LÓGICA PORQUE LO ÚNICO QUE VA A HACER EL NIÑO ES ESCUCHAR O LEER LA INFORMACIÓN
-        Y PUCHARLE SIGUIENTE.
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_contar_teoria_1));
-
-        luego metemos igual una instancia de una actividad interactiva, la que sea
-
-        AQUÍ SÍ SE INSTANCIA UN EJERCICIO APARTE PORQUE ESE EJERCICIO VA A HEREDAR DE LA CLASE "PlantillaFragmentoInteractivo",
-        SE VA A ESCRIBIR SU LÓGICA Y SE HACE EL getInstance() DENTRO DE ESE EJERCICIO CONCRETO.
-
-        listaDePasos.add(new EjercicioContarManzanas().getInstance()); (esto es nomás un ejemplo jeje)
-
-        luego más teoría
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_contar_teoria_2));
-
-        etc etc etc depende lo que necesitemos en cada lección :P
-         */
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec1ciencias_teoria5_fin, R.raw.teoriaciencias5));
     }
 
     /**
@@ -157,13 +112,6 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
 
             // y le pasamos un oyente para que nos avise cuando el usuario termine el ejercicio.
             paso.setOyentePasoCompletado(() -> {
-                /*
-                esto se vuelve a habilitar el botoncito cuando el fragmento llama a
-                notificarPasoCompletado(), que es un métodoque se tiene que implementar
-                en cada fragmento interactivo que hereda de PlantillaFragmentoInteractivo, o sea es aparte
-                y los requerimientos que el programa tiene que cumplir para que este metodose active
-                varía en función de los ejercicios que tengamos en cada lección.
-                */
                 botonSiguiente.setEnabled(true);
             });
 
@@ -180,15 +128,18 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
-            // si sí es el último paso, la lección terminó y ya yupi bien hecho niño te ganaste una verguiada
+            // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            /*
-            si neta me dan ganas de chambear, aquí le pongo que se desbloquee el juego relacionado a la lección o
-            grupo de lecciones y ese tipo de cosas xdddd spoiler muy probablemente no
-             */
-            SharedPreferences prefs = getSharedPreferences("Progreso_ciencias", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
-            finish(); // cierra la actividad de la lección
+
+            // Lógica de desbloqueo dinámico
+            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
+            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+
+            if (nivelActual >= nivelMaximo) {
+                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            }
+
+            finish(); // vuelve al mapa
         }
     }
 }

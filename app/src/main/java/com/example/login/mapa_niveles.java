@@ -17,14 +17,25 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C;
 import com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C;
+import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_1C;
+import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_2C;
+import com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_3C;
+import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C;
+import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_2C;
+import com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_3C;
+import com.example.lecciones.matematicas.quintosexto.ActividadLeccion7M;
+import com.example.lecciones.matematicas.quintosexto.ActividadLeccion8M;
+import com.example.lecciones.matematicas.quintosexto.ActividadLeccion9M;
+import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion5M;
+import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion6M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
 
 public class mapa_niveles extends AppCompatActivity {
 
-    // Declara hasta el btnNivel8 si los usas todos
-    private Button btnNivel1, btnNivel2, btnNivel3;
+    private Button btnNivel1, btnNivel2, btnNivel3, btnNivel4, btnNivel5, btnNivel6, btnNivel7, btnNivel8, btnNivel9;
     private ImageView btnBack;
     private TextView tvTituloMateria;
     private ConstraintLayout rootLayout;
@@ -48,7 +59,12 @@ public class mapa_niveles extends AppCompatActivity {
         btnNivel1 = findViewById(R.id.btnNivel1);
         btnNivel2 = findViewById(R.id.btnNivel2);
         btnNivel3 = findViewById(R.id.btnNivel3);
-        // btnNivel4 = findViewById(R.id.btnNivel4); // Agrega los demás...
+        btnNivel4 = findViewById(R.id.btnNivel4);
+        btnNivel5 = findViewById(R.id.btnNivel5);
+        btnNivel6 = findViewById(R.id.btnNivel6);
+        btnNivel7 = findViewById(R.id.btnNivel7);
+        btnNivel8 = findViewById(R.id.btnNivel8);
+        btnNivel9 = findViewById(R.id.btnNivel9);
 
         // 3. Configurar Diseño (Colores y Título)
         personalizarInterfaz();
@@ -67,6 +83,12 @@ public class mapa_niveles extends AppCompatActivity {
         btnNivel1.setOnClickListener(v -> abrirLeccion(1));
         btnNivel2.setOnClickListener(v -> abrirLeccion(2));
         btnNivel3.setOnClickListener(v -> abrirLeccion(3));
+        btnNivel4.setOnClickListener(v -> abrirLeccion(4));
+        btnNivel5.setOnClickListener(v -> abrirLeccion(5));
+        btnNivel6.setOnClickListener(v -> abrirLeccion(6));
+        btnNivel7.setOnClickListener(v -> abrirLeccion(7));
+        btnNivel8.setOnClickListener(v -> abrirLeccion(8));
+        btnNivel9.setOnClickListener(v -> abrirLeccion(9));
     }
 
     @Override
@@ -94,7 +116,12 @@ public class mapa_niveles extends AppCompatActivity {
         configurarBoton(btnNivel1, 1, nivelDesbloqueado);
         configurarBoton(btnNivel2, 2, nivelDesbloqueado);
         configurarBoton(btnNivel3, 3, nivelDesbloqueado);
-        // configurarBoton(btnNivel4, 4, nivelDesbloqueado);
+        configurarBoton(btnNivel4, 4, nivelDesbloqueado);
+        configurarBoton(btnNivel5, 5, nivelDesbloqueado);
+        configurarBoton(btnNivel6, 6, nivelDesbloqueado);
+        configurarBoton(btnNivel7, 7, nivelDesbloqueado);
+        configurarBoton(btnNivel8, 8, nivelDesbloqueado);
+        configurarBoton(btnNivel9, 9, nivelDesbloqueado);
     }
 
     private void configurarBoton(Button btn, int nivelBoton, int nivelUsuario) {
@@ -121,12 +148,24 @@ public class mapa_niveles extends AppCompatActivity {
                 case 1: intent = new Intent(this, ActividadLeccion1M.class); break;
                 case 2: intent = new Intent(this, ActividadLeccion2M.class); break;
                 case 3: intent = new Intent(this, ActividadLeccion3M.class); break;
+                case 4: intent = new Intent(this, ActividadLeccion4M.class); break;
+                case 5: intent = new Intent(this, ActividadLeccion5M.class); break;
+                case 6: intent = new Intent(this, ActividadLeccion6M.class); break;
+                case 7: intent = new Intent(this, ActividadLeccion7M.class); break;
+                case 8: intent = new Intent(this, ActividadLeccion8M.class); break;
+                case 9: intent = new Intent(this, ActividadLeccion9M.class); break;
             }
         } else if ("ciencias".equalsIgnoreCase(materia)) {
             switch (nivel) {
                 case 1: intent = new Intent(this, ActividadLeccion1C.class); break;
                 case 2: intent = new Intent(this, ActividadLeccion1_2C.class); break;
                 case 3: intent = new Intent(this, ActividadLeccion1_3C.class); break;
+                case 4: intent = new Intent(this, ActividadLeccion2_1C.class); break;
+                case 5: intent = new Intent(this, ActividadLeccion2_2C.class); break;
+                case 6: intent = new Intent(this, ActividadLeccion2_3C.class); break;
+                case 7: intent = new Intent(this, ActividadLeccion3_1C.class); break;
+                case 8: intent = new Intent(this, ActividadLeccion3_2C.class); break;
+                case 9: intent = new Intent(this, ActividadLeccion3_3C.class); break;
             }
         }
 

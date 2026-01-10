@@ -1,118 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/llanura">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_green"
         android:alpha="0.6"
-        android:scaleType="centerCrop"
-        android:src="@drawable/llanura" />
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="517dp"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:background="#94000000"
-        android:gravity="center"
-        android:orientation="vertical">
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="El Perímetro"
-            android:textColor="#FF9800"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp">
-
-            <ImageView
-                android:id="@+id/img_cerca_central"
-                android:layout_width="257dp"
-                android:layout_height="180dp"
-                android:contentDescription="Ilustración de una cerca rodeando un jardín"
-                android:src="@drawable/cerca"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="5 m"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/img_cerca_central"
-                app:layout_constraintEnd_toEndOf="@+id/img_cerca_central"
-                app:layout_constraintStart_toStartOf="@+id/img_cerca_central" />
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="5 m"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/img_cerca_central"
-                app:layout_constraintStart_toStartOf="@+id/img_cerca_central"
-                app:layout_constraintTop_toBottomOf="@+id/img_cerca_central" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/card_math_intermediate_background">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:text="3m"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_cerca_central"
-                app:layout_constraintEnd_toStartOf="@+id/img_cerca_central"
-                app:layout_constraintTop_toTopOf="@+id/img_cerca_central"
-                app:layout_constraintVertical_bias="0.502" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="El Perímetro"
+                        android:fontFamily="@font/syne"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#2D3E50"
+                        android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="3m"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/img_cerca_central"
-                app:layout_constraintStart_toEndOf="@+id/img_cerca_central"
-                app:layout_constraintTop_toTopOf="@+id/img_cerca_central"
-                app:layout_constraintVertical_bias="0.497" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="La distancia alrededor"
+                        android:fontFamily="@font/syne"
+                        android:textColor="#2D3E50"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="24dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="La distancia alrededor"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/img_cerca_central"
+                            android:layout_width="250dp"
+                            android:layout_height="170dp"
+                            android:contentDescription="Ilustración de una cerca rodeando un jardín"
+                            android:src="@drawable/cerca"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="5 + 3 + 5 + 3 = 16m"
-            android:textColor="#CCCCCC"
-            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5 m"
+                            android:fontFamily="@font/syne"
+                            android:textColor="#3A7BD5"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:background="#F0F8FF"
+                            android:paddingHorizontal="4dp"
+                            app:layout_constraintTop_toTopOf="@+id/img_cerca_central"
+                            app:layout_constraintStart_toStartOf="@+id/img_cerca_central"
+                            app:layout_constraintEnd_toEndOf="@+id/img_cerca_central" />
 
-    </LinearLayout>
-</FrameLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5 m"
+                            android:fontFamily="@font/syne"
+                            android:textColor="#3A7BD5"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:background="#F0F8FF"
+                            android:paddingHorizontal="4dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_cerca_central"
+                            app:layout_constraintStart_toStartOf="@+id/img_cerca_central"
+                            app:layout_constraintEnd_toEndOf="@+id/img_cerca_central" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3m"
+                            android:fontFamily="@font/syne"
+                            android:textColor="#3A7BD5"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:background="#F0F8FF"
+                            android:paddingVertical="4dp"
+                            app:layout_constraintStart_toStartOf="@+id/img_cerca_central"
+                            app:layout_constraintTop_toTopOf="@+id/img_cerca_central"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_cerca_central" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3m"
+                            android:fontFamily="@font/syne"
+                            android:textColor="#3A7BD5"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:background="#F0F8FF"
+                            android:paddingVertical="4dp"
+                            app:layout_constraintEnd_toEndOf="@+id/img_cerca_central"
+                            app:layout_constraintTop_toTopOf="@+id/img_cerca_central"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_cerca_central" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 + 3 + 5 + 3 = 16m"
+                        android:fontFamily="@font/syne"
+                        android:textColor="#2D3E50"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

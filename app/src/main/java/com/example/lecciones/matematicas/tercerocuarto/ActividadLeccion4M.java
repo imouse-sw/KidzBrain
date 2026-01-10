@@ -1,4 +1,4 @@
-package com.example.lecciones.matematicas.matematicas.quintosexto;
+package com.example.lecciones.matematicas.tercerocuarto;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,8 +12,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCamiones;
-import com.example.fraginteractivos.EjercicioVolumen;
+import com.example.fraginteractivos.EjercicioDivision;
+import com.example.fraginteractivos.EjercicioFraccion;
+import com.example.fraginteractivos.EjercicioMultiplicacion;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -21,7 +22,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion9M extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion4M extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -30,6 +31,8 @@ public class ActividadLeccion9M extends AppCompatActivity implements View.OnClic
     // para la lógica
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
+    private int nivelActual;
+    private String materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,10 @@ public class ActividadLeccion9M extends AppCompatActivity implements View.OnClic
         barraDeProgreso = findViewById(R.id.barra_progreso);
         botonSiguiente = findViewById(R.id.boton_siguiente);
         botonSalir = findViewById(R.id.boton_salir);
+
+        // Recibir el nivel y la materia
+        nivelActual = getIntent().getIntExtra("nivel", 1);
+        materia = getIntent().getStringExtra("materia");
 
         construirLeccion();
         mostrarPaso(pasoActual);
@@ -76,31 +83,14 @@ public class ActividadLeccion9M extends AppCompatActivity implements View.OnClic
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria1,
-                R.raw.mate9_1));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria2,
-                R.raw.mate9_2));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria3,
-                R.raw.mate9_3));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria4,
-                R.raw.mate9_4));
-
-        listaDePasos.add(new EjercicioVolumen());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria5,
-                R.raw.mate9_5));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec9_teoria6_fin,
-                R.raw.mate9_7));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec4_teoria1, R.raw.mate4_1));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec4_teoria2, R.raw.mate4_2));
+        listaDePasos.add(new EjercicioMultiplicacion());
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec4_teoria3, R.raw.mate4_3));
+        listaDePasos.add(new EjercicioDivision());
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec4_teoria4, R.raw.mate4_4));
+        listaDePasos.add(new EjercicioFraccion());
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec4_teoria5_fin, R.raw.mate4_5));
     }
 
     /**
@@ -145,15 +135,15 @@ public class ActividadLeccion9M extends AppCompatActivity implements View.OnClic
             // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
 
-            // Guardar progreso para desbloquear nivel 2
-            SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+            // Lógica de desbloqueo dinámico
+            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
+            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+
+            if (nivelActual >= nivelMaximo) {
+                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            }
 
             finish(); // vuelve al mapa
         }
     }
-
 }
-
-
-

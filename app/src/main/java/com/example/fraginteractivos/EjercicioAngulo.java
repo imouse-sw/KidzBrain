@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion6M;
+import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion6M;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 

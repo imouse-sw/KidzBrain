@@ -1,4 +1,4 @@
-package com.example.lecciones.matematicas.matematicas.tercerocuarto;
+package com.example.lecciones.matematicas.tercerocuarto;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +29,8 @@ public class ActividadLeccion6M extends AppCompatActivity implements View.OnClic
     // para la lógica
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
+    private int nivelActual;
+    private String materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class ActividadLeccion6M extends AppCompatActivity implements View.OnClic
         barraDeProgreso = findViewById(R.id.barra_progreso);
         botonSiguiente = findViewById(R.id.boton_siguiente);
         botonSalir = findViewById(R.id.boton_salir);
+
+        // Recibir el nivel y la materia
+        nivelActual = getIntent().getIntExtra("nivel", 1);
+        materia = getIntent().getStringExtra("materia");
 
         construirLeccion();
         mostrarPaso(pasoActual);
@@ -75,27 +81,12 @@ public class ActividadLeccion6M extends AppCompatActivity implements View.OnClic
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec6_teoria1,
-                R.raw.mate6_1));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec6_teoria2,
-                R.raw.mate6_2));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec6_teoria3,
-                R.raw.mate6_3));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec6_teoria4,
-                R.raw.mate6_4));
-
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec6_teoria1, R.raw.mate6_1));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec6_teoria2, R.raw.mate6_2));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec6_teoria3, R.raw.mate6_3));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec6_teoria4, R.raw.mate6_4));
         listaDePasos.add(new EjercicioAngulo());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec6_teoria5_fin,
-                R.raw.mate6_5));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec6_teoria5_fin, R.raw.mate6_5));
     }
 
     /**
@@ -140,16 +131,15 @@ public class ActividadLeccion6M extends AppCompatActivity implements View.OnClic
             // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
 
-            // Guardar progreso para desbloquear nivel 2
-            SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 2).apply();
+            // Lógica de desbloqueo dinámico
+            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
+            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+
+            if (nivelActual >= nivelMaximo) {
+                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            }
 
             finish(); // vuelve al mapa
         }
     }
-
 }
-
-
-
-

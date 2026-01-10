@@ -15,31 +15,31 @@
             android:name=".mapa_niveles"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion1M"
+            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion2M"
+            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.primerosegundo.ActividadLeccion3M"
+            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion4M"
+            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion4M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion5M"
+            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion5M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion6M"
+            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion6M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion7M"
+            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion7M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion8M"
+            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion8M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.matematicas.quintosexto.ActividadLeccion9M"
+            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion9M"
             android:exported="false" />
         <activity
             android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C"

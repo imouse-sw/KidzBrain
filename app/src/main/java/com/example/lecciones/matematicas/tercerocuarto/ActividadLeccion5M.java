@@ -1,4 +1,4 @@
-package com.example.lecciones.matematicas.matematicas.primerosegundo;
+package com.example.lecciones.matematicas.tercerocuarto;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.fraginteractivos.EjercicioContarCanicas;
-import com.example.fraginteractivos.EjercicioContarRanitas;
+import com.example.fraginteractivos.EjercicioArea;
+import com.example.fraginteractivos.EjercicioPerimetro;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.IPasoLeccion;
 import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
@@ -21,7 +21,7 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadLeccion2M extends AppCompatActivity implements View.OnClickListener {
+public class ActividadLeccion5M extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
     private Button botonSiguiente;
@@ -30,6 +30,8 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
     // para la lógica
     private List<Fragment> listaDePasos;
     private int pasoActual = 0;
+    private int nivelActual;
+    private String materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,10 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
         barraDeProgreso = findViewById(R.id.barra_progreso);
         botonSiguiente = findViewById(R.id.boton_siguiente);
         botonSalir = findViewById(R.id.boton_salir);
+
+        // Recibir el nivel y la materia
+        nivelActual = getIntent().getIntExtra("nivel", 1);
+        materia = getIntent().getStringExtra("materia");
 
         construirLeccion();
         mostrarPaso(pasoActual);
@@ -76,37 +82,13 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
     private void construirLeccion() {
         listaDePasos = new ArrayList<>();
 
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria1,
-                R.raw.lec2_teoria1));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria2,
-                R.raw.lec2_teoria2));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria3,
-                R.raw.lec2_teoria3));
-
-        listaDePasos.add(new EjercicioContarRanitas());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria4,
-                R.raw.lec2_teoria4));
-
-        listaDePasos.add(new EjercicioContarCanicas());
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria5,
-                R.raw.lec2_teoria5));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria6,
-                R.raw.lec2_teoria6));
-
-        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(
-                R.layout.fragment_lec2_teoria7,
-                R.raw.lec2_teoria7));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec5_teoria1, R.raw.mate5_1));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec5_teoria2, R.raw.mate5_2));
+        listaDePasos.add(new EjercicioPerimetro());
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec5_teoria3, R.raw.mate5_3));
+        listaDePasos.add(new EjercicioArea());
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec5_teoria4, R.raw.mate5_4));
+        listaDePasos.add(PlantillaFragmentoTeoria.getInstance(R.layout.fragment_lec5_teoria5_fin, R.raw.mate5_5));
     }
 
     /**
@@ -148,12 +130,18 @@ public class ActividadLeccion2M extends AppCompatActivity implements View.OnClic
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
+            // Último paso completado
             Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
-            // Guardar progreso para desbloquear nivel 3
-            SharedPreferences prefs = getSharedPreferences("Progreso_matematicas", MODE_PRIVATE);
-            prefs.edit().putInt("nivelDesbloqueado", 3).apply();
 
-            finish();
+            // Lógica de desbloqueo dinámico
+            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
+            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+
+            if (nivelActual >= nivelMaximo) {
+                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            }
+
+            finish(); // vuelve al mapa
         }
     }
 }

@@ -80,7 +80,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="¡Felicidades! Has aprendido mucho sobre tu cuerpo. ¿Listo para el desafío?"
+                        android:text="¡Felicidades! Has aprendido mucho sobre tu cuerpo."
                         android:fontFamily="@font/syne"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -96,17 +96,6 @@
                         android:scaleType="fitCenter"
                         android:layout_marginBottom="32dp" />
 
-                    <Button
-                        android:id="@+id/btnSiguienteActividad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Ir a la Actividad"
-                        android:fontFamily="@font/syne"
-                        android:textSize="16sp"
-                        android:textColor="#FFFFFF"
-                        android:backgroundTint="#FFA726"
-                        android:paddingVertical="14dp"
-                        app:cornerRadius="16dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

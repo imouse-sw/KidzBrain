@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 // Asegúrate de importar la actividad correcta
-import com.example.lecciones.matematicas.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion4M;
 import com.example.login.R;
 import com.example.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 

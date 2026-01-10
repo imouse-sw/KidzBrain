@@ -1,87 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@drawable/background_science">
 
-    <ImageView
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/deco_circle_green"
+        android:alpha="0.6"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/deco_circle_yellow"
+        android:alpha="0.6"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.8"
-        android:src="@drawable/pizarron"
-        android:scaleType="centerCrop"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#99000000"
-        android:gravity="center"
-        android:padding="32dp">
-
-        <TextView
-            android:id="@+id/texto_pregunta_materia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Qué estado de la materia es este?"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_marginBottom="24dp"/>
-
-        <ImageView
-            android:id="@+id/imagen_ejercicio_materia"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/cubo"
-            android:contentDescription="Imagen del estado de la materia"
-            android:layout_marginBottom="32dp"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:paddingTop="80dp"
+            android:paddingBottom="40dp"
+            android:gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/boton_opcion_materia1"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Sólido"
-                android:textSize="15sp" />
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
 
-            <Button
-                android:id="@+id/boton_opcion_materia2"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Líquido"
-                android:textSize="15sp"
-                android:layout_marginEnd="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/card_science_background">
 
-            <Button
-                android:id="@+id/boton_opcion_materia3"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Gaseoso"
-                android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/texto_pregunta_materia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¿Qué estado de la materia es este?"
+                        android:fontFamily="@font/syne"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#2D3E50"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="24dp"/>
+
+                    <ImageView
+                        android:id="@+id/imagen_ejercicio_materia"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/cubo"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="24dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/boton_opcion_materia1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sólido"
+                            android:fontFamily="@font/syne"
+                            android:backgroundTint="#2E6D2E"
+                            android:textColor="#FFFFFF"/>
+
+                        <Button
+                            android:id="@+id/boton_opcion_materia2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Líquido"
+                            android:fontFamily="@font/syne"
+                            android:backgroundTint="#2E6D2E"
+                            android:textColor="#FFFFFF"/>
+
+                        <Button
+                            android:id="@+id/boton_opcion_materia3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gaseoso"
+                            android:fontFamily="@font/syne"
+                            android:backgroundTint="#2E6D2E"
+                            android:textColor="#FFFFFF"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/boton_siguiente_materia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Siguiente Pregunta"
+                        android:fontFamily="@font/syne"
+                        android:backgroundTint="#37474F"
+                        android:visibility="gone"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/boton_siguiente_materia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Siguiente Pregunta"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
