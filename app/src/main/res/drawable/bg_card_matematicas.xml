@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo de Degradado -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="45"
+                android:startColor="#3A7BD5"
+                android:endColor="#00D2FF"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Icono de Calculadora -->
+    <item
+        android:drawable="@drawable/ic_calculator"
+        android:width="64dp"
+        android:height="64dp"
+        android:gravity="bottom|end"
+        android:bottom="-8dp"
+        android:right="-12dp">
+        <color android:color="#37FFFFFF" />
+    </item>
+</layer-list>

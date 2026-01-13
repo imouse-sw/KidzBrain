@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo de Degradado -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="45"
+                android:startColor="#4CAF50"
+                android:endColor="#81C784"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Icono de Átomo -->
+    <item
+        android:drawable="@drawable/ic_atom"
+        android:width="64dp"
+        android:height="64dp"
+        android:gravity="bottom|end"
+        android:bottom="-8dp"
+        android:right="-12dp">
+        <color android:color="#40FFFFFF" />
+    </item>
+</layer-list>
