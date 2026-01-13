@@ -39,7 +39,19 @@ public class mapa_niveles extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         personalizarInterfaz();
+        setupViewPager();
 
+        btnBack.setOnClickListener(v -> finish());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refrescar el ViewPager para que muestre el progreso actualizado
+        setupViewPager();
+    }
+
+    private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
 
@@ -50,8 +62,6 @@ public class mapa_niveles extends AppCompatActivity {
                 case 2: tab.setText("Avanzado"); break;
             }
         }).attach();
-
-        btnBack.setOnClickListener(v -> finish());
     }
 
     private void personalizarInterfaz() {
