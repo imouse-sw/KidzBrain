@@ -1,44 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout_perfil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="30dp" android:gravity="center"
     tools:context=".menuLateral.PerfilActivity">
 
-    <ImageView
-        android:id="@+id/imagen_perfil"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:src="@drawable/img_prueba" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_inicio">
 
-    <TextView
-        android:id="@+id/nombre_usuario"
-        android:layout_width="wrap_content"
+        <View
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/deco_circle_pink"
+            android:alpha="0.4"
+            android:layout_marginTop="-80dp"
+            android:layout_marginStart="-50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/deco_circle_yellow"
+            android:alpha="0.5"
+            android:layout_marginBottom="-40dp"
+            android:layout_marginEnd="-20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/btnMenuContainer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/card_menu_icon"
+            android:elevation="8dp"
+            android:layout_margin="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btnMenu"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_menu"
+                android:layout_gravity="center"
+                app:tint="#2D3E50"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvTituloPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mi Perfil"
+            android:fontFamily="@font/syne"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="@id/btnMenuContainer"
+            app:layout_constraintBottom_toBottomOf="@id/btnMenuContainer"
+            app:layout_constraintStart_toEndOf="@id/btnMenuContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="74dp"/> <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Nombre de Usuario"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#CCFFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/btnMenuContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4">
 
-    <TextView
-        android:id="@+id/email_usuario"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardAvatar"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                app:cardCornerRadius="70dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imagen_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_prueba"
+                    tools:srcCompat="@tools:sample/avatars"/>
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:id="@+id/btnCambiarFoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/card_menu_icon"
+                android:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/cardAvatar"
+                app:layout_constraintEnd_toEndOf="@id/cardAvatar">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:layout_gravity="center"
+                    app:tint="#2D3E50"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nombre_usuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="BrainKid"
+                android:fontFamily="@font/syne"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#2D3E50"
+                app:layout_constraintTop_toBottomOf="@id/cardAvatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/email_usuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="usuario@kidzbrain.com"
+                android:fontFamily="@font/syne"
+                android:textSize="14sp"
+                android:textColor="#607D8B"
+                app:layout_constraintTop_toBottomOf="@id/nombre_usuario"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/layoutStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/email_usuario"/>
+
+            <TextView
+                android:id="@+id/tvFraseMotivadora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#4DB6AC"
+                android:fontFamily="@font/syne"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="6dp"
+                android:text="¡Explorador KidzBrain!"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_usuario" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_editar_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:text="Editar Mis Datos"
+                android:fontFamily="@font/syne"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/card_materia_math"
+                app:layout_constraintTop_toBottomOf="@id/tvFraseMotivadora"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="correo@ejemplo.com"
-        android:textSize="16sp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_menu" />
 
-    <Button
-        android:id="@+id/btn_editar_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Editar Perfil" />
-
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
