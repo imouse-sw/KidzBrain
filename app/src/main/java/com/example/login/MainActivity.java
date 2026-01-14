@@ -1,170 +1,111 @@
 package com.example.login;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import com.example.utilidades.Animaciones;
+import com.example.spring.ApiService;
+import com.example.spring.RetrofitClient;
+import com.example.spring.dto.UsuarioDto;
 
-import java.util.Random;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    EditText etUser, etPass;
-    Button btnLogin;
-    TextView tvRegister;
-    ImageView ivBrainbotFeliz, ivTitle;
-
-    private static final String CHANNEL_ID = "CANAL_KIDZBRAIN";
-    private static final int REQ_NOTIS = 200;
+    private EditText etEmail, etPassword;
+    private Button btnLogin;
+    private TextView tvRegister;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        etUser = findViewById(R.id.etUser);
-        etPass = findViewById(R.id.etPass);
+        // Comprobar si ya hay una sesión activa
+        verificarSesion();
+
+        etEmail = findViewById(R.id.etUser);
+        etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
-        ivTitle = findViewById(R.id.ivTitle);
-        ivBrainbotFeliz = findViewById(R.id.ivBrainbotFeliz);
 
-        btnLogin.setOnClickListener(this);
-        tvRegister.setOnClickListener(this);
+        apiService = RetrofitClient.getApiService();
 
-        ivBrainbotFeliz.setScaleX(0f);
-        ivBrainbotFeliz.setScaleY(0f);
-        ivBrainbotFeliz.animate()
-                .scaleX(1f).scaleY(1f)
-                .setDuration(800)
-                .setInterpolator(new OvershootInterpolator())
-                .start();
+        btnLogin.setOnClickListener(v -> handleLogin());
+        tvRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CrearCuentaActivity.class);
+            startActivity(intent);
+        });
 
-        Animaciones.mostrarConAnimacion(ivTitle, 300);
-        Animaciones.mostrarConAnimacion(etUser, 600);
-        Animaciones.mostrarConAnimacion(etPass, 900);
-        Animaciones.mostrarConAnimacion(btnLogin, 1200);
-        Animaciones.mostrarConAnimacion(tvRegister, 1500);
-
-        crearCanalDeNotificaciones();
-        pedirPermisoNotificaciones();
+        etEmail.setText("");
+        etPassword.setText("");
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.btnLogin) {
-            startActivity(new Intent(MainActivity.this, Inicio.class));
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    private void verificarSesion() {
+        SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1);
+        if (userId != -1) {
+            // Si ya hay un ID de usuario, ir directamente a la pantalla de Inicio
+            Intent intent = new Intent(MainActivity.this, Inicio.class);
+            startActivity(intent);
+            finish();
         }
     }
 
-    private void crearCanalDeNotificaciones() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Avisos KidzBrain",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            channel.setDescription("Notificaciones de aprendizaje y juego");
+    private void handleLogin() {
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
 
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            if (manager != null) manager.createNotificationChannel(channel);
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingresa correo y contraseña", Toast.LENGTH_SHORT).show();
+            return;
         }
-    }
 
-    private void pedirPermisoNotificaciones() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    android.Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
+        apiService.getUsuarioPorCorreo(email).enqueue(new Callback<UsuarioDto>() {
+            @Override
+            public void onResponse(Call<UsuarioDto> call, Response<UsuarioDto> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UsuarioDto usuario = response.body();
+                    // Comparamos la contraseña en el lado del cliente
+                    if (password.equals(usuario.getPassword())) {
+                        // ¡Login exitoso!
+                        Toast.makeText(MainActivity.this, "¡Bienvenido, " + usuario.getNombre() + "!", Toast.LENGTH_SHORT).show();
 
-                ActivityCompat.requestPermissions(
-                        this,
-                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
-                        REQ_NOTIS
-                );
-            } else {
-                lanzarNotificacionBienvenida();
+                        // Guardar datos del usuario
+                        SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("userId", usuario.getUsuarioId());
+                        editor.putString("userName", usuario.getNombre());
+                        editor.putString("userEmail", usuario.getCorreo()); // <-- AQUÍ ESTÁ LA LÍNEA QUE FALTABA
+                        editor.apply();
+
+                        // Navegar a la pantalla de inicio
+                        Intent intent = new Intent(MainActivity.this, Inicio.class);
+                        startActivity(intent);
+                        finish(); // Cierra la actividad de login
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                }
             }
-        } else {
-            lanzarNotificacionBienvenida();
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQ_NOTIS && grantResults.length > 0
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            lanzarNotificacionBienvenida();
-        }
-    }
-
-    private void lanzarNotificacionBienvenida() {
-
-        SharedPreferences prefs = getSharedPreferences("KidzBrainPrefs", MODE_PRIVATE);
-        if (!prefs.getBoolean("notificaciones_activas", true)) return;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED) {
-                return;
+            @Override
+            public void onFailure(Call<UsuarioDto> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
-
-        String[] titulos = {
-                "Brainbot te estaba esperando",
-                "Hora de aprender algo nuevo",
-                "Tu aventura comienza ahora"
-        };
-
-        String[] mensajes = {
-                "Cinco minutos hoy hacen magia mañana",
-                "Vamos a entrenar tu mente",
-                "Cada día eres más inteligente"
-        };
-
-        int i = new Random().nextInt(titulos.length);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        PendingIntent pi = PendingIntent.getActivity(
-                this, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-        );
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(titulos[i])
-                .setContentText(mensajes[i])
-                .setAutoCancel(true)
-                .setContentIntent(pi);
-
-        try {
-            NotificationManagerCompat.from(this).notify(101, builder.build());
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
+        });
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.login.menuLateral;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ public class PerfilActivity extends AppCompatActivity {
     private View btnCambiarFoto;
     private TextView tvFraseMotivadora;
     private TextView tvNombre;
+    private TextView tvCorreo;
 
     // Para guardar datos
     private SharedPreferences prefs;
@@ -74,8 +76,9 @@ public class PerfilActivity extends AppCompatActivity {
         btnCambiarFoto = findViewById(R.id.btnCambiarFoto);
         tvFraseMotivadora = findViewById(R.id.tvFraseMotivadora);
         tvNombre = findViewById(R.id.nombre_usuario);
+        tvCorreo = findViewById(R.id.email_usuario); // Asegúrate de tener este ID en tu XML
 
-        prefs = getSharedPreferences("KidzBrainPrefs", MODE_PRIVATE);
+        prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
 
         // Configurar lanzadores
         configurarGalleryLauncher();
@@ -90,13 +93,10 @@ public class PerfilActivity extends AppCompatActivity {
         btnCambiarFoto.setOnClickListener(v -> mostrarDialogoSeleccion());
 
         // --- LÓGICA DEL BOTÓN MENÚ / VOLVER ---
-        // Buscamos el botón por su ID (Asegúrate que en el XML se llame btnMenu)
         View btnMenu = findViewById(R.id.btnMenu);
-
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> {
-                finish(); // Cierra la actividad
-                // Esta línea hace la magia de la transición suave:
+                finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             });
         }
@@ -113,14 +113,8 @@ public class PerfilActivity extends AppCompatActivity {
         builder.setTitle("Cambiar Foto de Perfil");
         builder.setMessage("¿Quieres subir tu propia foto o elegir un personaje?");
 
-        builder.setPositiveButton("Mi Galería", (dialog, which) -> {
-            abrirGaleria();
-        });
-
-        builder.setNegativeButton("Personajes", (dialog, which) -> {
-            mostrarMenuAvatares();
-        });
-
+        builder.setPositiveButton("Mi Galería", (dialog, which) -> abrirGaleria());
+        builder.setNegativeButton("Personajes", (dialog, which) -> mostrarMenuAvatares());
         builder.show();
     }
 
@@ -135,16 +129,12 @@ public class PerfilActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Uri imageUri = result.getData().getData();
-
-                        // Permisos persistentes
                         try {
-                            final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION |
-                                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+                            final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION;
                             getContentResolver().takePersistableUriPermission(imageUri, takeFlags);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                         ivPerfil.setImageURI(imageUri);
 
                         SharedPreferences.Editor editor = prefs.edit();
@@ -158,7 +148,6 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void mostrarMenuAvatares() {
         BottomSheetDialog sheetDialog = new BottomSheetDialog(this);
-
         LinearLayout layoutPrincipal = new LinearLayout(this);
         layoutPrincipal.setOrientation(LinearLayout.VERTICAL);
         layoutPrincipal.setPadding(40, 40, 40, 40);
@@ -180,47 +169,46 @@ public class PerfilActivity extends AppCompatActivity {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(250, 250);
             params.setMargins(20, 20, 20, 20);
             iv.setLayoutParams(params);
-
             iv.setImageResource(avatarId);
             iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
             iv.setOnClickListener(v -> {
                 ivPerfil.setImageResource(avatarId);
-
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("tipo_foto", "resource");
                 editor.putInt("res_id_foto", avatarId);
                 editor.apply();
-
                 sheetDialog.dismiss();
                 Toast.makeText(this, "¡Avatar actualizado!", Toast.LENGTH_SHORT).show();
             });
-
             CardView card = new CardView(this);
             card.setRadius(100);
             card.addView(iv);
-
             grid.addView(card);
         }
 
         layoutPrincipal.addView(grid);
         layoutPrincipal.setGravity(Gravity.CENTER_HORIZONTAL);
-
         sheetDialog.setContentView(layoutPrincipal);
         sheetDialog.show();
     }
 
     private void cargarDatosGuardados() {
-        String tipo = prefs.getString("tipo_foto", "ninguna");
+        // Cargar nombre y correo
+        String nombre = prefs.getString("userName", "Usuario");
+        String correo = prefs.getString("userEmail", "correo@ejemplo.com");
+        tvNombre.setText(nombre);
+        tvCorreo.setText(correo);
 
+        // Cargar foto de perfil
+        String tipo = prefs.getString("tipo_foto", "ninguna");
         if (tipo.equals("uri")) {
             String uriString = prefs.getString("uri_foto", null);
             if (uriString != null) {
                 try {
                     ivPerfil.setImageURI(Uri.parse(uriString));
                 } catch (Exception e) {
-                    ivPerfil.setImageResource(R.drawable.img_prueba); // Tu imagen default
-                    prefs.edit().putString("tipo_foto", "ninguna").apply();
+                    ivPerfil.setImageResource(R.drawable.img_prueba);
+                    prefs.edit().remove("uri_foto").remove("tipo_foto").apply();
                 }
             }
         } else if (tipo.equals("resource")) {

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#E1F5FE"
     android:fitsSystemWindows="true"
-    tools:context=".mapa_niveles">
+    tools:context="com.example.utilidades.leccionutil.mapa_niveles">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

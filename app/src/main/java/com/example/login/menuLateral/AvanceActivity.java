@@ -3,7 +3,7 @@ package com.example.login.menuLateral;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView; // Importante para el botón
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,19 +12,24 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.spring.ApiService;
 import com.example.login.R;
+import com.example.spring.RetrofitClient;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AvanceActivity extends AppCompatActivity {
 
-    // 1. Declaramos el botón del menú
     private ImageView btnMenu;
-
     private TextView tvNivelActual, tvPuntosTotales;
     private ProgressBar pbNivelGeneral;
     private LinearProgressIndicator pbMatematicas, pbCiencias;
 
     private static final int MINUTOS_PARA_SUBIR_NIVEL = 30;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +38,17 @@ public class AvanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_avance);
 
         inicializarVistas();
-        configurarBotones(); // Nuevo método para la lógica de botones
+        configurarBotones();
         simularTiempoDeJuego();
         cargarNivelYBarraDeProgreso();
+
+        // Inicializar Retrofit
+        apiService = RetrofitClient.getApiService();
         obtenerDatosDelServidor();
     }
 
     private void inicializarVistas() {
-        // Enlazamos el botón del XML
         btnMenu = findViewById(R.id.btnMenu);
-
         tvNivelActual = findViewById(R.id.tv_nivel_actual);
         tvPuntosTotales = findViewById(R.id.tv_puntos_totales);
         pbNivelGeneral = findViewById(R.id.pb_nivel_general);
@@ -50,21 +56,10 @@ public class AvanceActivity extends AppCompatActivity {
         pbCiencias = findViewById(R.id.pb_ciencias);
     }
 
-    // -------------------------------------------------------------------------
-    // LÓGICA DEL BOTÓN DE MENÚ
-    // -------------------------------------------------------------------------
     private void configurarBotones() {
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // OPCIÓN A: Regresar al Inicio (Lo recomendado)
-                // Como esta pantalla no tiene el código de la Sidebar (DrawerLayout),
-                // lo mejor es que este botón te regrese a la pantalla principal.
-                finish();
-
-                // Efecto visual de transición (opcional, para que se vea suave)
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
+        btnMenu.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
@@ -96,6 +91,35 @@ public class AvanceActivity extends AppCompatActivity {
     }
 
     private void obtenerDatosDelServidor() {
-        // TODO: Aquí irá tu código de Retrofit/SpringBoot
+        // Asumimos que el ID de usuario está guardado en SharedPreferences
+        SharedPreferences userPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        int idUsuario = userPrefs.getInt("userId", 1); // Usamos 1 como default
+
+        // Obtener puntaje de Matemáticas (ID 1)
+        obtenerPuntajeMateria(idUsuario, 1, pbMatematicas);
+
+        // Obtener puntaje de Ciencias (ID 2)
+        obtenerPuntajeMateria(idUsuario, 2, pbCiencias);
+    }
+
+    private void obtenerPuntajeMateria(int idUsuario, int idMateria, LinearProgressIndicator progressBar) {
+        apiService.getPuntuacionPorMateria(idUsuario, idMateria).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    int puntuacion = response.body();
+                    // Asumimos un máximo de 1000 puntos por materia para la barra de progreso
+                    progressBar.setProgress((puntuacion * 100) / 1000);
+                } else {
+                    Log.e("API_ERROR", "Error al obtener puntaje para materia " + idMateria + ": " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(AvanceActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                Log.e("API_FAILURE", "Fallo en la llamada a la API", t);
+            }
+        });
     }
 }

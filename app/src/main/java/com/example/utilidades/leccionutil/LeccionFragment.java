@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.utilidades.leccionutil;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,6 +31,7 @@ import com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion6M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M;
 import com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M;
+import com.example.login.R;
 
 import java.util.ArrayList;
 import java.util.List;

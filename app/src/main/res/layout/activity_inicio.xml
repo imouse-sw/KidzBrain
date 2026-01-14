@@ -53,6 +53,20 @@
                 app:tint="#2D3E50"/>
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/tv_nombre_usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/syne"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnMenuContainer"
+            app:layout_constraintBottom_toBottomOf="@id/btnMenuContainer"
+            tools:text="Hola, Usuario"/>
+
         <ImageView
             android:id="@+id/ivTituloSeccion"
             android:layout_width="250dp"

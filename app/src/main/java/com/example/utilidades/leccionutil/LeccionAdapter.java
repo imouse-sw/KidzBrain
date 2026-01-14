@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.utilidades.leccionutil;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.R;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
