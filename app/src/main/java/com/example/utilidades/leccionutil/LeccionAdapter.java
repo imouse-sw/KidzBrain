@@ -57,6 +57,7 @@ public class LeccionAdapter extends RecyclerView.Adapter<LeccionAdapter.LeccionV
                 Intent intent = new Intent(context, leccion.getActividad());
                 intent.putExtra("materia", materia);
                 intent.putExtra("nivel", leccion.getNivel());
+                intent.putExtra("idLeccion", leccion.getId());
                 context.startActivity(intent);
             });
         } else {

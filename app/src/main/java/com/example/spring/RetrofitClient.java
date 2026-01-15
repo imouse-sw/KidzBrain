@@ -7,7 +7,7 @@ public class RetrofitClient {
 
     private static Retrofit retrofit = null;
     // IP especial para conectar desde el emulador de Android al localhost de tu PC
-    private static final String BASE_URL = "http://10.0.2.2:8080/";
+    private static final String BASE_URL = "http://192.168.1.76:8080/";
 
     public static Retrofit getClient() {
         if (retrofit == null) {

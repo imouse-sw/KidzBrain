@@ -19,6 +19,13 @@ import com.example.utilidades.leccionutil.PlantillaFragmentoTeoria;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.spring.ApiService;
+import com.example.spring.RetrofitClient;
+import com.example.spring.dto.ProgresoDto;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ActividadLeccion1_2C extends AppCompatActivity implements View.OnClickListener {
     // las vistas de la lección
     private ProgressBar barraDeProgreso;
@@ -120,25 +127,52 @@ public class ActividadLeccion1_2C extends AppCompatActivity implements View.OnCl
         }
     }
 
-    // lógica del botoncito de siguiente
     private void avanzarAlSiguientePaso() {
         if (pasoActual < listaDePasos.size() - 1) {
-            // si no es el último paso, avanza
             pasoActual++;
             mostrarPaso(pasoActual);
         } else {
-            // Último paso completado
-            Toast.makeText(this, "¡Lección Completada!", Toast.LENGTH_SHORT).show();
+            // --- AQUÍ ESTABA EL ERROR: QUITAMOS SHAREDPREFERENCES ---
 
-            // Lógica de desbloqueo dinámico
-            SharedPreferences prefs = getSharedPreferences("Progreso_" + materia, MODE_PRIVATE);
-            int nivelMaximo = prefs.getInt("nivelDesbloqueado", 1);
+            // 1. Recuperar datos necesarios
+            int idLeccion = getIntent().getIntExtra("idLeccion", -1);
 
-            if (nivelActual >= nivelMaximo) {
-                prefs.edit().putInt("nivelDesbloqueado", nivelActual + 1).apply();
+            SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+            int idUsuario = prefs.getInt("userId", -1);
+
+            if (idLeccion != -1 && idUsuario != -1) {
+                guardarProgresoEnServidor(idUsuario, idLeccion);
+            } else {
+                Toast.makeText(this, "Error de datos: No se pudo guardar", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+    // Nuevo método para hablar con Spring Boot
+    private void guardarProgresoEnServidor(int idUsuario, int idLeccion) {
+        ApiService api = RetrofitClient.getApiService();
+
+        // Creamos el DTO para enviar (Completado = 1)
+        ProgresoDto progreso = new ProgresoDto(idUsuario, idLeccion, 1, 100); // 100 puntos por defecto
+        // Nota: Asegúrate que tu ProgresoDto en Android tenga este constructor o usa setters
+
+        api.guardarProgreso(progreso).enqueue(new Callback<ProgresoDto>() {
+            @Override
+            public void onResponse(Call<ProgresoDto> call, Response<ProgresoDto> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ActividadLeccion1_2C.this, "¡Lección Completada y Guardada!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ActividadLeccion1_2C.this, "Se guardó localmente (Error Servidor)", Toast.LENGTH_SHORT).show();
+                }
+                finish(); // Regresamos al mapa (que ahora sí se actualizará)
             }
 
-            finish(); // vuelve al mapa
-        }
+            @Override
+            public void onFailure(Call<ProgresoDto> call, Throwable t) {
+                Toast.makeText(ActividadLeccion1_2C.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }

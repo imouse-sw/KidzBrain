@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,10 +37,11 @@ public class Inicio extends AppCompatActivity {
         btnCiencias = findViewById(R.id.btnCiencias);
         tvNombreUsuario = findViewById(R.id.tv_nombre_usuario);
 
-        // Cargar y mostrar el nombre del usuario
+        // --- ANIMACIONES ---
+        aplicarAnimaciones();
+
         cargarDatosUsuario();
 
-        // Configuración del menú lateral
         ImageView btnMenu = findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(navigationView));
 
@@ -56,9 +60,30 @@ public class Inicio extends AppCompatActivity {
             return true;
         });
 
-        // Listeners para las materias
         btnMatematicas.setOnClickListener(v -> abrirMapaNiveles("matematicas"));
         btnCiencias.setOnClickListener(v -> abrirMapaNiveles("ciencias"));
+    }
+
+    private void aplicarAnimaciones() {
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        Animation slideFromLeft = AnimationUtils.loadAnimation(this, R.anim.slide_from_left);
+        Animation slideFromRight = AnimationUtils.loadAnimation(this, R.anim.slide_from_right);
+
+        // Vistas a animar
+        FrameLayout btnMenuContainer = findViewById(R.id.btnMenuContainer);
+        TextView tvNombreUsuario = findViewById(R.id.tv_nombre_usuario);
+        ImageView ivTituloSeccion = findViewById(R.id.ivTituloSeccion);
+        TextView tvSubtitulo = findViewById(R.id.tvSubtitulo);
+        ConstraintLayout btnMatematicas = findViewById(R.id.btnMatematicas);
+        ConstraintLayout btnCiencias = findViewById(R.id.btnCiencias);
+
+        // Aplicar animaciones
+        btnMenuContainer.startAnimation(fadeIn);
+        tvNombreUsuario.startAnimation(fadeIn);
+        ivTituloSeccion.startAnimation(fadeIn);
+        tvSubtitulo.startAnimation(fadeIn);
+        btnMatematicas.startAnimation(slideFromLeft);
+        btnCiencias.startAnimation(slideFromRight);
     }
 
     private void cargarDatosUsuario() {
@@ -76,10 +101,9 @@ public class Inicio extends AppCompatActivity {
     private void cerrarSesion() {
         SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.clear(); // Borra todos los datos de la sesión
+        editor.clear();
         editor.apply();
 
-        // Vuelve a la pantalla de Login
         Intent intent = new Intent(Inicio.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
