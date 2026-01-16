@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="La Materia"
+                android:text="Los sistemas humanos"
                 android:fontFamily="@font/syne"
                 android:textSize="18sp"
                 android:textColor="#FFFFFF"

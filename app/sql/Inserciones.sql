@@ -30,15 +30,15 @@ CREATE TABLE tbl_progreso (
 -- IMPORTANTE: Asumimos que '1º Primaria' tiene ID=1 y 'Matemáticas' tiene ID=1
 -- Fíjate en el campo 'orden': 1, 2, 3... Esto es lo que usaremos para bloquear/desbloquear.
 INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VALUES 
-('Contando y sumando', 'Aprende el concepto de contar', 1, 1, 1),
-('Sumas y restas', 'Sumas y restas básicas', 2, 1, 1),
-('Decenas', 'Identifica las decenas y unidades', 3, 1, 1),
+('Aprendiendo a contar', 'Aprende el concepto de contar', 1, 1, 1),
+('¡Contando más allá del diez!', 'Aprende a nombrar los números mayores a 10', 2, 1, 1),
+('Haciendo grupitos de a diez', 'Identifica las decenas y unidades', 3, 1, 1),
 ('Operaciones', 'Aprende a manejar operaciones como multiplicaciones', 1, 2, 1),
 ('Área y perímetro', 'Define el área y perímetro de figuras geométricas', 2, 2, 1),
 ('Ángulos', 'Aprende lo que son los ángulos, su tipo e identificación', 3, 2, 1),
 ('Fracciones y decimales', 'Aprende a sumar y restar fracciones y decimales', 1, 3, 1),
 ('Porcentajes', 'Aprende a calcular porcentajes', 2, 3, 1),
-('Volumen', 'Comprende el volumen de cuerpos geométricos', 3, 3, 1);
+('El volumen (3D)', 'Comprende el volumen de cuerpos geométricos', 3, 3, 1);
 
 INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VALUES 
 ('Las partes del cuerpo', 'Explora las partes que conforman el cuerpo humano', 1, 1, 2),
@@ -50,3 +50,8 @@ INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VAL
 ('Sistemas humanos', 'Conoce los diversos sistemas de órganos humanos', 1, 3, 2),
 ('Energía', 'Descubre qué es la energía y sus diferentes tipos', 2, 3, 2),
 ('Biología avanzada', 'Conoce qué compone los seres vivos', 3, 3, 2);
+
+INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
+('Realiza sumas simples mediante el CONTEO de canicas.', 'Adicanicas', 'Cálculos simples', 1),
+('Practica restas de números mayores a la centena mediante el cálculo del cambio.', 'La Tienda de Abarrotes', 'Cálculos simples', 4),
+('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 6);

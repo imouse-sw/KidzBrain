@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.kidzbrain.juegos.cambio.Cambio">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_1"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:orientation="vertical"
+        android:background="#A2000000"
+        android:padding="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="¡Haz click en los botones para entregarle el cambio correcto al cliente!"
+            android:fontFamily="@font/syne"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precio del producto: $"
+            android:fontFamily="@font/syne"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:padding="0dp"
+            android:id="@+id/precio"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="El cliente pagó: $"
+            android:fontFamily="@font/syne"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:padding="0dp"
+            android:id="@+id/pago"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:fontFamily="@font/syne"
+            android:text="Cambio a entregar: $"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/cambio"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:fontFamily="@font/syne"
+            android:text="Cambio entregado: $"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/total"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="4">
+
+            <ImageButton
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/px_moneda_1"
+                android:tag="1"
+                android:background="@null"
+                android:id="@+id/moneda1"/>
+
+            <ImageButton
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_moneda_2"
+                android:tag="2"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:id="@+id/moneda2"/>
+
+            <ImageButton
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_moneda_5"
+                android:adjustViewBounds="true"
+                android:tag="5"
+                android:background="@null"
+                android:id="@+id/moneda5"/>
+
+            <ImageButton
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_moneda_10"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:tag="10"
+                android:id="@+id/moneda10"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginLeft="8dp"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:src="@drawable/px_billete_20"
+                android:tag="20"
+                android:layout_marginRight="5dp"
+                android:id="@+id/billete20"/>
+
+            <ImageButton
+                android:layout_marginRight="8dp"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_billete_50_nuevo"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:tag="50"
+                android:id="@+id/billete50"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginLeft="8dp"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_billete_100"
+                android:tag="100"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                android:id="@+id/billete100"/>
+
+            <ImageButton
+                android:layout_marginRight="8dp"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/px_billete_200"
+                android:tag="200"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:id="@+id/billete200"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/syne"
+                android:gravity="center"
+                android:text="¿Te equivocaste?"
+                android:textColor="@color/white"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bDeshacer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pixel_style"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@null"
+                android:layout_gravity="end"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne"
+                android:text="Deshacer última acción"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Confirmar respuesta"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/btn_pixel_style"
+            android:fontFamily="@font/syne"
+            android:backgroundTint="@null"
+            android:id="@+id/confirmar"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/volver"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:backgroundTint="@null"
+            android:layout_gravity="center"
+            android:fontFamily="@font/syne"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_pixel_style"
+            android:text="Volver al menú de dificultad" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

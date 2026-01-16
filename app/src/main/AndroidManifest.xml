@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,86 +14,101 @@
         android:label="KidzBrain"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Login">
+        android:theme="@style/Theme.Login"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name="com.example.utilidades.leccionutil.mapa_niveles"
+            android:name="com.kidzbrain.juegos.MenuJuegos"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion1M"
+            android:name="com.kidzbrain.utilidades.leccionutil.mapa_niveles"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion2M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.primerosegundo.ActividadLeccion3M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion2M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion4M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion3M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion5M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion4M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.tercerocuarto.ActividadLeccion6M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion5M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion7M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion6M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion8M"
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion7M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.matematicas.quintosexto.ActividadLeccion9M"
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion8M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1C"
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion9M"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C"
+            android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C"
+            android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1_2C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C"
+            android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_2C"
+            android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.tercerocuarto.ActividadLeccion2_3C"
+            android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_2C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_1C"
+            android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_3C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_2C"
+            android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_1C"
             android:exported="false" />
         <activity
-            android:name="com.example.lecciones.ciencias.quintosexto.ActividadLeccion3_3C"
+            android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_2C"
             android:exported="false" />
         <activity
-            android:name="com.example.utilidades.leccionutil.ActividadLeccion"
+            android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_3C"
             android:exported="false" />
         <activity
-            android:name=".menuLateral.AjustesActivity"
+            android:name="com.kidzbrain.utilidades.leccionutil.ActividadLeccion"
             android:exported="false" />
         <activity
-            android:name=".menuLateral.AvanceActivity"
+            android:name="com.kidzbrain.login.menuLateral.AjustesActivity"
             android:exported="false" />
         <activity
-            android:name=".menuLateral.PerfilActivity"
+            android:name="com.kidzbrain.login.menuLateral.AvanceActivity"
             android:exported="false" />
         <activity
-            android:name=".Inicio"
+            android:name="com.kidzbrain.login.menuLateral.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".CrearCuentaActivity"
+            android:name="com.kidzbrain.login.Inicio"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.kidzbrain.login.CrearCuentaActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.cambio.MenuCambio"
+            android:exported="false"/>
+        <activity
+            android:name="com.kidzbrain.juegos.cambio.Cambio"
+            android:exported="false"/>
+        <activity
+            android:name="com.kidzbrain.juegos.pizzangulos.MenuPizza"
+            android:exported="false"/>
+        <activity
+            android:name="com.kidzbrain.juegos.pizzangulos.Pizza"
+            android:exported="false"/>
+        <activity
+            android:name="com.kidzbrain.login.MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
