@@ -19,7 +19,7 @@ import com.kidzbrain.login.R;
 public class Pizza extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     PizzaView pizzaView;
     SeekBar barrita;
-    Button cortar;
+    Button cortar, sumaUno, restaUno;
     TextView resultado, pedido, puntuacionTxt, generando, anguloTxt;
     ImageView chef, cliente;
     Handler handler;
@@ -45,9 +45,13 @@ public class Pizza extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         cliente = findViewById(R.id.img_cliente);
         puntuacionTxt = findViewById(R.id.puntuacion);
         generando = findViewById(R.id.txtGenerando);
+        sumaUno = findViewById(R.id.bSumaUno);
+        restaUno = findViewById(R.id.bRestaUno);
         anguloTxt = findViewById(R.id.txtAnguloActual);
 
         barrita.setOnSeekBarChangeListener(this);
+        sumaUno.setOnClickListener(this);
+        restaUno.setOnClickListener(this);
         cortar.setOnClickListener(this);
 
         SoundPool.Builder builder = new SoundPool.Builder();
@@ -161,6 +165,12 @@ public class Pizza extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
             soundPool.play(cocinandoId, 0.7f, 0.7f, 0, 0, 1);
 
             handler.postDelayed(this::nuevoPedido, 4000);
+        }
+        else if (v.getId() == R.id.bSumaUno) {
+            barrita.setProgress(anguloActual + 1);
+        }
+        else if (v.getId() == R.id.bRestaUno) {
+            barrita.setProgress(anguloActual - 1);
         }
     }
 

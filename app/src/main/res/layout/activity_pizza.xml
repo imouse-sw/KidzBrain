@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="casual"
+            android:fontFamily="@font/syne"
             android:textSize="20sp"
             android:text="Generando nuevo pedido..."
             android:textColor="@color/white"
@@ -78,26 +78,57 @@
 
         </LinearLayout>
 
-
-
         <SeekBar
             android:id="@+id/sbAngulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.SeekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_marginTop="20dp"
             android:max="360"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bCortar"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_pixel_style"
-            android:text="¡Cortar!"
-            android:fontFamily="@font/syne"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bRestaUno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pixel_style"
+                android:text="-1"
+                android:fontFamily="@font/syne"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bCortar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pixel_style"
+                android:text="¡Cortar!"
+                android:layout_weight="1"
+                android:fontFamily="@font/syne"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bSumaUno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pixel_style"
+                android:layout_weight="1"
+                android:text="+1"
+                android:fontFamily="@font/syne"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
