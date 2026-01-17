@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.kidzbrain.juegos.canicas.Canicas;
 import com.kidzbrain.juegos.pizzangulos.MenuPizza;
 import com.kidzbrain.login.R;
 import com.kidzbrain.spring.ApiService;
@@ -94,6 +95,9 @@ public class MenuJuegos extends AppCompatActivity {
     }
 
     private Class<?> obtenerActivity(int id) {
+        if (id == 1) {
+            return Canicas.class;
+        }
         if (id == 2) {
             return MenuCambio.class;
         }
@@ -110,6 +114,9 @@ public class MenuJuegos extends AppCompatActivity {
         }
         else if (nombre != null && nombre.contains("Pizz")) {
             return R.drawable.ic_pipsha;
+        }
+        else if (nombre != null && nombre.contains("Adic")) {
+            return R.drawable.ic_canicas;
         }
         return R.drawable.ic_games;
     }
