@@ -1,14 +1,10 @@
 USE kidzbrain_db;
 
--- 1. PRIMERO: Insertamos los Grados (El nivel de dificultad)
--- Esto define "Para quién es el contenido"
 INSERT INTO tbl_grados (nombre, rango_edad) VALUES 
 ('1º y 2º Primaria', '6-8 años'),
 ('3º y 4º Primaria', '8-10 años'),
 ('5º y 6º Primaria', '10-12 años');
 
--- 2. SEGUNDO: Insertamos las Materias (El tipo de contenido)
--- Esto permite filtrar "Qué quieres aprender hoy"
 INSERT INTO tbl_materias (nombre) VALUES 
 ('Matemáticas'),
 ('Ciencias Naturales');
@@ -26,9 +22,6 @@ CREATE TABLE tbl_progreso (
     FOREIGN KEY (id_leccion) REFERENCES tbl_lecciones(id_leccion)
 );
 
--- 3. TERCERO: Insertamos las Lecciones (El camino a recorrer)
--- IMPORTANTE: Asumimos que '1º Primaria' tiene ID=1 y 'Matemáticas' tiene ID=1
--- Fíjate en el campo 'orden': 1, 2, 3... Esto es lo que usaremos para bloquear/desbloquear.
 INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VALUES 
 ('Aprendiendo a contar', 'Aprende el concepto de contar', 1, 1, 1),
 ('¡Contando más allá del diez!', 'Aprende a nombrar los números mayores a 10', 2, 1, 1),

@@ -7,7 +7,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitClient {
 
     private static Retrofit retrofit = null;
-    // IP especial para conectar desde el emulador de Android al localhost de tu PC
     private static final String BASE_URL = "http://192.168.0.69:8080/";
 
     public static Retrofit getClient() {

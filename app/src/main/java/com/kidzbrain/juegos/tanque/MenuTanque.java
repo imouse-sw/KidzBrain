@@ -63,6 +63,12 @@ public class MenuTanque extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        soundPool.release();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if(isFinishing()) {
