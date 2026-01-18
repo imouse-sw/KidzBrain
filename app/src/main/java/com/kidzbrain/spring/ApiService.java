@@ -7,10 +7,13 @@ import com.kidzbrain.spring.dto.UsuarioDto;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -20,6 +23,12 @@ public interface ApiService {
         @Path("idUsuario") int idUsuario,
         @Path("idMateria") int idMateria
     );
+
+    @GET("/KidzBrain/api/progreso/usuario/{idUsuario}")
+    Call<List<ProgresoDto>> getProgresoPorUsuario(
+            @Path("idUsuario") int idUsuario
+    );
+
 
     @GET("/KidzBrain/api/usuarios/mail/{correo}")
     Call<UsuarioDto> getUsuarioPorCorreo(
@@ -44,6 +53,14 @@ public interface ApiService {
             @Path("idMateria") int idMateria,
             @Path("idGrado") int idGrado
     );
+
+    @Multipart
+    @POST("KidzBrain/api/usuarios/id/{id}/foto")
+    Call<String> subirFotoPerfil(
+            @Path("id") int idUsuario,
+            @Part MultipartBody.Part foto
+    );
+
 
     @GET("/KidzBrain/api/juegos")
     Call<List<JuegoResponseDto>> getAllJuegos();

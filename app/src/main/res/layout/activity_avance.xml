@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp"
+                    android:padding="18dp"
                     android:gravity="center">
 
                     <ImageView
@@ -126,7 +126,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3 Días"
+                        android:id="@+id/tv_racha"
+                        android:text="0 Días"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_marginTop="4dp"/>
@@ -140,43 +141,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginStart="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@android:drawable/ic_menu_agenda"
-                        app:tint="#2196F3"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:layout_marginTop="4dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lecciones"
-                        android:textSize="12sp"
-                        android:textColor="#90A4AE"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
         <TextView
@@ -218,11 +182,13 @@
                             android:textStyle="bold"
                             android:textColor="#333"/>
                         <TextView
+                            android:id="@+id/tv_porcentaje_matematicas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80%"
+                            android:text="0%"
                             android:textColor="#F44336"
                             android:textStyle="bold"/>
+
                     </LinearLayout>
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -253,11 +219,13 @@
                             android:textStyle="bold"
                             android:textColor="#333"/>
                         <TextView
+                            android:id="@+id/tv_porcentaje_ciencias"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20%"
+                            android:text="0%"
                             android:textColor="#4CAF50"
                             android:textStyle="bold"/>
+
                     </LinearLayout>
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
