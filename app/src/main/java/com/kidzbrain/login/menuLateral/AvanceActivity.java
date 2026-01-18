@@ -3,19 +3,19 @@ package com.kidzbrain.login.menuLateral;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
-import android.widget.ImageView; // Importante para el botón
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kidzbrain.spring.ApiService;
-import com.kidzbrain.login.R;
-import com.kidzbrain.spring.RetrofitClient;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.kidzbrain.login.R;
+import com.kidzbrain.spring.ApiService;
+import com.kidzbrain.spring.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,12 +24,25 @@ import retrofit2.Response;
 public class AvanceActivity extends AppCompatActivity {
 
     private ImageView btnMenu;
+
+    // Nivel general
     private TextView tvNivelActual, tvPuntosTotales;
+
+    // Racha
+    private TextView tvRacha;
+
+    // Porcentaje por materia
+    private TextView tvPorcentajeMatematicas, tvPorcentajeCiencias;
+
     private ProgressBar pbNivelGeneral;
     private LinearProgressIndicator pbMatematicas, pbCiencias;
 
     private static final int MINUTOS_PARA_SUBIR_NIVEL = 30;
+
     private ApiService apiService;
+
+    // Tiempo de sesión
+    private long tiempoInicioSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +52,33 @@ public class AvanceActivity extends AppCompatActivity {
 
         inicializarVistas();
         configurarBotones();
-        simularTiempoDeJuego();
+
+        tiempoInicioSesion = SystemClock.elapsedRealtime();
+
+        actualizarRacha();
         cargarNivelYBarraDeProgreso();
 
-        // Inicializar Retrofit
         apiService = RetrofitClient.getApiService();
         obtenerDatosDelServidor();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        guardarTiempoDeSesion();
+    }
+
     private void inicializarVistas() {
         btnMenu = findViewById(R.id.btnMenu);
+
         tvNivelActual = findViewById(R.id.tv_nivel_actual);
         tvPuntosTotales = findViewById(R.id.tv_puntos_totales);
+
+        tvRacha = findViewById(R.id.tv_racha);
+
+        tvPorcentajeMatematicas = findViewById(R.id.tv_porcentaje_matematicas);
+        tvPorcentajeCiencias = findViewById(R.id.tv_porcentaje_ciencias);
+
         pbNivelGeneral = findViewById(R.id.pb_nivel_general);
         pbMatematicas = findViewById(R.id.pb_matematicas);
         pbCiencias = findViewById(R.id.pb_ciencias);
@@ -63,63 +91,117 @@ public class AvanceActivity extends AppCompatActivity {
         });
     }
 
-    private void simularTiempoDeJuego() {
-        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", Context.MODE_PRIVATE);
-        int minutosJugados = prefs.getInt("minutos_totales", 0);
-        minutosJugados += 15;
-        prefs.edit().putInt("minutos_totales", minutosJugados).apply();
+    // -------------------------
+    // TIEMPO DE SESIÓN
+    // -------------------------
+    private void guardarTiempoDeSesion() {
+        long tiempoFin = SystemClock.elapsedRealtime();
+        long segundosSesion = (tiempoFin - tiempoInicioSesion) / 1000;
+
+        int minutosSesion = (int) (segundosSesion / 60);
+        if (minutosSesion <= 0) return;
+
+        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
+        int minutosTotales = prefs.getInt("minutos_totales", 0);
+        minutosTotales += minutosSesion;
+
+        prefs.edit().putInt("minutos_totales", minutosTotales).apply();
+
+        Log.d("TIEMPO", "Minutos sesión: " + minutosSesion);
     }
 
     private void cargarNivelYBarraDeProgreso() {
-        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
         int minutosTotales = prefs.getInt("minutos_totales", 0);
 
         int nivelActual = (minutosTotales / MINUTOS_PARA_SUBIR_NIVEL) + 1;
-        int minutosEnNivelActual = minutosTotales % MINUTOS_PARA_SUBIR_NIVEL;
-        int porcentajeBarra = (minutosEnNivelActual * 100) / MINUTOS_PARA_SUBIR_NIVEL;
+        int minutosEnNivel = minutosTotales % MINUTOS_PARA_SUBIR_NIVEL;
+        int porcentaje = (minutosEnNivel * 100) / MINUTOS_PARA_SUBIR_NIVEL;
 
-        pbNivelGeneral.setProgress(porcentajeBarra);
+        pbNivelGeneral.setProgress(porcentaje);
 
-        String tituloRango;
-        if (nivelActual < 3) tituloRango = "Explorador Novato";
-        else if (nivelActual < 5) tituloRango = "Estudiante Curioso";
-        else if (nivelActual < 10) tituloRango = "¡Genio!";
-        else tituloRango = "Maestro de KidzBrain";
+        String rango;
+        if (nivelActual < 3) rango = "Explorador Novato";
+        else if (nivelActual < 5) rango = "Estudiante Curioso";
+        else if (nivelActual < 10) rango = "¡Genio!";
+        else rango = "Maestro de KidzBrain";
 
-        tvNivelActual.setText("Nivel " + nivelActual + ": " + tituloRango);
-        tvPuntosTotales.setText(minutosTotales + " Minutos jugados en total");
+        tvNivelActual.setText("Nivel " + nivelActual + ": " + rango);
+        tvPuntosTotales.setText(minutosTotales + " Minutos jugados");
     }
 
+    // -------------------------
+    // RACHA DIARIA
+    // -------------------------
+    private void actualizarRacha() {
+        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
+
+        long hoy = System.currentTimeMillis();
+        long ultimoDia = prefs.getLong("ultimo_dia", 0);
+        int racha = prefs.getInt("racha", 0);
+
+        long UN_DIA = 24 * 60 * 60 * 1000;
+
+        if (ultimoDia == 0) {
+            racha = 1;
+        } else {
+            long diff = hoy - ultimoDia;
+            if (diff < UN_DIA) {
+                // mismo día, no cambia
+            } else if (diff < UN_DIA * 2) {
+                racha++;
+            } else {
+                racha = 1;
+            }
+        }
+
+        prefs.edit()
+                .putLong("ultimo_dia", hoy)
+                .putInt("racha", racha)
+                .apply();
+
+        tvRacha.setText(racha + " Días");
+    }
+
+    // -------------------------
+    // PROGRESO POR MATERIA
+    // -------------------------
     private void obtenerDatosDelServidor() {
-        // Asumimos que el ID de usuario está guardado en SharedPreferences
         SharedPreferences userPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        int idUsuario = userPrefs.getInt("userId", 1); // Usamos 1 como default
+        int idUsuario = userPrefs.getInt("userId", 1);
 
-        // Obtener puntaje de Matemáticas (ID 1)
-        obtenerPuntajeMateria(idUsuario, 1, pbMatematicas);
-
-        // Obtener puntaje de Ciencias (ID 2)
-        obtenerPuntajeMateria(idUsuario, 2, pbCiencias);
+        obtenerPuntajeMateria(idUsuario, 1, pbMatematicas, tvPorcentajeMatematicas);
+        obtenerPuntajeMateria(idUsuario, 2, pbCiencias, tvPorcentajeCiencias);
     }
 
-    private void obtenerPuntajeMateria(int idUsuario, int idMateria, LinearProgressIndicator progressBar) {
-        apiService.getPuntuacionPorMateria(idUsuario, idMateria).enqueue(new Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    int puntuacion = response.body();
-                    // Asumimos un máximo de 1000 puntos por materia para la barra de progreso
-                    progressBar.setProgress((puntuacion * 100) / 1000);
-                } else {
-                    Log.e("API_ERROR", "Error al obtener puntaje para materia " + idMateria + ": " + response.message());
-                }
-            }
+    private void obtenerPuntajeMateria(
+            int idUsuario,
+            int idMateria,
+            LinearProgressIndicator progressBar,
+            TextView tvPorcentaje
+    ) {
 
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-                Toast.makeText(AvanceActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                Log.e("API_FAILURE", "Fallo en la llamada a la API", t);
-            }
-        });
+        Log.d("PUNTOS", "API -> Usuario: " + idUsuario + " Materia: " + idMateria);
+
+        apiService.getPuntuacionPorMateria(idUsuario, idMateria)
+                .enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            int puntos = response.body();
+
+                            int progreso = Math.min((puntos * 100) / 1000, 100);
+                            progressBar.setProgress(progreso);
+                            tvPorcentaje.setText(progreso + "%");
+
+                            Log.d("PUNTOS", "Materia " + idMateria + ": " + progreso + "%");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Log.e("PUNTOS", "Error de conexión", t);
+                    }
+                });
     }
 }

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
@@ -22,10 +24,35 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.kidzbrain.login.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.kidzbrain.spring.RetrofitClient;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Random;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import com.kidzbrain.spring.RetrofitClient; // O donde esté tu cliente
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -35,6 +62,7 @@ public class PerfilActivity extends AppCompatActivity {
     private TextView tvFraseMotivadora;
     private TextView tvNombre;
     private TextView tvCorreo;
+    private int usuarioId = -1;
 
     // Para guardar datos
     private SharedPreferences prefs;
@@ -129,21 +157,77 @@ public class PerfilActivity extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Uri imageUri = result.getData().getData();
-                        try {
-                            final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION;
-                            getContentResolver().takePersistableUriPermission(imageUri, takeFlags);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
+                        // 1. Mostrar visualmente
                         ivPerfil.setImageURI(imageUri);
 
+                        // 2. Guardar la referencia (Solo URI string)
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("tipo_foto", "uri");
                         editor.putString("uri_foto", imageUri.toString());
                         editor.apply();
+
+                        // 3. Intentar subir
+                        // ELIMINAMOS takePersistableUriPermission PORQUE SUELE FALLAR
+                        subirImagenAlServidor(imageUri);
                     }
                 }
         );
+    }
+
+    private void subirImagenAlServidor(Uri uri) {
+        if (usuarioId == -1) {
+            Toast.makeText(this, "Error: Usuario no identificado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            // 1. Convertir Uri a File (usando tu método existente)
+            File file = uriToFile(uri);
+
+            // 2. Crear RequestBody (tipo de archivo)
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+
+            // 3. Crear la parte Multipart (el nombre "foto" debe coincidir con @RequestParam("foto") en Spring)
+            MultipartBody.Part body = MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
+
+            // 4. Llamar a Retrofit
+            Call<String> call = RetrofitClient.getApiService().subirFotoPerfil(usuarioId, body);
+
+            // Mostrar indicador de carga si quieres...
+            Toast.makeText(this, "Subiendo foto...", Toast.LENGTH_SHORT).show();
+
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()) {
+                        String urlRelativa = response.body(); // Esto es "/uploads/..."
+                        Toast.makeText(PerfilActivity.this, "¡Foto subida con éxito!", Toast.LENGTH_SHORT).show();
+
+                        // --- NUEVO: GUARDAR LA URL DEL SERVIDOR ---
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("tipo_foto", "server"); // Marcamos que viene del servidor
+                        editor.putString("url_foto_server", urlRelativa); // Guardamos la ruta
+                        editor.apply();
+
+                        // Forzar carga inmediata con Glide para que se vea el cambio
+                        cargarFotoConGlide(urlRelativa);
+
+                    } else {
+                        Toast.makeText(PerfilActivity.this, "Error en servidor: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(PerfilActivity.this, "Fallo de conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error preparando archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void mostrarMenuAvatares() {
@@ -193,27 +277,94 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void cargarDatosGuardados() {
-        // Cargar nombre y correo
+        // 1. Cargar textos
         String nombre = prefs.getString("userName", "Usuario");
         String correo = prefs.getString("userEmail", "correo@ejemplo.com");
         tvNombre.setText(nombre);
         tvCorreo.setText(correo);
 
-        // Cargar foto de perfil
+        // 2. Cargar ID
+        usuarioId = prefs.getInt("userId", -1);
+
+        // 3. Cargar foto de perfil
         String tipo = prefs.getString("tipo_foto", "ninguna");
-        if (tipo.equals("uri")) {
+
+        if (tipo.equals("server")) {
+            // --- NUEVO: Si la foto viene del servidor, usamos Glide ---
+            String urlServer = prefs.getString("url_foto_server", "");
+            cargarFotoConGlide(urlServer);
+
+        } else if (tipo.equals("resource")) {
+            // Si es un avatar predefinido (R.drawable...)
+            int resId = prefs.getInt("res_id_foto", R.drawable.img_prueba);
+            ivPerfil.setImageResource(resId);
+
+        } else if (tipo.equals("uri")) {
+            // (Opcional) Dejamos esto por si acaso quedó alguna vieja guardada así,
+            // pero las nuevas entrarán en "server".
             String uriString = prefs.getString("uri_foto", null);
             if (uriString != null) {
                 try {
                     ivPerfil.setImageURI(Uri.parse(uriString));
                 } catch (Exception e) {
                     ivPerfil.setImageResource(R.drawable.img_prueba);
-                    prefs.edit().remove("uri_foto").remove("tipo_foto").apply();
                 }
             }
-        } else if (tipo.equals("resource")) {
-            int resId = prefs.getInt("res_id_foto", R.drawable.img_prueba);
-            ivPerfil.setImageResource(resId);
+        } else {
+            // Default
+            ivPerfil.setImageResource(R.drawable.img_prueba);
         }
     }
+
+    private File uriToFile(Uri uri) throws Exception {
+        InputStream inputStream = getContentResolver().openInputStream(uri);
+        File file = new File(getCacheDir(), "perfil_temp.jpg");
+
+        OutputStream outputStream = new FileOutputStream(file);
+        byte[] buffer = new byte[1024];
+        int read;
+
+        while ((read = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, read);
+        }
+
+        inputStream.close();
+        outputStream.close();
+
+        return file;
+    }
+
+    private void cargarFotoConGlide(String urlRelativa) {
+        if (urlRelativa == null || urlRelativa.isEmpty()) return;
+
+        // 1. Verificar IP (IMPORTANTE: Checa que esta sea tu IP actual)
+        String urlCompleta = "http://192.168.0.69:8080" + urlRelativa;
+
+        // Imprimir qué estamos intentando cargar
+        Log.e("GLIDE_DEBUG", "Intentando cargar: " + urlCompleta);
+
+        Glide.with(this)
+                .load(urlCompleta)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .placeholder(R.drawable.img_prueba)
+                .error(R.drawable.img_prueba) // Imagen si falla
+                .listener(new RequestListener<Drawable>() { // <--- ESTO ES LO NUEVO
+                    @Override
+                    public boolean onLoadFailed(GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        // AQUÍ VEREMOS EL ERROR REAL
+                        Log.e("GLIDE_ERROR", "Falló la carga: " + e.getMessage());
+                        if (e != null) e.logRootCauses("GLIDE_ERROR");
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        Log.d("GLIDE_SUCCESS", "¡Imagen cargada exitosamente!");
+                        return false;
+                    }
+                })
+                .into(ivPerfil);
+    }
+
 }

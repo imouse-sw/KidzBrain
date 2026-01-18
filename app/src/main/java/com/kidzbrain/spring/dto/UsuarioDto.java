@@ -20,6 +20,9 @@ public class UsuarioDto {
     @SerializedName("edadHijo")
     private Integer edadHijo;
 
+    @SerializedName("fotoUrl")
+    private String fotoUrl;
+
     // Constructor para el registro
     public UsuarioDto(String nombre, String correo, String password, Integer edadHijo) {
         this.nombre = nombre;
@@ -44,4 +47,6 @@ public class UsuarioDto {
     public String getPassword() {
         return password;
     }
+
+    public String getFotoUrl() {return fotoUrl; }
 }
