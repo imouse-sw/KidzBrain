@@ -51,3 +51,9 @@ INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
 ('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 6),
 ('Identifica y replica fracciones sencillas.', 'Cafetería "BrainCafé"', 'Destreza mental', 7),
 ('Realiza multiplicaciones sencillas para cuadrar el volumen de un tanque.', 'Constructores', 'Cálculos simples', 9);
+
+-- INSERT DE LECCIONES DE CIENCIAS UWU
+INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
+('Aprende a reconocer las partes del cuerpo humano.', 'El cuerpo humano', 'Conexion', 10),
+('Aprender sobre los sentidos', '¿Qué sientes?', 'Preguntas', 11),
+('Reconoce los tipos de basura', 'Las 3R', 'Conexion', 12);

@@ -12,9 +12,12 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.kidzbrain.juegos.canicas.Canicas;
+import com.kidzbrain.juegos.cuerpo.Cuerpo;
 import com.kidzbrain.juegos.fracciones.Cafeteria;
 import com.kidzbrain.juegos.pizzangulos.MenuPizza;
+import com.kidzbrain.juegos.sentidos.Sentidos;
 import com.kidzbrain.juegos.tanque.MenuTanque;
+import com.kidzbrain.juegos.tresR.TresR;
 import com.kidzbrain.login.R;
 import com.kidzbrain.spring.ApiService;
 import com.kidzbrain.spring.RetrofitClient;
@@ -112,6 +115,15 @@ public class MenuJuegos extends AppCompatActivity {
         if (id == 5) {
             return Cafeteria.class;
         }
+        if (id == 6) {
+            return Cuerpo.class;
+        }
+        if (id == 7) {
+            return Sentidos.class;
+        }
+        if (id == 8) {
+            return TresR.class;
+        }
 
         return null;
     }
@@ -131,6 +143,15 @@ public class MenuJuegos extends AppCompatActivity {
         }
         else if (nombre != null && nombre.contains("Cafetería")) {
             return R.drawable.ic_cafe;
+        }
+        else if (nombre != null && nombre.contains("cuerpo")) {
+            return R.drawable.ic_cuerpo2;
+        }
+        else if (nombre != null && nombre.contains("¿Qué sientes?")) {
+            return R.drawable.ic_sentidos;
+        }
+        else if (nombre != null && nombre.contains("Las 3R")) {
+            return R.drawable.ic_basura;
         }
         return R.drawable.ic_games;
     }

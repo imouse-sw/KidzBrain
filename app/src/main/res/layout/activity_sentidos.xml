@@ -1,0 +1,105 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F8FF"
+    android:padding="16dp"
+    android:backgroundTint="#CFA6DF">
+    <TextView
+        android:id="@+id/txtPuntos"
+        android:text="Puntos: 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"/>
+    <ImageButton
+        android:id="@+id/btnSalir4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="left"
+        android:background="@drawable/salir"
+        android:scaleType="fitCenter"
+        android:contentDescription="Botón de acción"
+        android:elevation="4dp" />
+
+    <ImageView
+        android:id="@+id/imagenPregunta"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Imagen de pregunta"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnVista"
+            android:src="@drawable/vista"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Botón de Vista"/>
+
+        <ImageButton
+            android:id="@+id/btnOido"
+            android:src="@drawable/oido"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Botón de Oído"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnGusto"
+            android:src="@drawable/lengua"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Botón de Gusto"/>
+
+        <ImageButton
+            android:id="@+id/btnOlfato"
+            android:src="@drawable/olfato"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Botón de Olfato"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnTacto"
+            android:src="@drawable/tacto"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Botón de Tacto"/>
+    </LinearLayout>
+</LinearLayout>

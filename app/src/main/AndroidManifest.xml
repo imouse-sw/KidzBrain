@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.kidzbrain.login.SplashScreen"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -128,9 +128,17 @@
             android:name="com.kidzbrain.juegos.tanque.MenuTanque"
             android:exported="false" />
         <activity
+            android:name="com.kidzbrain.juegos.cuerpo.Cuerpo"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.sentidos.Sentidos"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.tresR.TresR"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
