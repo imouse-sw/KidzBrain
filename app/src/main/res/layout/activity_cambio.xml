@@ -222,6 +222,7 @@
                 android:backgroundTint="@null"
                 android:layout_gravity="end"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 android:fontFamily="@font/syne"
                 android:text="Deshacer última acción"/>
         </LinearLayout>
@@ -231,6 +232,7 @@
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:text="Confirmar respuesta"
+            android:textColor="@color/white"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:background="@drawable/btn_pixel_style"
@@ -246,6 +248,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/syne"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:background="@drawable/btn_pixel_style"
             android:text="Volver al menú de dificultad" />
 

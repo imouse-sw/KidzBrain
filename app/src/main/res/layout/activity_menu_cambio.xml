@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/syne"
             android:gravity="center"
-            android:text="Elige la dificultad"
+            android:text="Nivel del negociante"
             android:textColor="#442434"
             android:textSize="22sp"
             android:textStyle="bold"/>
@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fácil"
+                    android:text="Ayudante"
                     android:fontFamily="@font/syne"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -129,7 +129,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Normal"
+                    android:text="Maestro Abarrotero"
                     android:fontFamily="@font/syne"
                     android:textSize="18sp"
                     android:textStyle="bold"

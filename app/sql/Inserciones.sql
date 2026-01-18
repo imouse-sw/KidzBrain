@@ -51,7 +51,10 @@ INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VAL
 ('Energía', 'Descubre qué es la energía y sus diferentes tipos', 2, 3, 2),
 ('Biología avanzada', 'Conoce qué compone los seres vivos', 3, 3, 2);
 
+-- INSERT DE LECCIONES MATEMÁTICAS UWU
 INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
 ('Realiza sumas simples mediante el CONTEO de canicas.', 'Adicanicas', 'Cálculos simples', 1),
 ('Practica restas de números mayores a la centena mediante el cálculo del cambio.', 'La Tienda de Abarrotes', 'Cálculos simples', 4),
-('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 6);
+('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 6),
+('Identifica y replica fracciones sencillas.', 'Cafetería "BrainCafé"', 'Destreza mental', 7),
+('Realiza multiplicaciones sencillas para cuadrar el volumen de un tanque.', 'Constructores', 'Cálculos simples', 9);

@@ -17,6 +17,18 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kidzbrain.juegos.fracciones.Cafeteria"
+            android:exported="false" />
+        <activity
             android:name="com.kidzbrain.juegos.MenuJuegos"
             android:exported="false" />
         <activity
@@ -80,43 +92,44 @@
             android:name="com.kidzbrain.utilidades.leccionutil.ActividadLeccion"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.menuLateral.AjustesActivity"
+            android:name=".menuLateral.AjustesActivity"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.menuLateral.AvanceActivity"
+            android:name=".menuLateral.AvanceActivity"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.menuLateral.PerfilActivity"
+            android:name=".menuLateral.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.Inicio"
+            android:name=".Inicio"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.CrearCuentaActivity"
+            android:name=".CrearCuentaActivity"
             android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.cambio.MenuCambio"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.cambio.Cambio"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.pizzangulos.MenuPizza"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.pizzangulos.Pizza"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.canicas.Canicas"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name="com.kidzbrain.login.MainActivity"
+            android:name="com.kidzbrain.juegos.tanque.Tanque"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.tanque.MenuTanque"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

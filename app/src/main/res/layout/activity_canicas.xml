@@ -28,9 +28,10 @@
             android:text="3 + 4 = ?"
             android:textSize="34sp"
             android:textStyle="bold"
-            android:fontFamily="casual"
+            android:fontFamily="@font/syne"
             android:textColor="@color/white"
             android:layout_marginTop="50dp"
+            android:inputType="number"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -43,6 +44,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:maxLength="2"
+            android:fontFamily="@font/syne"
             android:textColorHint="#A9A9A9"
             app:layout_constraintTop_toBottomOf="@id/txt_problemita"
             app:layout_constraintBottom_toTopOf="@id/botes_container"
@@ -91,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:fontFamily="casual"
+            android:fontFamily="@font/syne"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="20dp"
@@ -102,12 +104,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_respuesta" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_respuesta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Comprobar resultado"
-            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:background="@drawable/btn_pixel_style"
+            android:fontFamily="@font/syne"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/botes_container"

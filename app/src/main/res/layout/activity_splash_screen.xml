@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_inicio"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+
+    <ImageView
+        android:layout_width="340dp"
+        android:layout_height="80dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:src="@drawable/kidzbrain_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/syne"
+        android:textStyle="bold|italic"
+        android:text="Desarrollada por iMouse S.A."
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"/>
+    <ImageView
+        android:id="@+id/img_logo_imouse"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:alpha="0"
+        android:src="@drawable/imouse"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:indeterminateTint="#F0BB07"/>
+
+</LinearLayout>

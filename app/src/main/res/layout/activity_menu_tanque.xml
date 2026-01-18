@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6A29F"
+    android:background="#B8B8B8"
     android:fitsSystemWindows="true"
-    tools:context="com.kidzbrain.juegos.pizzangulos.MenuPizza">
+    tools:context="com.kidzbrain.juegos.tanque.MenuTanque">
 
-    <!-- Título Principal -->
     <TextView
         android:id="@+id/tvTituloJuego"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/syne"
-        android:text="Pizzángulos"
+        android:text="Constructores"
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -27,7 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Contenedor Principal (Panel) -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,12 +43,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/syne"
             android:gravity="center"
-            android:text="Experiencia del chef"
+            android:text="Nivel de Ingeniería"
             android:textColor="#442434"
             android:textSize="22sp"
             android:textStyle="bold"/>
 
-        <!-- Card Fácil -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +57,8 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/bb_px_feliz"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/px_bb_constructor_oa"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -72,7 +70,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Novato"
+                    android:text="Chalán"
                     android:fontFamily="@font/syne"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -81,8 +79,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="El ángulo se muestra según mueves la barra. Ideado para practicar tu habilidad."
+                    android:text="La base ya está hecha. Solo calcula la altura necesaria."
                     android:fontFamily="@font/syne"
+                    android:textSize="14sp"
                     android:textColor="#5D737E"/>
 
             </LinearLayout>
@@ -95,20 +94,18 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_pixel_style"
             android:backgroundTint="@null"
-            android:text="Jugar en Práctica"
+            android:text="Jugar en Modo Fácil"
             android:textColor="#FFFFFF"
             android:fontFamily="@font/syne"
             android:textStyle="bold"
             android:layout_marginTop="12dp"/>
 
-        <!-- Separador -->
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#442434"
             android:layout_marginVertical="24dp"/>
 
-        <!-- Card Normal -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +114,8 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/bb_px_normal"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/px_bb_constructor"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -129,7 +127,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jefe de cocina"
+                    android:text="Jefe de Obra"
                     android:fontFamily="@font/syne"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -138,8 +136,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="El ángulo no se muestra, ¡requiere pura destreza!"
+                    android:text="Calcula alto, ancho y largo por tu cuenta."
                     android:fontFamily="@font/syne"
+                    android:textSize="14sp"
                     android:textColor="#5D737E"/>
 
             </LinearLayout>
@@ -151,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_pixel_style"
-            android:text="Jugar en Normal"
+            android:text="Jugar en Modo Normal"
             android:textColor="#FFFFFF"
             android:backgroundTint="@null"
             android:fontFamily="@font/syne"

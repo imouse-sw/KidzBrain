@@ -12,7 +12,9 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.kidzbrain.juegos.canicas.Canicas;
+import com.kidzbrain.juegos.fracciones.Cafeteria;
 import com.kidzbrain.juegos.pizzangulos.MenuPizza;
+import com.kidzbrain.juegos.tanque.MenuTanque;
 import com.kidzbrain.login.R;
 import com.kidzbrain.spring.ApiService;
 import com.kidzbrain.spring.RetrofitClient;
@@ -104,6 +106,12 @@ public class MenuJuegos extends AppCompatActivity {
         if (id == 3) {
             return MenuPizza.class;
         }
+        if (id == 4) {
+            return MenuTanque.class;
+        }
+        if (id == 5) {
+            return Cafeteria.class;
+        }
 
         return null;
     }
@@ -117,6 +125,12 @@ public class MenuJuegos extends AppCompatActivity {
         }
         else if (nombre != null && nombre.contains("Adic")) {
             return R.drawable.ic_canicas;
+        }
+        else if (nombre != null && nombre.contains("Const")) {
+            return R.drawable.ic_agua;
+        }
+        else if (nombre != null && nombre.contains("Cafetería")) {
+            return R.drawable.ic_cafe;
         }
         return R.drawable.ic_games;
     }
