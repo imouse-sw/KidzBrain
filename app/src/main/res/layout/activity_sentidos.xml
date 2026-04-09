@@ -1,105 +1,315 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F8FF"
-    android:padding="16dp"
-    android:backgroundTint="#CFA6DF">
-    <TextView
-        android:id="@+id/txtPuntos"
-        android:text="Puntos: 0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold"/>
+    android:background="@drawable/fondo_sentidos1">
+
     <ImageButton
         android:id="@+id/btnSalir4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="left"
-        android:background="@drawable/salir"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
         android:scaleType="fitCenter"
-        android:contentDescription="Botón de acción"
-        android:elevation="4dp" />
-
-    <ImageView
-        android:id="@+id/imagenPregunta"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="Imagen de pregunta"
-        android:scaleType="centerCrop" />
+        android:contentDescription="Salir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/cardPuntos"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/card_puntaje_sentidos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnVista"
-            android:src="@drawable/vista"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="Botón de Vista"/>
+        <TextView
+            android:id="@+id/txtPuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntos: 0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2D3E50"
+            android:fontFamily="@font/syne" />
+    </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnOido"
-            android:src="@drawable/oido"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
+    <TextView
+        android:id="@+id/tvTituloJuego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué sentido corresponde?"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#2D3E50"
+        android:fontFamily="@font/syne"
+        android:layout_marginTop="22dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSalir4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSubtituloJuego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observa la imagen y elige el sentido correcto"
+        android:textSize="16sp"
+        android:textColor="#5A6B7B"
+        android:fontFamily="@font/syne"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloJuego"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/cardImagen"
+        android:layout_width="0dp"
+        android:layout_height="260dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:background="@drawable/card_imagen_sentidos"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtituloJuego"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imagenPregunta"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:contentDescription="Imagen de pregunta"
             android:scaleType="fitCenter"
-            android:contentDescription="Botón de Oído"/>
+            android:src="@drawable/binoculares" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/contenedorOpciones"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/cardImagen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnGusto"
-            android:src="@drawable/lengua"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="Botón de Gusto"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
 
-        <ImageButton
-            android:id="@+id/btnOlfato"
-            android:src="@drawable/olfato"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="Botón de Olfato"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardVista"
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/card_opcion_azul"
+                android:clickable="false"
+                android:focusable="false"
+                android:elevation="4dp"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnVista"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/vista"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Botón de Vista"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vista"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/btnVista"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardOido"
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_opcion_rosa"
+                android:clickable="false"
+                android:focusable="false"
+                android:elevation="4dp"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnOido"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/oido"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Botón de Oído"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oído"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/btnOido"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardGusto"
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/card_opcion_verde"
+                android:clickable="false"
+                android:focusable="false"
+                android:elevation="4dp"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnGusto"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/lengua"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Botón de Gusto"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gusto"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/btnGusto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardOlfato"
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/card_opcion_azul"
+                android:clickable="false"
+                android:focusable="false"
+                android:elevation="4dp"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnOlfato"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/olfato"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Botón de Olfato"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Olfato"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/btnOlfato"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardTacto"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/card_opcion_rosa"
+            android:clickable="false"
+            android:focusable="false"
+            android:elevation="4dp"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/btnTacto"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/tacto"
+                android:scaleType="fitCenter"
+                android:contentDescription="Botón de Tacto"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tacto"
+                android:textColor="#2D3E50"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/syne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnTacto"
+                android:layout_marginStart="18dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/btnTacto"
-            android:src="@drawable/tacto"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="Botón de Tacto"/>
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

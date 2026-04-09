@@ -3,6 +3,8 @@ package com.kidzbrain.login.menuLateral;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.kidzbrain.utilidades.KidzBrainApp;
 import com.kidzbrain.login.R;
 import com.kidzbrain.spring.ApiService;
 import com.kidzbrain.spring.RetrofitClient;
@@ -25,24 +28,16 @@ public class AvanceActivity extends AppCompatActivity {
 
     private ImageView btnMenu;
 
-    // Nivel general
     private TextView tvNivelActual, tvPuntosTotales;
-
-    // Racha
     private TextView tvRacha;
-
-    // Porcentaje por materia
     private TextView tvPorcentajeMatematicas, tvPorcentajeCiencias;
 
     private ProgressBar pbNivelGeneral;
     private LinearProgressIndicator pbMatematicas, pbCiencias;
-
     private static final int MINUTOS_PARA_SUBIR_NIVEL = 30;
-
     private ApiService apiService;
-
-    // Tiempo de sesión
-    private long tiempoInicioSesion;
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private Runnable runnableTiempo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +48,7 @@ public class AvanceActivity extends AppCompatActivity {
         inicializarVistas();
         configurarBotones();
 
-        tiempoInicioSesion = SystemClock.elapsedRealtime();
-
-        actualizarRacha();
+        mostrarRacha();
         cargarNivelYBarraDeProgreso();
 
         apiService = RetrofitClient.getApiService();
@@ -63,9 +56,17 @@ public class AvanceActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        cargarNivelYBarraDeProgreso();
+        mostrarRacha();
+        iniciarContadorSesion();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
-        guardarTiempoDeSesion();
+        detenerContadorSesion();
     }
 
     private void inicializarVistas() {
@@ -92,28 +93,68 @@ public class AvanceActivity extends AppCompatActivity {
     }
 
     // -------------------------
-    // TIEMPO DE SESIÓN
+    // TIEMPO EN VIVO SOLO VISUAL
     // -------------------------
-    private void guardarTiempoDeSesion() {
-        long tiempoFin = SystemClock.elapsedRealtime();
-        long segundosSesion = (tiempoFin - tiempoInicioSesion) / 1000;
+    private void iniciarContadorSesion() {
+        if (runnableTiempo != null) return;
 
-        int minutosSesion = (int) (segundosSesion / 60);
-        if (minutosSesion <= 0) return;
+        runnableTiempo = new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
+                int minutosGuardados = prefs.getInt("minutos_totales", 0);
 
-        SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
-        int minutosTotales = prefs.getInt("minutos_totales", 0);
-        minutosTotales += minutosSesion;
+                long tiempoInicioGlobal = KidzBrainApp.getTiempoInicioApp();
+                int minutosGlobalesActuales = 0;
+                int segundosGlobalesRestantes = 0;
 
-        prefs.edit().putInt("minutos_totales", minutosTotales).apply();
+                if (KidzBrainApp.estaAppActiva() && tiempoInicioGlobal > 0) {
+                    long segundosGlobales = (SystemClock.elapsedRealtime() - tiempoInicioGlobal) / 1000;
+                    minutosGlobalesActuales = (int) (segundosGlobales / 60);
+                    segundosGlobalesRestantes = (int) (segundosGlobales % 60);
+                }
 
-        Log.d("TIEMPO", "Minutos sesión: " + minutosSesion);
+                int minutosMostrados = minutosGuardados + minutosGlobalesActuales;
+
+                tvPuntosTotales.setText(
+                        minutosMostrados + " Minutos jugados\n" +
+                                "Sesión actual: " + minutosGlobalesActuales + " min " + segundosGlobalesRestantes + " s"
+                );
+
+                actualizarNivelEnVivo(minutosMostrados);
+
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.post(runnableTiempo);
+    }
+
+    private void detenerContadorSesion() {
+        if (runnableTiempo != null) {
+            handler.removeCallbacks(runnableTiempo);
+            runnableTiempo = null;
+        }
     }
 
     private void cargarNivelYBarraDeProgreso() {
         SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
-        int minutosTotales = prefs.getInt("minutos_totales", 0);
+        int minutosGuardados = prefs.getInt("minutos_totales", 0);
 
+        long tiempoInicioGlobal = KidzBrainApp.getTiempoInicioApp();
+        int minutosGlobalesActuales = 0;
+
+        if (KidzBrainApp.estaAppActiva() && tiempoInicioGlobal > 0) {
+            long segundosGlobales = (SystemClock.elapsedRealtime() - tiempoInicioGlobal) / 1000;
+            minutosGlobalesActuales = (int) (segundosGlobales / 60);
+        }
+
+        int minutosTotales = minutosGuardados + minutosGlobalesActuales;
+        actualizarNivelEnVivo(minutosTotales);
+        tvPuntosTotales.setText(minutosTotales + " Minutos jugados");
+    }
+
+    private void actualizarNivelEnVivo(int minutosTotales) {
         int nivelActual = (minutosTotales / MINUTOS_PARA_SUBIR_NIVEL) + 1;
         int minutosEnNivel = minutosTotales % MINUTOS_PARA_SUBIR_NIVEL;
         int porcentaje = (minutosEnNivel * 100) / MINUTOS_PARA_SUBIR_NIVEL;
@@ -127,39 +168,14 @@ public class AvanceActivity extends AppCompatActivity {
         else rango = "Maestro de KidzBrain";
 
         tvNivelActual.setText("Nivel " + nivelActual + ": " + rango);
-        tvPuntosTotales.setText(minutosTotales + " Minutos jugados");
     }
 
     // -------------------------
-    // RACHA DIARIA
+    // RACHA SOLO VISUAL
     // -------------------------
-    private void actualizarRacha() {
+    private void mostrarRacha() {
         SharedPreferences prefs = getSharedPreferences("KidzBrainStats", MODE_PRIVATE);
-
-        long hoy = System.currentTimeMillis();
-        long ultimoDia = prefs.getLong("ultimo_dia", 0);
-        int racha = prefs.getInt("racha", 0);
-
-        long UN_DIA = 24 * 60 * 60 * 1000;
-
-        if (ultimoDia == 0) {
-            racha = 1;
-        } else {
-            long diff = hoy - ultimoDia;
-            if (diff < UN_DIA) {
-                // mismo día, no cambia
-            } else if (diff < UN_DIA * 2) {
-                racha++;
-            } else {
-                racha = 1;
-            }
-        }
-
-        prefs.edit()
-                .putLong("ultimo_dia", hoy)
-                .putInt("racha", racha)
-                .apply();
-
+        int racha = prefs.getInt("racha", 1);
         tvRacha.setText(racha + " Días");
     }
 
@@ -180,7 +196,6 @@ public class AvanceActivity extends AppCompatActivity {
             LinearProgressIndicator progressBar,
             TextView tvPorcentaje
     ) {
-
         Log.d("PUNTOS", "API -> Usuario: " + idUsuario + " Materia: " + idMateria);
 
         apiService.getPuntuacionPorMateria(idUsuario, idMateria)

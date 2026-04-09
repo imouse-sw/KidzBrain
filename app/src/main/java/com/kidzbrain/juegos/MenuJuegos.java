@@ -12,8 +12,10 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.kidzbrain.juegos.canicas.Canicas;
+import com.kidzbrain.juegos.comida.MenuPedidosSaludables;
 import com.kidzbrain.juegos.cuerpo.Cuerpo;
 import com.kidzbrain.juegos.fracciones.Cafeteria;
+import com.kidzbrain.juegos.habitats.MenuAnimalesHabitat;
 import com.kidzbrain.juegos.pizzangulos.MenuPizza;
 import com.kidzbrain.juegos.sentidos.Sentidos;
 import com.kidzbrain.juegos.tanque.MenuTanque;
@@ -116,13 +118,13 @@ public class MenuJuegos extends AppCompatActivity {
             return Cafeteria.class;
         }
         if (id == 6) {
-            return Cuerpo.class;
+            return MenuAnimalesHabitat.class;
         }
         if (id == 7) {
             return Sentidos.class;
         }
         if (id == 8) {
-            return TresR.class;
+            return MenuPedidosSaludables.class;
         }
 
         return null;

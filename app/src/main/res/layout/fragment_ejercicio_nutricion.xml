@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F1F8E9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txt_progreso_nutricion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alimento 1 de 6"
+            android:textColor="#558B2F"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="20dp">
+            <ImageView
+                android:id="@+id/img_alimento_pregunta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:src="@drawable/alimento_pan" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txt_nombre_alimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EL PAN"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_botones_nutri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button android:id="@+id/btn_nutri_energia" android:layout_width="250dp" android:layout_height="wrap_content" android:text="DAR ENERGÍA" android:backgroundTint="#FBC02D" android:layout_margin="5dp"/>
+            <Button android:id="@+id/btn_nutri_crecer" android:layout_width="250dp" android:layout_height="wrap_content" android:text="CRECER FUERTE" android:backgroundTint="#FF5252" android:layout_margin="5dp"/>
+            <Button android:id="@+id/btn_nutri_proteger" android:layout_width="250dp" android:layout_height="wrap_content" android:text="PROTEGER SALUD" android:backgroundTint="#4CAF50" android:layout_margin="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_final_nutri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_repetir_nutri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPETIR EJERCICIO"
+                android:backgroundTint="#3F51B5"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

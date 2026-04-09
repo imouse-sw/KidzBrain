@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu_alimentos">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:contentDescription="Regresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:background="#D9FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedidos Saludables"
+            android:textColor="#264653"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/syne"
+            android:layout_marginBottom="10dp" />
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/bb_feliz"
+            android:contentDescription="BrainBot"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atiende a cada cliente con alimentos saludables y cumple su pedido."
+            android:textAlignment="center"
+            android:textColor="#355070"
+            android:textSize="18sp"
+            android:fontFamily="@font/syne"
+            android:layout_marginBottom="22dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnInstrucciones"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_opcion_azul"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Escuchar instrucciones"
+                android:textColor="#264653"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivIconoInstrucciones" />
+
+            <ImageView
+                android:id="@+id/ivIconoInstrucciones"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnJugar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@drawable/card_opcion_verde"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Jugar"
+                android:textColor="#264653"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivIconoJugar" />
+
+            <ImageView
+                android:id="@+id/ivIconoJugar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_games"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
