@@ -173,41 +173,47 @@ public class LeccionFragment extends Fragment {
         if ("matematicas".equalsIgnoreCase(materia)) {
             if (grado == 1) { // Básico
                 switch (orden) {
-                    case 1: return ActividadLeccion1_4M.class;
+                    case 1: return ActividadLeccion1_1M.class;
                     case 2: return ActividadLeccion1_2M.class;
                     case 3: return ActividadLeccion1_3M.class;
+                    case 4: return ActividadLeccion1_4M.class;
                 }
             } else if (grado == 2) { // Intermedio
                 switch (orden) {
-                    case 1: return ActividadLeccion2_4M.class; // Orden 1 de BD -> Lección 4 de Java
+                    case 1: return ActividadLeccion2_1M.class; // Orden 1 de BD -> Lección 4 de Java
                     case 2: return ActividadLeccion2_2M.class;
                     case 3: return ActividadLeccion2_3M.class;
+                    case 4: return ActividadLeccion2_4M.class;
                 }
             } else if (grado == 3) { // Avanzado
                 switch (orden) {
-                    case 1: return ActividadLeccion3_4M.class;
+                    case 1: return ActividadLeccion3_1M.class;
                     case 2: return ActividadLeccion3_2M.class;
                     case 3: return ActividadLeccion3_3M.class;
+                    case 4: return ActividadLeccion3_4M.class;
                 }
             }
         } else if ("ciencias".equalsIgnoreCase(materia)) {
             if (grado == 1) {
                 switch (orden) {
-                    case 1: return ActividadLeccion1_4C.class;
+                    case 1: return ActividadLeccion1C.class;
                     case 2: return ActividadLeccion1_2C.class;
                     case 3: return ActividadLeccion1_3C.class;
+                    case 4: return ActividadLeccion1_4C.class;
                 }
             } else if (grado == 2) {
                 switch (orden) {
-                    case 1: return ActividadLeccion2_4C.class;
+                    case 1: return ActividadLeccion2_1C.class;
                     case 2: return ActividadLeccion2_2C.class;
                     case 3: return ActividadLeccion2_3C.class;
+                    case 4: return ActividadLeccion2_4C.class;
                 }
             } else if (grado == 3) {
                 switch (orden) {
-                    case 1: return ActividadLeccion3_4C.class;
+                    case 1: return ActividadLeccion3_1C.class;
                     case 2: return ActividadLeccion3_2C.class;
                     case 3: return ActividadLeccion3_3C.class;
+                    case 4: return ActividadLeccion3_4C.class;
                 }
             }
         }

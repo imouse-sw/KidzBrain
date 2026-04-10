@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.kidzbrain.login.R;
 
 public class MenuMultiplosD extends AppCompatActivity implements View.OnClickListener {
     Button facil, normal;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,9 @@ public class MenuMultiplosD extends AppCompatActivity implements View.OnClickLis
 
         facil.setOnClickListener(this);
         normal.setOnClickListener(this);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         // GlobosMusica.reproduce(this); // Descomenta si tienes tu clase de música
     }
@@ -51,18 +56,6 @@ public class MenuMultiplosD extends AppCompatActivity implements View.OnClickLis
 
             startActivity(intentito);
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MultiplosDMusica.pausa();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MultiplosDMusica.reproduce(this);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.kidzbrain.login.R;
 
 public class MenuPizza extends AppCompatActivity implements View.OnClickListener {
     Button facil, normal;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class MenuPizza extends AppCompatActivity implements View.OnClickListener
 
         facil.setOnClickListener(this);
         normal.setOnClickListener(this);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         PizzaMusica.reproduce(this);
     }

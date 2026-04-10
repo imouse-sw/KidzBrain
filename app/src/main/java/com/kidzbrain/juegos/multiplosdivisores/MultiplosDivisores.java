@@ -158,7 +158,7 @@ public class MultiplosDivisores extends AppCompatActivity {
 
         ObjectAnimator animacion = ObjectAnimator.ofFloat(globo, "translationY", altoPantalla + 100f, -300f);
 
-        int velocidadVuelo = esModoDificil ? 3000 : 5000;
+        int velocidadVuelo = esModoDificil ? 4000 : 6500;
         animacion.setDuration(velocidadVuelo);
         animacion.start();
 

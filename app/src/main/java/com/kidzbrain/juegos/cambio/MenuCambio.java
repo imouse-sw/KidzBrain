@@ -18,6 +18,7 @@ public class MenuCambio extends AppCompatActivity implements View.OnClickListene
     Button facil, normal;
     AudioManager audioManager;
     MediaPlayer mediaPlayer;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class MenuCambio extends AppCompatActivity implements View.OnClickListene
         normal.setOnClickListener(this);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.instrucciones_cambio);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         CambioMusica.puchalePlay(this);

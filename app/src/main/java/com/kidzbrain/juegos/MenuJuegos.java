@@ -116,19 +116,31 @@ public class MenuJuegos extends AppCompatActivity {
             return MenuPizza.class;
         }
         if (id == 4) {
-            return MenuTanque.class;
+            return MenuMultiplosD.class;
         }
         if (id == 5) {
             return Cafeteria.class;
         }
         if (id == 6) {
-            return Cuerpo.class;
+            return MenuTanque.class;
         }
         if (id == 7) {
-            return Sentidos.class;
+            return MenuChicles.class;
         }
         if (id == 8) {
+            return Cuerpo.class;
+        }
+        if (id == 9) {
+            return Sentidos.class;
+        }
+        if (id == 10) {
             return TresR.class;
+        }
+        if (id == 11) {
+            return MenuAnimalesHabitat.class;
+        }
+        if (id == 12) {
+            return MenuPedidosSaludables.class;
         }
 
         return null;
@@ -144,10 +156,22 @@ public class MenuJuegos extends AppCompatActivity {
         else if (nombre != null && nombre.contains("Adic")) {
             return R.drawable.ic_canicas;
         }
+        else if (nombre != null && nombre.contains("feria")) {
+            return R.drawable.ic_balloon;
+        }
+        else if (nombre != null && nombre.contains("ProbaBubba")) {
+            return R.drawable.ic_bbmachine;
+        }
+        else if (nombre != null && nombre.contains("animal")) {
+            return R.drawable.ic_patita;
+        }
+        else if (nombre != null && nombre.contains("lonchera")) {
+            return R.drawable.ic_poyito;
+        }
         else if (nombre != null && nombre.contains("Const")) {
             return R.drawable.ic_agua;
         }
-        else if (nombre != null && nombre.contains("Cafetería")) {
+        else if (nombre != null && nombre.contains("BrainCafé")) {
             return R.drawable.ic_cafe;
         }
         else if (nombre != null && nombre.contains("cuerpo")) {

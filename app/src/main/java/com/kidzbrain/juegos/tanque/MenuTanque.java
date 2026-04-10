@@ -5,6 +5,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class MenuTanque extends AppCompatActivity implements View.OnClickListene
     Button facil, normal;
     SoundPool soundPool;
     int saludoVoz;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,9 @@ public class MenuTanque extends AppCompatActivity implements View.OnClickListene
 
         facil.setOnClickListener(this);
         normal.setOnClickListener(this);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(5);

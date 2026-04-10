@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.kidzbrain.login.R; // Ajusta si el R.layout viene de otra ruta
 public class MenuChicles extends AppCompatActivity implements View.OnClickListener {
 
     private Button facil, normal;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class MenuChicles extends AppCompatActivity implements View.OnClickListen
 
         facil.setOnClickListener(this);
         normal.setOnClickListener(this);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         MediaPlayer mpVozInstrucciones = MediaPlayer.create(this, R.raw.aud_voz_chicles);
         mpVozInstrucciones.start();
@@ -55,17 +60,6 @@ public class MenuChicles extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        ChiclesMusica.pausa();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ChiclesMusica.reproduce(this);
-    }
 
     @Override
     protected void onDestroy() {

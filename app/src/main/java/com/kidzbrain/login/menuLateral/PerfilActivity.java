@@ -338,7 +338,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (urlRelativa == null || urlRelativa.isEmpty()) return;
 
         // 1. Verificar IP (IMPORTANTE: Checa que esta sea tu IP actual)
-        String urlCompleta = "http://192.168.0.69:8080" + urlRelativa;
+        String urlCompleta = "http://192.168.1.76:8080" + urlRelativa;
 
         // Imprimir qué estamos intentando cargar
         Log.e("GLIDE_DEBUG", "Intentando cargar: " + urlCompleta);
