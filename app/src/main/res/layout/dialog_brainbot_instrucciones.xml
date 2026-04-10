@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="22dp"
+    android:background="#FFFDF7">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:src="@drawable/bb_feliz"
+        android:contentDescription="BrainBot"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BrainBot dice:"
+        android:textAlignment="center"
+        android:textColor="#355070"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/syne"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/tvTextoBrainBot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aquí van las instrucciones."
+        android:textColor="#264653"
+        android:textSize="18sp"
+        android:fontFamily="@font/syne"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="18dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnEscucharDialogo"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/card_opcion_azul"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="4dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp">
+
+        <TextView
+            android:id="@+id/tvEscucharDialogo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Escuchar otra vez"
+            android:textColor="#264653"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/syne"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivIconEscuchar" />
+
+        <ImageView
+            android:id="@+id/ivIconEscuchar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_atom"
+            android:alpha="0.9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnCerrarDialogo"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@drawable/card_opcion_rosa"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="4dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp">
+
+        <TextView
+            android:id="@+id/tvCerrarDialogo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cerrar"
+            android:textColor="#264653"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/syne"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivIconCerrar" />
+
+        <ImageView
+            android:id="@+id/ivIconCerrar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back"
+            android:alpha="0.9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

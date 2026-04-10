@@ -193,19 +193,19 @@ public class LeccionFragment extends Fragment {
         } else if ("ciencias".equalsIgnoreCase(materia)) {
             if (grado == 1) {
                 switch (orden) {
-                    case 1: return ActividadLeccion1C.class;
+                    case 1: return ActividadLeccion1_4C.class;
                     case 2: return ActividadLeccion1_2C.class;
                     case 3: return ActividadLeccion1_3C.class;
                 }
             } else if (grado == 2) {
                 switch (orden) {
-                    case 1: return ActividadLeccion2_1C.class;
+                    case 1: return ActividadLeccion2_4C.class;
                     case 2: return ActividadLeccion2_2C.class;
                     case 3: return ActividadLeccion2_3C.class;
                 }
             } else if (grado == 3) {
                 switch (orden) {
-                    case 1: return ActividadLeccion3_1C.class;
+                    case 1: return ActividadLeccion3_4C.class;
                     case 2: return ActividadLeccion3_2C.class;
                     case 3: return ActividadLeccion3_3C.class;
                 }

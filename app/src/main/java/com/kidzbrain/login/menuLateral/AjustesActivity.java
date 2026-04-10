@@ -1,23 +1,30 @@
 package com.kidzbrain.login.menuLateral;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
-import android.widget.ImageView; // Importante
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import com.kidzbrain.login.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.kidzbrain.login.R;
+import com.kidzbrain.notificaciones.NotificationHelper;
+import com.kidzbrain.notificaciones.RecordatorioScheduler;
 
 public class AjustesActivity extends AppCompatActivity {
 
@@ -28,9 +35,23 @@ public class AjustesActivity extends AppCompatActivity {
 
     private SwitchMaterial switchNotificaciones, switchVibracion;
     private SeekBar seekbarVolumen;
-    private ImageView btnMenu; // 1. Declaramos la variable del botón
+    private ImageView btnMenu;
     private SharedPreferences prefs;
     private AudioManager audioManager;
+
+    private final ActivityResultLauncher<String> notificacionesPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    prefs.edit().putBoolean(KEY_NOTIFICACIONES, true).apply();
+                    NotificationHelper.crearCanal(this);
+                    RecordatorioScheduler.programarRecordatorios(this, RecordatorioScheduler.DOS_VECES_AL_DIA);
+                    Toast.makeText(this, "Notificaciones activadas", Toast.LENGTH_SHORT).show();
+                } else {
+                    prefs.edit().putBoolean(KEY_NOTIFICACIONES, false).apply();
+                    switchNotificaciones.setChecked(false);
+                    Toast.makeText(this, "No se concedió el permiso de notificaciones", Toast.LENGTH_SHORT).show();
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,51 +59,53 @@ public class AjustesActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ajustes);
 
-        // 2. Enlazamos las vistas con el XML
         switchNotificaciones = findViewById(R.id.switch_notificaciones);
         switchVibracion = findViewById(R.id.switch_vibracion);
         seekbarVolumen = findViewById(R.id.seekbar_volumen);
-        btnMenu = findViewById(R.id.btnMenu); // <--- Aquí enlazamos el botón
+        btnMenu = findViewById(R.id.btnMenu);
 
-        // 3. Lógica del botón Menú (Para regresar)
         btnMenu.setOnClickListener(v -> {
-            finish(); // Cierra la actividad
+            finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        // --- El resto de tu código sigue igual ---
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         boolean notifActivas = prefs.getBoolean(KEY_NOTIFICACIONES, true);
         boolean vibActiva = prefs.getBoolean(KEY_VIBRACION, true);
 
-        // Control de errores por si audioManager es null (buena práctica)
         if (audioManager != null) {
-            int volumenActual = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            int volumenGuardado = prefs.getInt(KEY_VOLUMEN, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
             int maxVol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             seekbarVolumen.setMax(maxVol);
-            seekbarVolumen.setProgress(volumenActual);
+            seekbarVolumen.setProgress(volumenGuardado);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumenGuardado, 0);
         }
 
         switchNotificaciones.setChecked(notifActivas);
         switchVibracion.setChecked(vibActiva);
 
+        NotificationHelper.crearCanal(this);
+
+        if (notifActivas) {
+            RecordatorioScheduler.programarRecordatorios(this, RecordatorioScheduler.DOS_VECES_AL_DIA);
+        }
+
         switchNotificaciones.setOnCheckedChangeListener((btn, isChecked) -> {
-            prefs.edit().putBoolean(KEY_NOTIFICACIONES, isChecked).apply();
+            if (isChecked) {
+                activarNotificaciones();
+            } else {
+                prefs.edit().putBoolean(KEY_NOTIFICACIONES, false).apply();
+                RecordatorioScheduler.cancelarRecordatorios(this);
 
-            if (!isChecked) {
-                Toast.makeText(this,
-                        "Para desactivar notificaciones por completo, ve a la configuración de Android",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Notificaciones desactivadas", Toast.LENGTH_SHORT).show();
 
-                // Abrir configuración de la app en Android
                 try {
                     Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
                     intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
                     startActivity(intent);
-                } catch (Exception e) {
-                    // Si falla (algunos Android viejos), no hacemos nada o mostramos otro mensaje
+                } catch (Exception ignored) {
                 }
             }
         });
@@ -95,11 +118,7 @@ public class AjustesActivity extends AppCompatActivity {
         seekbarVolumen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
                 if (audioManager != null) {
-                    audioManager.setStreamVolume(
-                            AudioManager.STREAM_MUSIC,
-                            progress,
-                            0 // Quité la bandera de UI para que no salga la barra del sistema encima de la tuya
-                    );
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
                 }
                 prefs.edit().putInt(KEY_VOLUMEN, progress).apply();
             }
@@ -107,6 +126,28 @@ public class AjustesActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar sb) {}
             public void onStopTrackingTouch(SeekBar sb) {}
         });
+    }
+
+    private void activarNotificaciones() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    == PackageManager.PERMISSION_GRANTED) {
+
+                prefs.edit().putBoolean(KEY_NOTIFICACIONES, true).apply();
+                NotificationHelper.crearCanal(this);
+                RecordatorioScheduler.programarRecordatorios(this, RecordatorioScheduler.DOS_VECES_AL_DIA);
+
+                Toast.makeText(this, "Notificaciones activadas", Toast.LENGTH_SHORT).show();
+            } else {
+                notificacionesPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        } else {
+            prefs.edit().putBoolean(KEY_NOTIFICACIONES, true).apply();
+            NotificationHelper.crearCanal(this);
+            RecordatorioScheduler.programarRecordatorios(this, RecordatorioScheduler.DOS_VECES_AL_DIA);
+
+            Toast.makeText(this, "Notificaciones activadas", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void vibrarTelefono(int ms) {

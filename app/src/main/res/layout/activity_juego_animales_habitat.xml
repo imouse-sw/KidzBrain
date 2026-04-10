@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_juego_animales">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:contentDescription="Regresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnBrainBot"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/bb_px_feliz"
+        android:scaleType="fitCenter"
+        android:contentDescription="BrainBot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/topInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginHorizontal="18dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#CCFFFFFF"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntos"
+                android:textColor="#355070"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne" />
+
+            <TextView
+                android:id="@+id/tvPuntaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#264653"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="175dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="#CCFFFFFF"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivVida1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_corazon_lleno" />
+
+            <ImageView
+                android:id="@+id/ivVida2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_corazon_lleno" />
+
+            <ImageView
+                android:id="@+id/ivVida3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_corazon_lleno" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollJuego"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="18dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/topInfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/cardJuego"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="#EFFFFFFF">
+
+            <TextView
+                android:id="@+id/tvFase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fase 1 de 2"
+                android:textColor="#6D597A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvPregunta"
+                android:layout_width="322dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/syne"
+                android:text="¿Dónde vive este animal?"
+                android:textAlignment="center"
+                android:textColor="#264653"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivAnimal"
+                android:layout_width="214dp"
+                android:layout_height="132dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="Animal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/animal_leon" />
+
+            <TextView
+                android:id="@+id/tvAnimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="León"
+                android:textColor="#E76F51"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne"
+                />
+
+            <LinearLayout
+                android:id="@+id/contenedorOpciones"
+                android:layout_width="336dp"
+                android:layout_height="211dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/opcion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/card_opcion_azul"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp">
+
+                    <TextView
+                        android:id="@+id/tvOpcion1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/syne"
+                        android:text="Opción 1"
+                        android:textColor="#264653"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDecor1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivDecor1"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:alpha="0.85"
+                        android:src="@drawable/ic_atom"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/opcion2"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/card_opcion_rosa"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp">
+
+                    <TextView
+                        android:id="@+id/tvOpcion2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/syne"
+                        android:text="Opción 2"
+                        android:textColor="#264653"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDecor2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivDecor2"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:alpha="0.85"
+                        android:src="@drawable/ic_atom"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/opcion3"
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/card_opcion_verde"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp">
+
+                    <TextView
+                        android:id="@+id/tvOpcion3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/syne"
+                        android:text="Opción 3"
+                        android:textColor="#264653"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDecor3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivDecor3"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:alpha="0.85"
+                        android:src="@drawable/ic_atom"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

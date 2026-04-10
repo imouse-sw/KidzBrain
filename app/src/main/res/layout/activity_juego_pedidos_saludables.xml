@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/fondo_juego_alimentos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Regresar" />
+
+            <ImageButton
+                android:id="@+id/btnBrainBot"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bb_px_feliz"
+                android:scaleType="fitCenter"
+                android:contentDescription="BrainBot" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Puntos: "
+                    android:textStyle="bold"
+                    android:textColor="#264653"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/syne" />
+
+                <TextView
+                    android:id="@+id/tvPuntaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#264653"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/syne" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:id="@+id/ivVida1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_corazon_lleno"
+                android:layout_marginEnd="6dp" />
+
+            <ImageView
+                android:id="@+id/ivVida2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_corazon_lleno"
+                android:layout_marginEnd="6dp" />
+
+            <ImageView
+                android:id="@+id/ivVida3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_corazon_lleno" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#EFFFFFFF"
+            android:padding="18dp"
+            android:layout_marginBottom="14dp">
+
+            <ImageView
+                android:id="@+id/ivCliente"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:src="@drawable/cliente_1"
+                android:contentDescription="Cliente"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pedido:"
+                android:textStyle="bold"
+                android:textColor="#355070"
+                android:textSize="18sp"
+                android:fontFamily="@font/syne"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/tvPedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quiero algo verde y una bebida saludable."
+                android:textColor="#264653"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/syne" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#EFFFFFFF"
+            android:padding="16dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bandeja"
+                android:textStyle="bold"
+                android:textColor="#355070"
+                android:textSize="18sp"
+                android:fontFamily="@font/syne"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvBandeja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bandeja vacía"
+                android:textColor="#264653"
+                android:textSize="18sp"
+                android:fontFamily="@font/syne"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnLimpiar"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/card_opcion_azul"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Limpiar"
+                        android:textColor="#264653"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/syne"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnEntregar"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/card_opcion_verde"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Entregar pedido"
+                        android:textColor="#264653"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/syne"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="4"
+            android:useDefaultMargins="true">
+
+            <!-- 1 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim1"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_azul"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim1"
+                    android:layout_width="104dp"
+                    android:layout_height="83dp"
+                    android:src="@drawable/alim_manzana"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manzana"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim2"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_rosa"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim2"
+                    android:layout_width="102dp"
+                    android:layout_height="87dp"
+                    android:src="@drawable/alim_agua"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agua"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim3"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_verde"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim3"
+                    android:layout_width="94dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/alim_pescado"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pescado"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim4"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_azul"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim4"
+                    android:layout_width="88dp"
+                    android:layout_height="85dp"
+                    android:src="@drawable/alim_platano"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plátano"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim5"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_rosa"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim5"
+                    android:layout_width="104dp"
+                    android:layout_height="91dp"
+                    android:src="@drawable/alim_brocoli"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brócoli"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim6"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_verde"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim6"
+                    android:layout_width="106dp"
+                    android:layout_height="88dp"
+                    android:src="@drawable/alim_refresco"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Refresco"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim7"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_azul"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim7"
+                    android:layout_width="103dp"
+                    android:layout_height="89dp"
+                    android:src="@drawable/alim_pollo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pollo"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardAlim8"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:background="@drawable/card_opcion_rosa"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/ivAlim8"
+                    android:layout_width="109dp"
+                    android:layout_height="95dp"
+                    android:src="@drawable/alim_dona"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlim8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dona"
+                    android:textColor="#264653"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/syne"
+                    app:layout_constraintTop_toBottomOf="@id/ivAlim8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name="com.kidzbrain.utilidades.KidzBrainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
+        <receiver
+            android:name="com.kidzbrain.notificaciones.RecordatorioReceiver"
+            android:exported="false" />
         <activity
             android:name="com.kidzbrain.juegos.chicles.MenuChicles"
             android:exported="false" />
@@ -92,6 +96,9 @@
             android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1_3C"
             android:exported="false" />
         <activity
+            android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1_4C"
+            android:exported="false" />
+        <activity
             android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_1C"
             android:exported="false" />
         <activity
@@ -101,6 +108,9 @@
             android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_3C"
             android:exported="false" />
         <activity
+            android:name="com.kidzbrain.lecciones.ciencias.tercerocuarto.ActividadLeccion2_4C"
+            android:exported="false" />
+        <activity
             android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_1C"
             android:exported="false" />
         <activity
@@ -108,6 +118,9 @@
             android:exported="false" />
         <activity
             android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_3C"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.lecciones.ciencias.quintosexto.ActividadLeccion3_4C"
             android:exported="false" />
         <activity
             android:name="com.kidzbrain.utilidades.leccionutil.ActividadLeccion"
@@ -157,6 +170,14 @@
         <activity
             android:name="com.kidzbrain.juegos.tresR.TresR"
             android:exported="false" />
+        <activity android:name="com.kidzbrain.juegos.habitats.MenuAnimalesHabitat"
+            android:exported="false"/>
+        <activity android:name="com.kidzbrain.juegos.habitats.JuegoAnimalesHabitatActivity"
+            android:exported="false"/>
+        <activity android:name="com.kidzbrain.juegos.comida.MenuPedidosSaludables"
+            android:exported="false"/>
+        <activity android:name="com.kidzbrain.juegos.comida.JuegoPedidosSaludablesActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
