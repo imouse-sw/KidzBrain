@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_1M;
 import com.kidzbrain.login.R;
 import com.kidzbrain.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -46,9 +46,9 @@ public class EjercicioPerimetro extends PlantillaFragmentoInteractivo implements
     }
 
     private void validar(int seleccion) {
-        ActividadLeccion4M actividad = null;
-        if(getActivity() instanceof ActividadLeccion4M) {
-            actividad = (ActividadLeccion4M) getActivity();
+        ActividadLeccion2_1M actividad = null;
+        if(getActivity() instanceof ActividadLeccion2_1M) {
+            actividad = (ActividadLeccion2_1M) getActivity();
         }
 
         if (seleccion == respuestaCorrecta) {

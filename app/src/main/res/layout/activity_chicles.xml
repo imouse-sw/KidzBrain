@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tienda"
+    tools:context="com.kidzbrain.juegos.chicles.Chicles">
+
+
+
+    <LinearLayout
+        android:id="@+id/panelSuperior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E6000000"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="14dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back_white"
+                android:contentDescription="Regresar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtPuntuacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/syne"
+                android:text="Puntos: 0"
+                android:layout_marginStart="210dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtPregunta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Qué color es más probable que salga?"
+            android:textColor="#FFEB3B"
+            android:textSize="22sp"
+            android:fontFamily="@font/syne"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:padding="16dp"
+        android:background="#B3000000"
+        app:layout_constraintTop_toBottomOf="@id/panelSuperior">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOpcion1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_pixel_style"
+            android:backgroundTint="@null"
+            android:text="Rojo"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/syne"
+            android:textStyle="bold"
+            android:layout_marginEnd="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOpcion2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_pixel_style"
+            android:backgroundTint="@null"
+            android:text="Azul"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/syne"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOpcion3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_pixel_style"
+            android:backgroundTint="@null"
+            android:text="Verde"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/syne"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgBrainBotVendor"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/px_bb_vendedor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/panelBotones"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ensambleMaquina"
+        android:layout_width="220dp"
+        android:layout_height="280dp"
+        app:layout_constraintTop_toBottomOf="@id/panelBotones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp">
+
+        <FrameLayout
+            android:id="@+id/contenedorChicles"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="50dp" />
+
+        <ImageView
+            android:id="@+id/imgMaquina"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/px_maquina_base"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/imgManivela"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/px_manivela"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="175dp" />
+
+        <ImageView
+        android:id="@+id/imgMonedaAnimacion"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/px_moneda"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="91dp"
+        android:visibility="invisible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

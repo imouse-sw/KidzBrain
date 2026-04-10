@@ -173,21 +173,21 @@ public class LeccionFragment extends Fragment {
         if ("matematicas".equalsIgnoreCase(materia)) {
             if (grado == 1) { // Básico
                 switch (orden) {
-                    case 1: return ActividadLeccion1M.class;
-                    case 2: return ActividadLeccion2M.class;
-                    case 3: return ActividadLeccion3M.class;
+                    case 1: return ActividadLeccion1_4M.class;
+                    case 2: return ActividadLeccion1_2M.class;
+                    case 3: return ActividadLeccion1_3M.class;
                 }
             } else if (grado == 2) { // Intermedio
                 switch (orden) {
-                    case 1: return ActividadLeccion4M.class; // Orden 1 de BD -> Lección 4 de Java
-                    case 2: return ActividadLeccion5M.class;
-                    case 3: return ActividadLeccion6M.class;
+                    case 1: return ActividadLeccion2_4M.class; // Orden 1 de BD -> Lección 4 de Java
+                    case 2: return ActividadLeccion2_2M.class;
+                    case 3: return ActividadLeccion2_3M.class;
                 }
             } else if (grado == 3) { // Avanzado
                 switch (orden) {
-                    case 1: return ActividadLeccion7M.class;
-                    case 2: return ActividadLeccion8M.class;
-                    case 3: return ActividadLeccion9M.class;
+                    case 1: return ActividadLeccion3_4M.class;
+                    case 2: return ActividadLeccion3_2M.class;
+                    case 3: return ActividadLeccion3_3M.class;
                 }
             }
         } else if ("ciencias".equalsIgnoreCase(materia)) {

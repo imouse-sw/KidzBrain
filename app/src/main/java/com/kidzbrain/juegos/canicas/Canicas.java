@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class Canicas extends AppCompatActivity implements View.OnClickListener {
     int n1, n2, respuestaReal, respuestaUsuario;
     Button comprobar;
     SoundPool soundPool;
-
+    ImageButton btnBack;
     int correctoFxId, incorrectoFxId, canicaFxId;
 
     @Override
@@ -49,6 +50,9 @@ public class Canicas extends AppCompatActivity implements View.OnClickListener {
         bote2 = findViewById(R.id.bote_2);
         
         problemita = findViewById(R.id.txt_problemita);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         comprobar = findViewById(R.id.btn_respuesta);
         editadito = findViewById(R.id.txt_respuesta);

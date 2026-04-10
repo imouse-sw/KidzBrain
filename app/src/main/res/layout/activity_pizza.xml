@@ -22,11 +22,26 @@
         android:background="#9A000000"
         android:layout_height="match_parent">
 
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="14dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_white"
+            android:contentDescription="Regresar"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:fontFamily="@font/syne"
+            android:layout_gravity="center"
             android:textSize="20sp"
             android:text="Generando nuevo pedido..."
             android:textColor="@color/white"
@@ -34,6 +49,8 @@
             android:gravity="center"
             android:visibility="invisible"
             android:id="@+id/txtGenerando"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="30dp"

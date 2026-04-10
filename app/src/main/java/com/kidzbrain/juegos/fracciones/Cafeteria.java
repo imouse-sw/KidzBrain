@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class Cafeteria extends AppCompatActivity {
     SoundPool soundPool;
     int sfxSplat, sfxCorrecto, sfxError, sfxCampana, sfxVozBien, sfxVozMal, vozInicio;
     boolean sonidosListos = false;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,9 @@ public class Cafeteria extends AppCompatActivity {
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(5);
         soundPool = builder.build();
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         sfxSplat = soundPool.load(this, R.raw.sfx_splat, 1);
         vozInicio = soundPool.load(this, R.raw.aud_cafe_voz_inicio, 1);

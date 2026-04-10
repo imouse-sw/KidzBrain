@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 // Asegúrate de importar la actividad correcta
-import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_1M;
 import com.kidzbrain.login.R;
 import com.kidzbrain.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -78,7 +78,7 @@ public class EjercicioDivision extends PlantillaFragmentoInteractivo {
 
     @Override
     protected void comprobarRespuesta() {
-        if (getActivity() instanceof ActividadLeccion4M) {
+        if (getActivity() instanceof ActividadLeccion2_1M) {
             reproducirSonido("sonido_correcto");
         }
 

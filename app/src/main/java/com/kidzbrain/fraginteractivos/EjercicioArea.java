@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion4M;
+import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_1M;
 import com.kidzbrain.login.R;
 import com.kidzbrain.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -43,9 +43,9 @@ public class EjercicioArea extends PlantillaFragmentoInteractivo implements View
     public void onClick(View v) {
         int valor = (int) v.getTag();
 
-        ActividadLeccion4M actividad = null;
-        if(getActivity() instanceof ActividadLeccion4M) {
-            actividad = (ActividadLeccion4M) getActivity();
+        ActividadLeccion2_1M actividad = null;
+        if(getActivity() instanceof ActividadLeccion2_1M) {
+            actividad = (ActividadLeccion2_1M) getActivity();
         }
 
         if (valor == respuestaCorrecta) {

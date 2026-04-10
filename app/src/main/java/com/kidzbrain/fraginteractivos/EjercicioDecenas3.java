@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1M;
+import com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1_1M;
 import com.kidzbrain.login.R;
 import com.kidzbrain.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -47,9 +47,9 @@ public class EjercicioDecenas3 extends PlantillaFragmentoInteractivo implements 
 
     @Override
     protected void comprobarRespuesta() {
-        ActividadLeccion1M actividad = null;
-        if(getActivity() instanceof ActividadLeccion1M) {
-            actividad = (ActividadLeccion1M) getActivity();
+        ActividadLeccion1_1M actividad = null;
+        if(getActivity() instanceof ActividadLeccion1_1M) {
+            actividad = (ActividadLeccion1_1M) getActivity();
         }
 
         String d1Txt = etD1.getText().toString().trim();

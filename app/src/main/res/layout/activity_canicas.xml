@@ -15,11 +15,20 @@
         android:alpha="0.6"
         android:scaleType="centerCrop"/>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#94000000"
         android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_white"
+            android:contentDescription="Regresar"/>
 
         <TextView
             android:id="@+id/txt_problemita"

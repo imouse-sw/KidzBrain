@@ -28,6 +28,17 @@
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_gravity="top"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back_white"
+                android:contentDescription="Regresar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/img_brainbot"
                 android:layout_width="100dp"

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion6M;
+import com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_3M;
 import com.kidzbrain.login.R;
 import com.kidzbrain.utilidades.leccionutil.PlantillaFragmentoInteractivo;
 
@@ -83,9 +83,9 @@ public class EjercicioAngulo extends PlantillaFragmentoInteractivo implements Vi
     }
 
     private void verificarRespuesta(int seleccion) {
-        ActividadLeccion6M actividad = null;
-        if(getActivity() instanceof ActividadLeccion6M) {
-            actividad = (ActividadLeccion6M) getActivity();
+        ActividadLeccion2_3M actividad = null;
+        if(getActivity() instanceof ActividadLeccion2_3M) {
+            actividad = (ActividadLeccion2_3M) getActivity();
         }
 
         if (seleccion == respuestasCorrectas[indiceActual]) {

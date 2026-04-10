@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class Tanque extends AppCompatActivity {
 
     // Sonidos (Opcional, reutiliza los de Pizza)
     SoundPool soundPool;
+    ImageButton btnBack;
     int instruccionesVoz, correctoIdFx, incorrectoIdFx, correctoIdVoz, incorrectoIdVoz, aguaId, incorrectoAguaIdFx;
 
     @Override
@@ -55,6 +57,9 @@ public class Tanque extends AppCompatActivity {
         sbProf = findViewById(R.id.sbProf);
 
         bConstruir = findViewById(R.id.bConstruir);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(6);

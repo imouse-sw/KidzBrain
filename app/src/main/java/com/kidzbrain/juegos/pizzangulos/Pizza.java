@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class Pizza extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
     ImageView chef, cliente;
     Handler handler;
     SoundPool soundPool;
+    ImageButton btnBack;
 
     int anguloPedido, anguloActual, puntuacion = 0;
     int correctoIdFx, perfectoIdFx, perfectoIdVoz, incorrectoIdFx, correctoIdVoz, incorrectoIdVoz, campanaId, cocinandoId;
@@ -48,6 +50,9 @@ public class Pizza extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         sumaUno = findViewById(R.id.bSumaUno);
         restaUno = findViewById(R.id.bRestaUno);
         anguloTxt = findViewById(R.id.txtAnguloActual);
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(v -> finish());
 
         barrita.setOnSeekBarChangeListener(this);
         sumaUno.setOnClickListener(this);

@@ -9,51 +9,48 @@ INSERT INTO tbl_materias (nombre) VALUES
 ('Matemáticas'),
 ('Ciencias Naturales');
 
-DROP TABLE IF EXISTS tbl_progreso;
-
-CREATE TABLE tbl_progreso (
-    id_progreso INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    id_leccion INT NOT NULL,  -- CAMBIO: Referencia directa a la Lección
-    completado TINYINT(1) DEFAULT 0, -- 1 = Completada
-    puntuacion_obtenida INT DEFAULT 0, -- Opcional: si la lección tiene un quiz final
-    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES tbl_usuarios(id_usuario),
-    FOREIGN KEY (id_leccion) REFERENCES tbl_lecciones(id_leccion)
-);
-
 INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VALUES 
 ('Aprendiendo a contar', 'Aprende el concepto de contar', 1, 1, 1),
 ('¡Contando más allá del diez!', 'Aprende a nombrar los números mayores a 10', 2, 1, 1),
 ('Haciendo grupitos de a diez', 'Identifica las decenas y unidades', 3, 1, 1),
+('Los patrones y series', 'Entiende el concepto de patrón y series aritméticas', 4, 1, 1),
 ('Operaciones', 'Aprende a manejar operaciones como multiplicaciones', 1, 2, 1),
 ('Área y perímetro', 'Define el área y perímetro de figuras geométricas', 2, 2, 1),
 ('Ángulos', 'Aprende lo que son los ángulos, su tipo e identificación', 3, 2, 1),
+('Múltiplos y divisores', 'Aprende lo que son los múltiplos y divisores de un número natural', 4, 2, 1),
 ('Fracciones y decimales', 'Aprende a sumar y restar fracciones y decimales', 1, 3, 1),
 ('Porcentajes', 'Aprende a calcular porcentajes', 2, 3, 1),
-('El volumen (3D)', 'Comprende el volumen de cuerpos geométricos', 3, 3, 1);
+('El volumen (3D)', 'Comprende el volumen de cuerpos geométricos', 3, 3, 1),
+('Probabilidad básica', 'Aprende a calcular probabilidades sencillas a partir del concepto', 4, 3, 1);
 
 INSERT INTO tbl_lecciones (titulo, descripcion, orden, id_grado, id_materia) VALUES 
 ('Las partes del cuerpo', 'Explora las partes que conforman el cuerpo humano', 1, 1, 2),
 ('Los 5 sentidos', 'Aprende los sentidos que posee el humano', 2, 1, 2),
 ('Las 3 R', 'Aprende sobre el cuidado del medio ambiente', 3, 1, 2),
+('Los hábitats', 'Aprende sobre el entorno de los animales', 4, 1, 2),
 ('La materia', 'Conoce la materia y sus estados de agregación', 1, 2, 2),
 ('El sistema solar', 'Explora el sistema solar y los movimientos de la tierra', 2, 2, 2),
 ('Ecosistemas', 'Aprende sobre ecosistemas de México y el ciclo del agua', 3, 2, 2),
+('¡A comer sano!', 'Aprende sobre dietas saludables', 4, 2, 2),
 ('Sistemas humanos', 'Conoce los diversos sistemas de órganos humanos', 1, 3, 2),
 ('Energía', 'Descubre qué es la energía y sus diferentes tipos', 2, 3, 2),
-('Biología avanzada', 'Conoce qué compone los seres vivos', 3, 3, 2);
+('Biología avanzada', 'Conoce qué compone los seres vivos', 3, 3, 2),
+('La continuidad de la vida', 'Aprende sobre la reproducción de plantas y animales', 4, 3, 2);
 
--- INSERT DE LECCIONES MATEMÁTICAS UWU
+-- INSERT DE JUEGOS DE MATEMÁTICAS UWU
 INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
 ('Realiza sumas simples mediante el CONTEO de canicas.', 'Adicanicas', 'Cálculos simples', 1),
-('Practica restas de números mayores a la centena mediante el cálculo del cambio.', 'La Tienda de Abarrotes', 'Cálculos simples', 4),
-('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 6),
-('Identifica y replica fracciones sencillas.', 'Cafetería "BrainCafé"', 'Destreza mental', 7),
-('Realiza multiplicaciones sencillas para cuadrar el volumen de un tanque.', 'Constructores', 'Cálculos simples', 9);
+('Practica restas de números mayores a la centena mediante el cálculo del cambio.', 'La Tienda de Abarrotes', 'Cálculos simples', 5),
+('Realiza aproximaciones de ángulos en un círculo a simple vista.', 'Pizzángulos', 'Destreza mental', 7),
+('Identifica múltiplos y divisores de números varios.', 'La feria de los globos', 'Cálculos simples', 8),
+('Identifica y replica fracciones sencillas.', 'BrainCafé', 'Destreza mental', 9),
+('Realiza multiplicaciones sencillas para cuadrar el volumen de un tanque.', 'Constructores', 'Cálculos simples', 11),
+('Identifica probabilidades sencillas.', 'ProbaBubba', 'Destreza mental', 12);
 
--- INSERT DE LECCIONES DE CIENCIAS UWU
+-- INSERT DE JUEGOS DE CIENCIAS UWU
 INSERT INTO tbl_juegos (descripcion, nombre_juego, tipo, id_leccion) VALUES
-('Aprende a reconocer las partes del cuerpo humano.', 'El cuerpo humano', 'Conexion', 10),
-('Aprender sobre los sentidos', '¿Qué sientes?', 'Preguntas', 11),
-('Reconoce los tipos de basura', 'Las 3R', 'Conexion', 12);
+('Aprende a reconocer las partes del cuerpo humano.', 'El cuerpo humano', 'Conexion', 13),
+('Aprender sobre los sentidos', '¿Qué sientes?', 'Preguntas', 14),
+('Reconoce los tipos de basura', 'Las 3R', 'Conexion', 15),
+('Reconoce los hábitats de animales diversos', 'Aventura animal', 'Preguntas', 16),
+('Reconoce los componentes de una alimentación saludable', 'La lonchera de Brainbot', 'Conexion', 20);

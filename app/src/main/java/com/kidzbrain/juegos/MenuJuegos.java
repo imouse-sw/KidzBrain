@@ -12,8 +12,12 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.kidzbrain.juegos.canicas.Canicas;
+import com.kidzbrain.juegos.chicles.Chicles;
+import com.kidzbrain.juegos.chicles.MenuChicles;
 import com.kidzbrain.juegos.cuerpo.Cuerpo;
 import com.kidzbrain.juegos.fracciones.Cafeteria;
+import com.kidzbrain.juegos.multiplosdivisores.MenuMultiplosD;
+import com.kidzbrain.juegos.multiplosdivisores.MultiplosDivisores;
 import com.kidzbrain.juegos.pizzangulos.MenuPizza;
 import com.kidzbrain.juegos.sentidos.Sentidos;
 import com.kidzbrain.juegos.tanque.MenuTanque;

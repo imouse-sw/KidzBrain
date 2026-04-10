@@ -17,6 +17,18 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.kidzbrain.juegos.chicles.MenuChicles"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.chicles.Chicles"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.multiplosdivisores.MenuMultiplosD"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.multiplosdivisores.MultiplosDivisores"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -35,31 +47,40 @@
             android:name="com.kidzbrain.utilidades.leccionutil.mapa_niveles"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1_1M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion2M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1_2M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion3M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1_3M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion4M"
+            android:name="com.kidzbrain.lecciones.matematicas.primerosegundo.ActividadLeccion1_4M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion5M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_4M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion6M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_1M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion7M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_2M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion8M"
+            android:name="com.kidzbrain.lecciones.matematicas.tercerocuarto.ActividadLeccion2_3M"
             android:exported="false" />
         <activity
-            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion9M"
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion3_1M"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion3_2M"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion3_3M"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.lecciones.matematicas.quintosexto.ActividadLeccion3_4M"
             android:exported="false" />
         <activity
             android:name="com.kidzbrain.lecciones.ciencias.primerosegundo.ActividadLeccion1C"

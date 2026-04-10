@@ -28,28 +28,31 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back_white"
+                android:contentDescription="Regresar"/>
+
+            <TextView
+                android:id="@+id/txtMensajeChef"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/syne"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="20dp"
+                android:text="¡Atiende al cliente!"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/img_chef"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
                 android:src="@drawable/px_chefbot_normal" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp">
-
-                <TextView
-                    android:id="@+id/txtMensajeChef"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/syne"
-                    android:text="¡Atiende al cliente!"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
