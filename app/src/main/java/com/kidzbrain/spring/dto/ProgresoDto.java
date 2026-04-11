@@ -10,8 +10,6 @@ public class ProgresoDto {
     @SerializedName("usuarioId")
     private Integer usuarioId;
 
-    // --- CAMBIO IMPORTANTE ---
-    // Antes era "juegoId", ahora debe coincidir con el backend
     @SerializedName("leccionId")
     private Integer leccionId;
 

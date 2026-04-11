@@ -11,6 +11,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.kidzbrain.login.R;
 
+import java.util.function.Consumer;
+
 public class MenuMultiplosD extends AppCompatActivity implements View.OnClickListener {
     Button facil, normal;
     ImageButton btnBack;

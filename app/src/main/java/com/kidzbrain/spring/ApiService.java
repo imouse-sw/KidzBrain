@@ -2,6 +2,7 @@ package com.kidzbrain.spring;
 
 import com.kidzbrain.spring.dto.JuegoResponseDto;
 import com.kidzbrain.spring.dto.LeccionResponseDto;
+import com.kidzbrain.spring.dto.LoginRequest;
 import com.kidzbrain.spring.dto.ProgresoDto;
 import com.kidzbrain.spring.dto.UsuarioDto;
 
@@ -23,6 +24,9 @@ public interface ApiService {
         @Path("idUsuario") int idUsuario,
         @Path("idMateria") int idMateria
     );
+
+    @POST("/KidzBrain/api/usuarios/login")
+    Call<UsuarioDto> loginUsuario(@Body LoginRequest request);
 
     @GET("/KidzBrain/api/progreso/usuario/{idUsuario}")
     Call<List<ProgresoDto>> getProgresoPorUsuario(

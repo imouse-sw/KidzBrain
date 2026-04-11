@@ -85,11 +85,13 @@ public class CrearCuentaActivity extends AppCompatActivity {
             return;
         }
 
-        boolean noTieneArroba = !email.contains("@");
-        boolean noTieneCom = !email.endsWith(".com");
-        boolean noTieneNiuno = !email.contains("@") && !email.endsWith(".com");
+        // VALIDACIÓN DE EDAD MÍNIMA (5 AÑOS)
+        if (edadCalculada < 5) {
+            Toast.makeText(this, "Lo sentimos, debes tener al menos 5 años para jugar en KidzBrain.", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        if ( noTieneArroba || noTieneCom || noTieneNiuno ) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "El correo electrónico no es válido.", Toast.LENGTH_SHORT).show();
             return;
         }
