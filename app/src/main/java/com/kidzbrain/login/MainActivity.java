@@ -38,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnLogin;
-    private TextView tvRegister;
+    private TextView tvRegister, btnAuthNo;
     private CheckBox cbKeepSession;
-    private ImageView ivInfoKeepSession;
+    private ImageView ivInfoKeepSession, btnCloseAuth;
     private FrameLayout layoutInfoOverlay;
     private Button btnCloseInfo;
     private ApiService apiService;
+    private FrameLayout layoutAuthOverlay;
+    private Button btnAuthYes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         verificarSesion();
 
-        // Inicializar Vistas
         etEmail = findViewById(R.id.etUser);
         etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         ivInfoKeepSession = findViewById(R.id.ivInfoKeepSession);
         layoutInfoOverlay = findViewById(R.id.layoutInfoOverlay);
         btnCloseInfo = findViewById(R.id.btnCloseInfo);
+        // ... (resto de tu código de inicialización)
+        layoutInfoOverlay = findViewById(R.id.layoutInfoOverlay);
+        btnCloseInfo = findViewById(R.id.btnCloseInfo);
+
+        // 1. Inicializar las nuevas vistas
+        layoutAuthOverlay = findViewById(R.id.layoutAuthOverlay);
+        btnAuthYes = findViewById(R.id.btnAuthYes);
+        btnAuthNo = findViewById(R.id.btnAuthNo);
+        btnCloseAuth = findViewById(R.id.btnCloseAuth);
 
         apiService = RetrofitClient.getApiService();
 
@@ -69,9 +79,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Listeners
         btnLogin.setOnClickListener(v -> handleLogin());
-        tvRegister.setOnClickListener(v -> pedirAutenticacionDelDispositivo());
+        tvRegister.setOnClickListener(v -> manejarClicRegistro());
 
-        // Manejo del Overlay de información
+        // 2. Acciones de los nuevos botones del Overlay
+        btnAuthYes.setOnClickListener(v -> {
+            guardarPreferenciaAutenticacion(true); // Guardamos que SÍ quiere seguridad
+            ocultarOverlayAutenticacion();
+            pedirAutenticacionDelDispositivo();
+        });
+
+        btnAuthNo.setOnClickListener(v -> {
+            guardarPreferenciaAutenticacion(false); // Guardamos que NO quiere seguridad
+            ocultarOverlayAutenticacion();
+            abrirCrearCuenta();
+        });
+
+        if (btnCloseAuth != null) {
+            btnCloseAuth.setOnClickListener(v -> ocultarOverlayAutenticacion());
+        }
+
+        // manejo de overlay del apartado de información de "mantener sesión"
         ivInfoKeepSession.setOnClickListener(v -> {
             layoutInfoOverlay.setVisibility(View.VISIBLE);
             layoutInfoOverlay.setAlpha(0f);
@@ -99,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         LoginRequest request = new LoginRequest(email, password);
 
-        // Llamamos al nuevo endpoint seguro
+        // se llama al endpoint "/login/" del backend
         apiService.loginUsuario(request).enqueue(new Callback<UsuarioDto>() {
             @Override
             public void onResponse(@NonNull Call<UsuarioDto> call, @NonNull Response<UsuarioDto> response) {
@@ -116,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("userEmail", usuario.getCorreo());
                     editor.putBoolean("keepSession", cbKeepSession.isChecked());
 
-                    // Manejo de la foto de perfil
+                    // manejo de la foto de perfil
                     if (usuario.getFotoUrl() != null && !usuario.getFotoUrl().isEmpty()) {
                         editor.putString("tipo_foto", "server");
                         editor.putString("url_foto_server", usuario.getFotoUrl());
@@ -217,6 +244,54 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.apply();
+            }
+        }
+    }
+
+    private void mostrarOverlayAutenticacion() {
+        if (layoutAuthOverlay != null) {
+            layoutAuthOverlay.setVisibility(View.VISIBLE);
+            layoutAuthOverlay.setAlpha(0f);
+            layoutAuthOverlay.animate().alpha(1f).setDuration(300).start();
+        }
+    }
+
+    private void ocultarOverlayAutenticacion() {
+        if (layoutAuthOverlay != null) {
+            layoutAuthOverlay.animate().alpha(0f).setDuration(300).withEndAction(() -> {
+                layoutAuthOverlay.setVisibility(View.GONE);
+            }).start();
+        }
+    }
+
+    private void guardarPreferenciaAutenticacion(boolean requiereSeguridad) {
+        // usamos un archivo de preferencias distinto al de sesión para mayor orden
+        SharedPreferences prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("require_auth_registro", requiereSeguridad);
+        editor.putBoolean("overlay_auth_mostrado", true); // Marcamos que ya vimos la tarjeta
+        editor.apply();
+    }
+
+    // decide a dónde llevar al usuario cuando presiona "Regístrate"
+    private void manejarClicRegistro() {
+        SharedPreferences prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+
+        // Revisamos si ya le mostramos la tarjeta alguna vez en el pasado
+        boolean yaSeMostroTarjeta = prefs.getBoolean("overlay_auth_mostrado", false);
+
+        if (!yaSeMostroTarjeta) {
+            // no se ha mostrado la tarjeta de preferencias así que se debe mostrar
+            mostrarOverlayAutenticacion();
+        } else {
+            // se lee la decisión previa
+            boolean requiereSeguridad = prefs.getBoolean("require_auth_registro", false);
+
+            if (requiereSeguridad) {
+                pedirAutenticacionDelDispositivo(); // Le pedimos la huella
+            } else {
+                abrirCrearCuenta(); // pasa sin huella
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.kidzbrain.spring;
 
+import com.kidzbrain.spring.dto.AccesoDto;
 import com.kidzbrain.spring.dto.JuegoResponseDto;
 import com.kidzbrain.spring.dto.LeccionResponseDto;
 import com.kidzbrain.spring.dto.LoginRequest;
@@ -33,6 +34,8 @@ public interface ApiService {
             @Path("idUsuario") int idUsuario
     );
 
+    @POST("KidzBrain/api/accesos")
+    Call<AccesoDto> registrarAcceso(@Body AccesoDto acceso);
 
     @GET("/KidzBrain/api/usuarios/mail/{correo}")
     Call<UsuarioDto> getUsuarioPorCorreo(

@@ -18,14 +18,21 @@ import com.kidzbrain.juegos.MenuJuegos;
 import com.kidzbrain.login.menuLateral.AjustesActivity;
 import com.kidzbrain.login.menuLateral.AvanceActivity;
 import com.kidzbrain.login.menuLateral.PerfilActivity;
+import com.kidzbrain.spring.ApiService;
+import com.kidzbrain.spring.dto.AccesoDto;
 import com.kidzbrain.utilidades.leccionutil.mapa_niveles;
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Inicio extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ConstraintLayout btnMatematicas, btnCiencias, btnJuegos;
     private TextView tvNombreUsuario;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,8 @@ public class Inicio extends AppCompatActivity {
         btnCiencias = findViewById(R.id.btnCiencias);
         btnJuegos = findViewById(R.id.btnJuegos);
         tvNombreUsuario = findViewById(R.id.tv_nombre_usuario);
+
+        apiService = com.kidzbrain.spring.RetrofitClient.getApiService();
 
         // --- ANIMACIONES ---
         aplicarAnimaciones();
@@ -109,6 +118,28 @@ public class Inicio extends AppCompatActivity {
 
     private void cerrarSesion() {
         SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+
+        int usuarioId = prefs.getInt("userId", -1);
+
+        if(usuarioId != -1) {
+            AccesoDto logout = new AccesoDto(usuarioId, "LOGOUT");
+            apiService.registrarAcceso(logout).enqueue(new Callback<AccesoDto>() {
+                @Override
+                public void onResponse(Call<AccesoDto> call, Response<AccesoDto> response) {
+                    limpiarYSalir(prefs);
+                }
+                @Override
+                public void onFailure(Call<AccesoDto> call, Throwable t) {
+                    limpiarYSalir(prefs);
+                }
+            });
+        }
+        else {
+            limpiarYSalir(prefs);
+        }
+    }
+
+    private void limpiarYSalir(SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
         editor.apply();

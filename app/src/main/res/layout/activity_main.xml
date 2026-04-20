@@ -252,4 +252,97 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/layoutAuthOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone"
+        android:elevation="20dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="32dp">
+
+            <ImageView
+                android:id="@+id/ivBrainbotAuth"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/brainbotf"
+                android:elevation="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="24dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnCloseAuth"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="#90A4AE"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Control Parental"
+                    android:fontFamily="@font/syne"
+                    android:textSize="20sp"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Por seguridad, se sugiere restringir el acceso a la creación de cuentas a tus pequeños. ¿Deseas utilizar la contraseña o huella del dispositivo?"
+                    android:fontFamily="@font/syne"
+                    android:textSize="16sp"
+                    android:textColor="#455A64"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAuthYes"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Sí, utilizar seguridad"
+                    android:fontFamily="@font/syne"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_background"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:id="@+id/btnAuthNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No, continuar sin protección"
+                    android:fontFamily="@font/syne"
+                    android:textColor="#D372A3"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
