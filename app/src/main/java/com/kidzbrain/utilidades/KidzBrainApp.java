@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.kidzbrain.notificaciones.NotificationHelper;
 
 import java.util.Calendar;
@@ -26,6 +28,7 @@ public class KidzBrainApp extends Application implements Application.ActivityLif
     @Override
     public void onCreate() {
         super.onCreate();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         registerActivityLifecycleCallbacks(this);
         NotificationHelper.crearCanal(this);
     }
