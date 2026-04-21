@@ -17,9 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".RecuperarPasswordActivity"
+            android:exported="false" />
+
         <receiver
             android:name="com.kidzbrain.notificaciones.RecordatorioReceiver"
             android:exported="false" />
+
         <activity
             android:name="com.kidzbrain.juegos.chicles.MenuChicles"
             android:exported="false" />
@@ -170,14 +175,18 @@
         <activity
             android:name="com.kidzbrain.juegos.tresR.TresR"
             android:exported="false" />
-        <activity android:name="com.kidzbrain.juegos.habitats.MenuAnimalesHabitat"
-            android:exported="false"/>
-        <activity android:name="com.kidzbrain.juegos.habitats.JuegoAnimalesHabitatActivity"
-            android:exported="false"/>
-        <activity android:name="com.kidzbrain.juegos.comida.MenuPedidosSaludables"
-            android:exported="false"/>
-        <activity android:name="com.kidzbrain.juegos.comida.JuegoPedidosSaludablesActivity"
-            android:exported="false"/>
+        <activity
+            android:name="com.kidzbrain.juegos.habitats.MenuAnimalesHabitat"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.habitats.JuegoAnimalesHabitatActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.comida.MenuPedidosSaludables"
+            android:exported="false" />
+        <activity
+            android:name="com.kidzbrain.juegos.comida.JuegoPedidosSaludablesActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

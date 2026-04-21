@@ -5,6 +5,8 @@ import com.kidzbrain.spring.dto.JuegoResponseDto;
 import com.kidzbrain.spring.dto.LeccionResponseDto;
 import com.kidzbrain.spring.dto.LoginRequest;
 import com.kidzbrain.spring.dto.ProgresoDto;
+import com.kidzbrain.spring.dto.RestablecerPasswordDto;
+import com.kidzbrain.spring.dto.SolicitudRecuperacionDto;
 import com.kidzbrain.spring.dto.UsuarioDto;
 
 import java.util.List;
@@ -19,6 +21,11 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
+    @POST("/KidzBrain/api/usuarios/reset-request")
+    Call<Void> solicitarRecuperacion(@Body SolicitudRecuperacionDto dto);
+
+    @POST("/KidzBrain/api/usuarios/reset-password")
+    Call<Void> restablecerPassword(@Body RestablecerPasswordDto dto);
 
     @GET("/KidzBrain/api/progreso/puntuacion/usuario/{idUsuario}/materia/{idMateria}")
     Call<Integer> getPuntuacionPorMateria(

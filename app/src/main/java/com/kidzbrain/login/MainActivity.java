@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnLogin;
-    private TextView tvRegister, btnAuthNo;
+    private TextView tvRegister, btnAuthNo, tvOlvidePassword;
     private CheckBox cbKeepSession;
     private ImageView ivInfoKeepSession, btnCloseAuth;
     private FrameLayout layoutInfoOverlay;
@@ -63,25 +63,26 @@ public class MainActivity extends AppCompatActivity {
         ivInfoKeepSession = findViewById(R.id.ivInfoKeepSession);
         layoutInfoOverlay = findViewById(R.id.layoutInfoOverlay);
         btnCloseInfo = findViewById(R.id.btnCloseInfo);
-        // ... (resto de tu código de inicialización)
         layoutInfoOverlay = findViewById(R.id.layoutInfoOverlay);
         btnCloseInfo = findViewById(R.id.btnCloseInfo);
-
-        // 1. Inicializar las nuevas vistas
         layoutAuthOverlay = findViewById(R.id.layoutAuthOverlay);
         btnAuthYes = findViewById(R.id.btnAuthYes);
         btnAuthNo = findViewById(R.id.btnAuthNo);
         btnCloseAuth = findViewById(R.id.btnCloseAuth);
+        tvOlvidePassword = findViewById(R.id.tvOlvidePassword);
 
         apiService = RetrofitClient.getApiService();
 
         aplicarAnimaciones();
 
-        // Listeners
+        tvOlvidePassword.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RecuperarPasswordActivity.class);
+            startActivity(intent);
+        });
+
         btnLogin.setOnClickListener(v -> handleLogin());
         tvRegister.setOnClickListener(v -> manejarClicRegistro());
 
-        // 2. Acciones de los nuevos botones del Overlay
         btnAuthYes.setOnClickListener(v -> {
             guardarPreferenciaAutenticacion(true); // Guardamos que SÍ quiere seguridad
             ocultarOverlayAutenticacion();

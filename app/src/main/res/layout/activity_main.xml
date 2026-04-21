@@ -170,9 +170,19 @@
             android:textColor="#D372A3"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:padding="12dp"
+            android:padding="8dp"
             android:layout_marginTop="12dp"/>
 
+        <TextView
+            android:id="@+id/tvOlvidePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Olvidaste tu contraseña?"
+            android:fontFamily="@font/syne"
+            android:textColor="#90A4AE"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="8dp"/>
     </LinearLayout>
 
     <!-- === OVERLAY DE INFORMACIÓN === -->
