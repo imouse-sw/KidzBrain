@@ -58,7 +58,7 @@ public class MenuJuegos extends AppCompatActivity {
     }
 
     private void cargarJuegosDelServidor() {
-        ApiService api = RetrofitClient.getApiService();
+        ApiService api = RetrofitClient.getApiService(this);
         api.getAllJuegos().enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<List<JuegoResponseDto>> call, Response<List<JuegoResponseDto>> response) {

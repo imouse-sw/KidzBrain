@@ -152,7 +152,7 @@ public class ActividadLeccion1C extends AppCompatActivity implements View.OnClic
 
     // Nuevo método para hablar con Spring Boot
     private void guardarProgresoEnServidor(int idUsuario, int idLeccion) {
-        ApiService api = RetrofitClient.getApiService();
+        ApiService api = RetrofitClient.getApiService(this);
 
         // Creamos el DTO para enviar (Completado = 1)
         ProgresoDto progreso = new ProgresoDto(idUsuario, idLeccion, 1, 100); // 100 puntos por defecto

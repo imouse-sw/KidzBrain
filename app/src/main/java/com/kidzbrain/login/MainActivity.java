@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         btnCloseAuth = findViewById(R.id.btnCloseAuth);
         tvOlvidePassword = findViewById(R.id.tvOlvidePassword);
 
-        apiService = RetrofitClient.getApiService();
+        apiService = RetrofitClient.getApiService(this);
 
         aplicarAnimaciones();
 
@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("tipo_foto", "ninguna");
                         editor.remove("url_foto_server");
                     }
+                    editor.putString("userToken", usuario.getToken());
 
                     editor.apply();
 

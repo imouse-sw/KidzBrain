@@ -131,7 +131,7 @@ public class ActividadLeccion2_4M extends AppCompatActivity implements View.OnCl
     }
 
     private void guardarProgresoEnServidor(int idUsuario, int idLeccion) {
-        ApiService api = RetrofitClient.getApiService();
+        ApiService api = RetrofitClient.getApiService(this);
         ProgresoDto progreso = new ProgresoDto(idUsuario, idLeccion, 1, 100);
 
         api.guardarProgreso(progreso).enqueue(new Callback<ProgresoDto>() {

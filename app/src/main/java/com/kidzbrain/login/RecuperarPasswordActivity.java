@@ -34,7 +34,7 @@ public class RecuperarPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_password);
 
-        apiService = RetrofitClient.getApiService();
+        apiService = RetrofitClient.getApiService(this);
 
         layoutPaso1 = findViewById(R.id.layoutPaso1);
         layoutPaso2 = findViewById(R.id.layoutPaso2);

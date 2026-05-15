@@ -46,7 +46,7 @@ public class Inicio extends AppCompatActivity {
         btnJuegos = findViewById(R.id.btnJuegos);
         tvNombreUsuario = findViewById(R.id.tv_nombre_usuario);
 
-        apiService = com.kidzbrain.spring.RetrofitClient.getApiService();
+        apiService = com.kidzbrain.spring.RetrofitClient.getApiService(this);
 
         // --- ANIMACIONES ---
         aplicarAnimaciones();

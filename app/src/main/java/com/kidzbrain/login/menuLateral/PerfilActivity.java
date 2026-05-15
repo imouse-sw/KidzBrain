@@ -8,9 +8,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,8 +34,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.kidzbrain.login.MainActivity;
 import com.kidzbrain.login.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.kidzbrain.spring.ApiService;
 import com.kidzbrain.spring.RetrofitClient;
 
 import java.io.File;
@@ -46,13 +52,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import com.kidzbrain.spring.RetrofitClient; // O donde esté tu cliente
+import com.kidzbrain.spring.dto.BorrarCuentaDto;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -66,6 +66,14 @@ public class PerfilActivity extends AppCompatActivity {
 
     // Para guardar datos
     private SharedPreferences prefs;
+    private ApiService apiService;
+    private FrameLayout layoutBorrarOverlay;
+    private ImageView btnCloseBorrar;
+    private EditText etPasswordBorrar;
+    private Button btnConfirmarBorrar;
+    private TextView btnCancelarBorrar;
+    // Asumo que tienes un botón en tu perfil para abrir esto:
+    private Button btnBorrarCuenta;
 
     // Lista de Frases Random
     private final String[] FRASES = {
@@ -104,7 +112,8 @@ public class PerfilActivity extends AppCompatActivity {
         btnCambiarFoto = findViewById(R.id.btnCambiarFoto);
         tvFraseMotivadora = findViewById(R.id.tvFraseMotivadora);
         tvNombre = findViewById(R.id.nombre_usuario);
-        tvCorreo = findViewById(R.id.email_usuario); // Asegúrate de tener este ID en tu XML
+        tvCorreo = findViewById(R.id.email_usuario);
+        btnBorrarCuenta = findViewById(R.id.btnBorrarCuenta);
 
         prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
 
@@ -119,6 +128,28 @@ public class PerfilActivity extends AppCompatActivity {
 
         // Listener para cambiar foto
         btnCambiarFoto.setOnClickListener(v -> mostrarDialogoSeleccion());
+        layoutBorrarOverlay = findViewById(R.id.layoutBorrarOverlay);
+        btnCloseBorrar = findViewById(R.id.btnCloseBorrar);
+        etPasswordBorrar = findViewById(R.id.etPasswordBorrar);
+        btnConfirmarBorrar = findViewById(R.id.btnConfirmarBorrar);
+        btnCancelarBorrar = findViewById(R.id.btnCancelarBorrar);
+        btnBorrarCuenta = findViewById(R.id.btnBorrarCuenta); // Ajusta el ID al de tu botón principal
+
+        btnBorrarCuenta.setOnClickListener(v -> mostrarOverlayBorrar());
+
+        btnCloseBorrar.setOnClickListener(v -> ocultarOverlayBorrar());
+        btnCancelarBorrar.setOnClickListener(v -> ocultarOverlayBorrar());
+
+        btnConfirmarBorrar.setOnClickListener(v -> {
+            String password = etPasswordBorrar.getText().toString().trim();
+            if (password.isEmpty()) {
+                Toast.makeText(this, "Por favor, ingresa tu contraseña", Toast.LENGTH_SHORT).show();
+            } else {
+                ejecutarBorrado(password);
+            }
+        });
+
+        apiService = RetrofitClient.getApiService(this);
 
         // --- LÓGICA DEL BOTÓN MENÚ / VOLVER ---
         View btnMenu = findViewById(R.id.btnMenu);
@@ -128,6 +159,58 @@ public class PerfilActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             });
         }
+    }
+
+    private void ocultarOverlayBorrar() {
+        if (layoutBorrarOverlay != null) {
+            layoutBorrarOverlay.animate().alpha(0f).setDuration(300).withEndAction(() -> {
+                layoutBorrarOverlay.setVisibility(View.GONE);
+            }).start();
+        }
+    }
+
+    private void mostrarOverlayBorrar() {
+        if (layoutBorrarOverlay != null) {
+            etPasswordBorrar.setText("");
+            layoutBorrarOverlay.setVisibility(View.VISIBLE);
+            layoutBorrarOverlay.setAlpha(0f);
+            layoutBorrarOverlay.animate().alpha(1f).setDuration(300).start();
+        }
+    }
+
+    private void ejecutarBorrado(String password) {
+        SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String correo = prefs.getString("userEmail", "");
+
+        BorrarCuentaDto dto = new BorrarCuentaDto(correo, password);
+
+        apiService.borrarCuenta(dto).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.clear();
+                    editor.apply();
+
+                    Toast.makeText(PerfilActivity.this, "Cuenta eliminada con éxito", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+                else if (response.code() == 401) {
+                    Toast.makeText(PerfilActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(PerfilActivity.this, "Error al eliminar la cuenta", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(PerfilActivity.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void ponerFraseAleatoria() {
@@ -192,7 +275,7 @@ public class PerfilActivity extends AppCompatActivity {
             MultipartBody.Part body = MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
 
             // 4. Llamar a Retrofit
-            Call<String> call = RetrofitClient.getApiService().subirFotoPerfil(usuarioId, body);
+            Call<String> call = RetrofitClient.getApiService(this).subirFotoPerfil(usuarioId, body);
 
             // Mostrar indicador de carga si quieres...
             Toast.makeText(this, "Subiendo foto...", Toast.LENGTH_SHORT).show();

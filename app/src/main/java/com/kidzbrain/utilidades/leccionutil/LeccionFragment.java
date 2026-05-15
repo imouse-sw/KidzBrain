@@ -93,7 +93,7 @@ public class LeccionFragment extends Fragment {
     }
 
     private void cargarDatosDeServidor(int idMateria, int idGrado, String materiaNombre) {
-        ApiService api = RetrofitClient.getApiService();
+        ApiService api = RetrofitClient.getApiService(getContext());
 
         // PASO A: Preguntar ¿En qué nivel voy? (Para los candados)
         api.getSiguienteLeccion(idUsuarioActual, idMateria, idGrado).enqueue(new Callback<Integer>() {
@@ -116,7 +116,7 @@ public class LeccionFragment extends Fragment {
     }
 
     private void traerTextosDeBD(int idMateria, int idGrado, String materiaNombre, int ordenDesbloqueado) {
-        ApiService api = RetrofitClient.getApiService();
+        ApiService api = RetrofitClient.getApiService(getContext());
 
         api.getLeccionesPorGrado(idMateria, idGrado).enqueue(new Callback<List<LeccionResponseDto>>() {
             @Override

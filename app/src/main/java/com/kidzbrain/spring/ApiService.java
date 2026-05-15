@@ -1,6 +1,7 @@
 package com.kidzbrain.spring;
 
 import com.kidzbrain.spring.dto.AccesoDto;
+import com.kidzbrain.spring.dto.BorrarCuentaDto;
 import com.kidzbrain.spring.dto.JuegoResponseDto;
 import com.kidzbrain.spring.dto.LeccionResponseDto;
 import com.kidzbrain.spring.dto.LoginRequest;
@@ -15,6 +16,7 @@ import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -26,6 +28,9 @@ public interface ApiService {
 
     @POST("/KidzBrain/api/usuarios/reset-password")
     Call<Void> restablecerPassword(@Body RestablecerPasswordDto dto);
+
+    @HTTP(method = "DELETE", path = "/KidzBrain/api/usuarios/borrar-cuenta", hasBody = true)
+    Call<Void> borrarCuenta(@Body BorrarCuentaDto dto);
 
     @GET("/KidzBrain/api/progreso/puntuacion/usuario/{idUsuario}/materia/{idMateria}")
     Call<Integer> getPuntuacionPorMateria(
@@ -49,7 +54,7 @@ public interface ApiService {
         @Path("correo") String correo
     );
 
-    @POST("/KidzBrain/api/usuarios")
+    @POST("/KidzBrain/api/usuarios/registro")
     Call<UsuarioDto> crearUsuario(@Body UsuarioDto usuario);
 
     @GET("/KidzBrain/api/lecciones/desbloqueada/usuario/{idUsuario}/materia/{idMateria}/grado/{idGrado}")

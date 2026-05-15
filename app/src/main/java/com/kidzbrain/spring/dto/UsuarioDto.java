@@ -23,6 +23,9 @@ public class UsuarioDto {
     @SerializedName("fotoUrl")
     private String fotoUrl;
 
+    @SerializedName("token")
+    private String token;
+
     // Constructor para el registro
     public UsuarioDto(String nombre, String correo, String password, Integer edadHijo) {
         this.nombre = nombre;
@@ -49,4 +52,12 @@ public class UsuarioDto {
     }
 
     public String getFotoUrl() {return fotoUrl; }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

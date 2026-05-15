@@ -40,7 +40,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btn_registrar);
         tvVolverLogin = findViewById(R.id.tv_volver_login);
 
-        apiService = RetrofitClient.getApiService();
+        apiService = RetrofitClient.getApiService(this);
 
         tvFechaNacimiento.setOnClickListener(v -> mostrarSelectorFecha());
         btnRegistrar.setOnClickListener(v -> registrarUsuario());

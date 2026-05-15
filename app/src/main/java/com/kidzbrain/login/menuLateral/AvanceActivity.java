@@ -51,7 +51,7 @@ public class AvanceActivity extends AppCompatActivity {
         mostrarRacha();
         cargarNivelYBarraDeProgreso();
 
-        apiService = RetrofitClient.getApiService();
+        apiService = RetrofitClient.getApiService(this);
         obtenerDatosDelServidor();
     }
 
