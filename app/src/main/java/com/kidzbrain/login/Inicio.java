@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.kidzbrain.login.menuLateral.AvanceActivity;
 import com.kidzbrain.login.menuLateral.PerfilActivity;
 import com.kidzbrain.spring.ApiService;
 import com.kidzbrain.spring.dto.AccesoDto;
+import com.kidzbrain.utilidades.chatbot.ChatBotBottomSheet;
 import com.kidzbrain.utilidades.leccionutil.mapa_niveles;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,6 +35,7 @@ public class Inicio extends AppCompatActivity {
     private ConstraintLayout btnMatematicas, btnCiencias, btnJuegos;
     private TextView tvNombreUsuario;
     private ApiService apiService;
+    private ImageButton btnChatbot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class Inicio extends AppCompatActivity {
         btnCiencias = findViewById(R.id.btnCiencias);
         btnJuegos = findViewById(R.id.btnJuegos);
         tvNombreUsuario = findViewById(R.id.tv_nombre_usuario);
+        ImageButton btnChatbot = findViewById(R.id.btnChatbot);
 
         apiService = com.kidzbrain.spring.RetrofitClient.getApiService(this);
 
@@ -55,6 +59,10 @@ public class Inicio extends AppCompatActivity {
 
         ImageView btnMenu = findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(navigationView));
+        btnChatbot.setOnClickListener(v -> {
+            ChatBotBottomSheet chat = new ChatBotBottomSheet();
+            chat.show(getSupportFragmentManager(), "chatbot");
+        });
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();

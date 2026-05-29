@@ -190,6 +190,4 @@ public class ActividadLeccion extends AppCompatActivity implements View.OnClickL
             finish(); // cierra la actividad de la lección
         }
     }
-
-
 }

@@ -34,6 +34,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ImageButton
+            android:id="@+id/btnChatbot"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/card_menu_icon"
+            android:src="@drawable/ic_chat"
+            android:scaleType="centerCrop"
+            android:padding="6dp"
+            android:elevation="8dp"
+            android:contentDescription="Chatbot"
+            app:layout_constraintStart_toEndOf="@id/btnMenuContainer"
+            app:layout_constraintTop_toTopOf="@id/btnMenuContainer"
+            app:layout_constraintBottom_toBottomOf="@id/btnMenuContainer"/>
+
         <FrameLayout
             android:id="@+id/btnMenuContainer"
             android:layout_width="50dp"

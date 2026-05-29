@@ -17,6 +17,8 @@
         android:alpha="0.3"
         android:layout_marginTop="-50dp"
         android:layout_marginEnd="-50dp"
+        android:clickable="false"
+        android:focusable="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

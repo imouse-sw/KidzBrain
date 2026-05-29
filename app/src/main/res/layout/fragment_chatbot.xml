@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_chatbot"
+    android:padding="16dp">
+
+    <!-- HEADER -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="14dp">
+
+        <ImageView
+            android:id="@+id/imgBot"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@drawable/ic_chat"
+            android:background="@drawable/bg_chatbot_circle"
+            android:padding="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/tvTituloBot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BrainBot AI"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#2D3E50"
+                android:fontFamily="@font/syne"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Pregúntame lo que quieras!"
+                android:textSize="14sp"
+                android:textColor="#7A8A99"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- MENSAJES -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+        android:clipToPadding="false"
+        android:paddingBottom="12dp"/>
+
+    <!-- INPUT -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <EditText
+                android:id="@+id/etMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Escribe algo..."
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="14dp"
+                android:textColor="#2D3E50"
+                android:textColorHint="#9AA5B1"/>
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/btnEnviar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_chatbot_circle"
+            android:src="@android:drawable/ic_menu_send"
+            android:padding="14dp"
+            android:scaleType="centerInside"/>
+    </LinearLayout>
+
+</LinearLayout>
