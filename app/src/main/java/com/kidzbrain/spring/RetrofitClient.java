@@ -16,7 +16,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitClient {
 
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "https://diego-des.canadacentral.cloudapp.azure.com";
+    private static final String BASE_URL = "https://antonio-des.centralus.cloudapp.azure.com";
 
     public static Retrofit getClient(Context context) {
         if (retrofit == null) {
