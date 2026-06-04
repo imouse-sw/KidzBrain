@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="#2D3E50"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <!-- Puedes poner a Brainbot o un icono de perfil aquí -->
+    <ImageView
+        android:id="@+id/ivHeaderAvatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/deco_circle_pink"
+        android:padding="10dp"
+        android:src="@drawable/ic_person"
+        android:contentDescription="Avatar del usuario" />
+
+    <TextView
+        android:id="@+id/tvHeaderNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/syne"
+        android:text="Cargando..."
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/syne"
+        android:text="¡Listo para aprender!"
+        android:textColor="#90A4AE"
+        android:textSize="14sp" />
+
+</LinearLayout>

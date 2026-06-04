@@ -355,4 +355,79 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/layoutPrivacyOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6000000"
+        android:visibility="gone"
+        android:elevation="25dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="32dp">
+
+            <ImageView
+                android:id="@+id/ivBrainbotPrivacy"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/brainbotf"
+                android:elevation="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="24dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aviso de Privacidad"
+                    android:fontFamily="@font/syne"
+                    android:textSize="22sp"
+                    android:textColor="#2D3E50"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Para cumplir con las normativas de protección infantil (COPPA), KidzBrain recopila únicamente los datos necesarios para crear la cuenta y guardar el progreso educativo: Nombre, Correo Electrónico y Fecha de Nacimiento.\n\nTus contraseñas viajan encriptadas y la autenticación biométrica (huella o PIN) se procesa localmente en tu dispositivo, sin enviarse a nuestros servidores. No compartimos tu información con terceros ni mostramos publicidad.\n\nAl tocar 'Acepto y Entiendo', un padre, madre o tutor legal autoriza este tratamiento de datos."
+                    android:fontFamily="@font/syne"
+                    android:textSize="14sp"
+                    android:textColor="#455A64"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAcceptPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="ACEPTO Y ENTIENDO"
+                    android:fontFamily="@font/syne"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

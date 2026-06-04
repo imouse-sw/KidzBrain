@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private ApiService apiService;
     private FrameLayout layoutAuthOverlay;
     private Button btnAuthYes;
+    private FrameLayout layoutPrivacyOverlay;
+    private Button btnAcceptPrivacy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +73,14 @@ public class MainActivity extends AppCompatActivity {
         btnAuthNo = findViewById(R.id.btnAuthNo);
         btnCloseAuth = findViewById(R.id.btnCloseAuth);
         tvOlvidePassword = findViewById(R.id.tvOlvidePassword);
+        layoutPrivacyOverlay = findViewById(R.id.layoutPrivacyOverlay);
+        btnAcceptPrivacy = findViewById(R.id.btnAcceptPrivacy);
 
         apiService = RetrofitClient.getApiService(this);
 
         aplicarAnimaciones();
+
+        verificarAvisoPrivacidad();
 
         tvOlvidePassword.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RecuperarPasswordActivity.class);
@@ -112,8 +119,32 @@ public class MainActivity extends AppCompatActivity {
             }).start();
         });
 
+        btnAcceptPrivacy.setOnClickListener(v -> {
+            SharedPreferences prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("privacy_accepted", true);
+            editor.apply();
+
+            // Desvanecer el overlay
+            layoutPrivacyOverlay.animate().alpha(0f).setDuration(400).withEndAction(() -> {
+                layoutPrivacyOverlay.setVisibility(View.GONE);
+            }).start();
+        });
+
         etEmail.setText("");
         etPassword.setText("");
+    }
+
+    private void verificarAvisoPrivacidad() {
+        SharedPreferences prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+        boolean privacyAccepted = prefs.getBoolean("privacy_accepted", false);
+
+        if (!privacyAccepted) {
+            // si es la primera vez, mostramos el overlay con animación
+            layoutPrivacyOverlay.setVisibility(View.VISIBLE);
+            layoutPrivacyOverlay.setAlpha(0f);
+            layoutPrivacyOverlay.animate().alpha(1f).setDuration(500).start();
+        }
     }
 
     private void handleLogin() {

@@ -258,6 +258,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#1A2530"
+        app:itemTextColor="#FFFFFF"
+        app:itemIconTint="#D372A3"
+        app:itemIconSize="28dp"
+        app:itemPadding="16dp"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

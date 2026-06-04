@@ -110,7 +110,17 @@ public class Inicio extends AppCompatActivity {
     private void cargarDatosUsuario() {
         SharedPreferences prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         String nombre = prefs.getString("userName", "Invitado");
+
+        // El TextView original que tenías en la pantalla principal
         tvNombreUsuario.setText("Hola, " + nombre);
+
+        // NUEVO: Encontrar el NavigationView y su Cabecera
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        android.view.View headerView = navigationView.getHeaderView(0);
+
+        // Buscar el TextView dentro del nuevo XML de la cabecera
+        TextView tvHeaderNombre = headerView.findViewById(R.id.tvHeaderNombreUsuario);
+        tvHeaderNombre.setText("Hola, " + nombre);
     }
 
     private void abrirMapaJuegos() {
