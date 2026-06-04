@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EjercicioHabitats extends PlantillaFragmentoInteractivo {
-
     private class AnimalInfo {
         int imgRes;
         int targetId;
